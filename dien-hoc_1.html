@@ -1,0 +1,3366 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 Ngày Điện Học</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef2f5;
+    --grid:rgba(44,95,130,0.07);
+    --paper:#ffffff;
+    --ink:#16232e;
+    --ink-soft:#54646f;
+    --line:#d7dee3;
+    --blue:#2c5f82;
+    --blue-soft:#e6edf2;
+    --copper:#b5533c;
+    --copper-soft:#f5e9e4;
+    --amber:#b9791f;
+    --amber-soft:#faf1de;
+    --green:#3f8f6d;
+    --green-soft:#e9f4ef;
+    --font-display:'Space Grotesk', sans-serif;
+    --font-body:'Source Sans 3', sans-serif;
+    --font-mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background-color:var(--bg);
+    background-image:
+      repeating-linear-gradient(0deg, var(--grid) 0 1px, transparent 1px 28px),
+      repeating-linear-gradient(90deg, var(--grid) 0 1px, transparent 1px 28px);
+    font-family:var(--font-body);
+    color:var(--ink);
+    line-height:1.6;
+    padding:28px 14px 80px;
+  }
+  .page{
+    max-width:760px;
+    margin:0 auto;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-left:5px solid var(--blue);
+    border-radius:2px;
+    padding:36px 30px 44px;
+    box-shadow:0 1px 3px rgba(22,35,46,0.06);
+  }
+  .badge{
+    display:inline-block;
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    letter-spacing:.06em;
+    color:var(--blue);
+    background:var(--blue-soft);
+    border:1px solid var(--blue);
+    border-radius:3px;
+    padding:3px 9px;
+    margin-bottom:14px;
+  }
+  h1{
+    font-family:var(--font-display);
+    font-size:clamp(24px,4.4vw,32px);
+    font-weight:700;
+    margin:0 0 6px;
+    letter-spacing:-.01em;
+  }
+  .subtitle{
+    color:var(--ink-soft);
+    font-size:15px;
+    margin:0 0 30px;
+  }
+  h2.section-title{
+    font-family:var(--font-display);
+    font-size:20px;
+    font-weight:600;
+    margin:46px 0 6px;
+    padding-bottom:10px;
+    border-bottom:2px solid var(--ink);
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+  }
+  h2.section-title .letter{
+    font-family:var(--font-mono);
+    background:var(--ink);
+    color:var(--paper);
+    font-size:13px;
+    padding:2px 7px;
+    border-radius:3px;
+  }
+  .section-hint{
+    color:var(--ink-soft);
+    font-size:13.5px;
+    margin:0 0 22px;
+  }
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--blue);
+    letter-spacing:.05em;
+    margin-bottom:4px;
+  }
+  .note{
+    margin:22px 0;
+    padding-left:14px;
+    border-left:2px solid var(--line);
+  }
+  .note h3{
+    font-family:var(--font-display);
+    font-size:16.5px;
+    margin:0 0 6px;
+  }
+  .note p{ margin:6px 0; }
+  .formula{
+    font-family:var(--font-mono);
+    background:var(--blue-soft);
+    color:var(--blue);
+    padding:2px 7px;
+    border-radius:3px;
+    font-size:.95em;
+    white-space:nowrap;
+  }
+  .callout{
+    margin:14px 0;
+    padding:14px 16px;
+    border-radius:4px;
+    font-size:15px;
+  }
+  .callout.warn{ background:var(--amber-soft); border:1px solid var(--amber); }
+  .callout.warn .tag{ color:var(--amber); }
+  .callout.tip{ background:var(--green-soft); border:1px solid var(--green); }
+  .callout.tip .tag{ color:var(--green); }
+  .callout .tag{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    font-weight:600;
+    letter-spacing:.06em;
+    display:block;
+    margin-bottom:4px;
+  }
+  .refcard{
+    background:var(--paper);
+    border:1.5px dashed var(--blue);
+    border-radius:6px;
+    padding:16px 18px;
+    margin:18px 0 30px;
+  }
+  .refcard .tag{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--blue);
+    letter-spacing:.06em;
+    margin-bottom:8px;
+    display:block;
+  }
+  .refcard-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 20px;
+    font-size:14px;
+  }
+  .refcard-grid div span.f{
+    font-family:var(--font-mono);
+    color:var(--blue);
+    font-weight:600;
+    margin-right:6px;
+  }
+  .card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:20px 22px;
+    margin:20px 0;
+  }
+  .card .eyebrow{ margin-bottom:2px; }
+  .card h3{
+    font-family:var(--font-display);
+    font-size:17px;
+    margin:2px 0 12px;
+  }
+  .diagram-wrap{
+    background:var(--blue-soft);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:10px;
+    margin:14px 0;
+  }
+  .diagram-wrap svg{ display:block; width:100%; height:auto; }
+  .diagram-caption{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    text-align:center;
+    margin-top:2px;
+  }
+  details{
+    margin-top:12px;
+    border-top:1px dashed var(--line);
+    padding-top:10px;
+  }
+  summary{
+    cursor:pointer;
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--copper);
+    font-weight:600;
+    letter-spacing:.03em;
+  }
+  summary::marker{ color:var(--copper); }
+  .solution{ margin-top:10px; font-size:15px; }
+  .solution .step{ margin:6px 0; }
+  .answer-inline{
+    font-family:var(--font-mono);
+    background:var(--copper-soft);
+    color:var(--copper);
+    padding:1px 6px;
+    border-radius:3px;
+    font-weight:600;
+  }
+  ol.problems{ padding-left:22px; }
+  ol.problems > li{ margin:22px 0; }
+  ol.concept{ padding-left:22px; }
+  ol.concept > li{ margin:16px 0; }
+  .divider{
+    text-align:center;
+    color:var(--line);
+    font-family:var(--font-mono);
+    font-size:13px;
+    margin:40px 0;
+    letter-spacing:.4em;
+  }
+  footer{
+    margin-top:40px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    font-size:13.5px;
+    color:var(--ink-soft);
+  }
+  @media (max-width:520px){
+    .page{ padding:26px 16px 34px; }
+    .refcard-grid{ grid-template-columns:1fr; }
+  }
+
+  .site-header{ max-width:1100px; margin:0 auto 20px; }
+  .site-shell{ display:flex; align-items:flex-start; max-width:1100px; margin:0 auto; gap:20px; }
+  .sidebar{
+    width:230px; flex-shrink:0; position:sticky; top:20px;
+    background:var(--paper); border:1px solid var(--line); border-radius:6px; padding:14px 10px;
+  }
+  .sidebar h4{
+    font-family:var(--font-display); font-size:12px; text-transform:uppercase; letter-spacing:.06em;
+    color:var(--ink-soft); margin:4px 8px 10px;
+  }
+  .nav-item{
+    display:flex; align-items:center; gap:8px; width:100%; text-align:left; background:none; border:none;
+    cursor:pointer; padding:9px 8px; border-radius:4px; font-family:var(--font-body); font-size:13.5px;
+    color:var(--ink); margin-bottom:2px;
+  }
+  .nav-item:hover{ background:var(--blue-soft); }
+  .nav-item.active{ background:var(--blue); color:#fff; }
+  .nav-item .num{ font-family:var(--font-mono); font-size:11px; opacity:.7; min-width:18px; }
+  .nav-item .label{ flex:1; line-height:1.25; }
+  .nav-item .status{
+    font-family:var(--font-mono); font-size:9px; padding:2px 6px; border-radius:8px;
+    background:var(--green-soft); color:var(--green); white-space:nowrap;
+  }
+  .nav-item.pending .status{ background:var(--bg); color:var(--ink-soft); }
+  .nav-item.active .status{ background:rgba(255,255,255,.25); color:#fff; }
+  .nav-item .status{ cursor:pointer; }
+  .nav-item .status:hover{ filter:brightness(0.95); }
+  .nav-item.done .status{ background:var(--green); color:#fff; }
+  .nav-item.active.done .status{ background:rgba(255,255,255,.35); color:#fff; }
+  .sidebar-progress{ margin:2px 8px 14px; }
+  .sidebar-progress .bar-label{
+    font-family:var(--font-mono); font-size:11px; color:var(--ink-soft);
+    display:flex; justify-content:space-between; margin-bottom:5px;
+  }
+  .sidebar-progress .bar-track{ height:6px; background:var(--bg); border-radius:3px; overflow:hidden; }
+  .sidebar-progress .bar-fill{
+    height:100%; background:var(--green); width:0%; border-radius:3px;
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .sidebar-progress .bar-fill{ transition:width .3s ease; }
+  }
+  .mark-done-wrap{ margin-top:36px; padding-top:22px; border-top:1px dashed var(--line); text-align:center; }
+  .mark-done-btn{
+    font-family:var(--font-mono); font-size:13px; letter-spacing:.03em; padding:10px 22px;
+    border-radius:20px; border:1.5px solid var(--green); background:var(--green-soft); color:var(--green);
+    cursor:pointer;
+  }
+  .mark-done-btn:hover{ background:var(--green); color:#fff; }
+  .mark-done-btn.done{ background:var(--green); color:#fff; }
+  .content-area{ flex:1; min-width:0; }
+  .day-section{ display:none; }
+  .day-section.active{ display:block; }
+  .day-section .page{ max-width:none; margin:0; }
+  .placeholder-body{ padding:50px 20px; text-align:center; color:var(--ink-soft); }
+  .placeholder-body .soon-badge{
+    display:inline-block; font-family:var(--font-mono); font-size:11px; background:var(--amber-soft);
+    color:var(--amber); border:1px solid var(--amber); padding:3px 10px; border-radius:10px; margin-bottom:14px;
+  }
+  .placeholder-body h2{ font-family:var(--font-display); color:var(--ink); font-size:20px; margin:6px 0 10px; }
+  .placeholder-body ul{ text-align:left; max-width:420px; margin:18px auto 0; font-size:14px; padding-left:20px; }
+  .placeholder-body ul li{ margin:6px 0; }
+  @media (max-width:760px){
+    .site-shell{ flex-direction:column; }
+    .sidebar{
+      width:100%; position:static; display:flex; overflow-x:auto; gap:4px; padding:8px;
+      -webkit-overflow-scrolling:touch;
+    }
+    .sidebar h4{ display:none; }
+    .nav-item{ flex-direction:column; min-width:68px; font-size:10.5px; text-align:center; padding:8px 5px; }
+    .nav-item .status{ margin-top:2px; }
+  }
+</style>
+</head>
+<body>
+
+<div style="
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  max-width:760px;margin:0 auto 14px;
+">
+  <a href="../index.html" style="
+    display:flex;align-items:center;gap:8px;
+    padding:9px 14px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;letter-spacing:.04em;
+    color:#2c5f82;background:#e6edf2;
+    border:1px solid #2c5f82;border-radius:4px;
+    text-decoration:none;width:fit-content;
+  ">← TẤT CẢ MÔN HỌC</a>
+
+  <div id="auth-widget" style="font-family:'JetBrains Mono',monospace;font-size:12px;">
+    <span id="auth-status" style="color:#54646f;">Đang tải...</span>
+    <span id="auth-logged-out" style="display:none;align-items:center;gap:6px;flex-wrap:wrap;">
+      <input id="auth-email" type="email" placeholder="email" autocomplete="email" style="width:132px;padding:6px 8px;border:1px solid #d7dee3;border-radius:4px;font-family:inherit;font-size:12px;">
+      <input id="auth-password" type="password" placeholder="mật khẩu" autocomplete="current-password" style="width:100px;padding:6px 8px;border:1px solid #d7dee3;border-radius:4px;font-family:inherit;font-size:12px;">
+      <button id="auth-signin-btn" type="button" style="padding:6px 10px;border:1px solid #2c5f82;background:#e6edf2;color:#2c5f82;border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;">Đăng nhập</button>
+      <button id="auth-signup-btn" type="button" style="padding:6px 10px;border:1px solid #3f8f6d;background:#e9f4ef;color:#3f8f6d;border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;">Tạo tài khoản</button>
+    </span>
+    <span id="auth-logged-in" style="display:none;align-items:center;gap:8px;">
+      <span id="auth-email-display" style="color:#3f8f6d;"></span>
+      <button id="auth-signout-btn" type="button" style="padding:6px 10px;border:1px solid #b5533c;background:#f5e9e4;color:#b5533c;border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;">Đăng xuất</button>
+    </span>
+  </div>
+</div>
+
+<!-- Shared schematic symbol library, used via <use> in every diagram below -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="var(--copper)"></path>
+    </marker>
+
+    <symbol id="res-h" viewBox="0 0 60 20">
+      <path d="M0,10 L8,10 L14,2 L22,18 L30,2 L38,18 L46,2 L52,10 L60,10"
+            fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="res-v" viewBox="0 0 20 60">
+      <path d="M10,0 L10,8 L2,14 L18,22 L2,30 L18,38 L2,46 L10,52 L10,60"
+            fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="vsource-v" viewBox="0 0 40 40">
+      <circle cx="20" cy="20" r="18" fill="var(--paper)" stroke="var(--blue)" stroke-width="2.2"/>
+      <line x1="20" y1="0" x2="20" y2="2" stroke="var(--blue)" stroke-width="2.2"/>
+      <line x1="20" y1="38" x2="20" y2="40" stroke="var(--blue)" stroke-width="2.2"/>
+      <text x="20" y="15" text-anchor="middle" font-family="var(--font-mono)" font-size="13" fill="var(--blue)">+</text>
+      <text x="20" y="31" text-anchor="middle" font-family="var(--font-mono)" font-size="13" fill="var(--blue)">−</text>
+    </symbol>
+
+    <symbol id="isource-v" viewBox="0 0 40 40">
+      <circle cx="20" cy="20" r="18" fill="var(--paper)" stroke="var(--copper)" stroke-width="2.2"/>
+      <line x1="20" y1="0" x2="20" y2="2" stroke="var(--copper)" stroke-width="2.2"/>
+      <line x1="20" y1="38" x2="20" y2="40" stroke="var(--copper)" stroke-width="2.2"/>
+      <line x1="20" y1="30" x2="20" y2="12" stroke="var(--copper)" stroke-width="2.2" marker-end="url(#arrow)"/>
+    </symbol>
+
+    <symbol id="cap-v" viewBox="0 0 40 40">
+      <line x1="20" y1="0" x2="20" y2="16" stroke="var(--ink)" stroke-width="2.2"/>
+      <line x1="6" y1="16" x2="34" y2="16" stroke="var(--ink)" stroke-width="2.4"/>
+      <line x1="6" y1="24" x2="34" y2="24" stroke="var(--ink)" stroke-width="2.4"/>
+      <line x1="20" y1="24" x2="20" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+    </symbol>
+
+    <symbol id="ind-v" viewBox="0 0 20 60">
+      <path d="M10,0 L10,8 A6,6 0 0 1 10,20 A6,6 0 0 1 10,32 A6,6 0 0 1 10,44 A6,6 0 0 1 10,56 L10,60"
+            fill="none" stroke="var(--ink)" stroke-width="2.2"/>
+    </symbol>
+
+    <symbol id="cap-h" viewBox="0 0 40 40">
+      <line x1="0" y1="20" x2="16" y2="20" stroke="var(--ink)" stroke-width="2.2"/>
+      <line x1="16" y1="6" x2="16" y2="34" stroke="var(--ink)" stroke-width="2.4"/>
+      <line x1="24" y1="6" x2="24" y2="34" stroke="var(--ink)" stroke-width="2.4"/>
+      <line x1="24" y1="20" x2="40" y2="20" stroke="var(--ink)" stroke-width="2.2"/>
+    </symbol>
+
+    <symbol id="opamp" viewBox="0 0 100 90">
+      <path d="M8,8 L8,82 L92,45 Z" fill="var(--paper)" stroke="var(--blue)" stroke-width="2.2" stroke-linejoin="round"/>
+      <text x="20" y="32" font-family="var(--font-mono)" font-size="17" fill="var(--blue)">−</text>
+      <text x="20" y="65" font-family="var(--font-mono)" font-size="17" fill="var(--blue)">+</text>
+    </symbol>
+
+    <symbol id="gnd" viewBox="0 0 30 22">
+      <line x1="15" y1="0" x2="15" y2="8" stroke="var(--ink)" stroke-width="2"/>
+      <line x1="3" y1="8" x2="27" y2="8" stroke="var(--ink)" stroke-width="2.2"/>
+      <line x1="7" y1="13" x2="23" y2="13" stroke="var(--ink)" stroke-width="2.2"/>
+      <line x1="11" y1="18" x2="19" y2="18" stroke="var(--ink)" stroke-width="2.2"/>
+    </symbol>
+  </defs>
+</svg>
+
+
+<div class="site-header">
+  <span class="badge">CÁ NHÂN ⋅ SVOBODA &amp; DORF, 9TH ED.</span>
+  <h1>10 Ngày Điện Học</h1>
+  <p class="subtitle">Lộ trình tự học trước kỳ 電路學 (EE 221001). Bấm vào từng ngày ở thanh bên để xem bài giảng.</p>
+</div>
+
+<div class="site-shell">
+  <nav class="sidebar">
+    <h4>10 ngày</h4>
+    <div class="sidebar-progress">
+      <div class="bar-label"><span id="progress-label">0/10 hoàn thành</span></div>
+      <div class="bar-track"><div class="bar-fill" id="progress-bar-fill"></div></div>
+    </div>
+  <button class="nav-item active" id="nav-1" onclick="showDay(1)"><span class="num">01</span><span class="label">Biến mạch điện &amp; phần tử</span><span class="status">Có</span></button>
+  <button class="nav-item" id="nav-2" onclick="showDay(2)"><span class="num">02</span><span class="label">Nguồn phụ thuộc &amp; KVL/KCL</span><span class="status">Có</span></button>
+  <button class="nav-item" id="nav-3" onclick="showDay(3)"><span class="num">03</span><span class="label">Node &amp; Mesh</span><span class="status">Có</span></button>
+  <button class="nav-item" id="nav-4" onclick="showDay(4)"><span class="num">04</span><span class="label">Định lý mạch</span><span class="status">Có</span></button>
+  <button class="nav-item" id="nav-5" onclick="showDay(5)"><span class="num">05</span><span class="label">Op-amp</span><span class="status">Có</span></button>
+  <button class="nav-item" id="nav-6" onclick="showDay(6)"><span class="num">06</span><span class="label">Tụ điện &amp; Cuộn cảm</span><span class="status">Có</span></button>
+  <button class="nav-item" id="nav-7" onclick="showDay(7)"><span class="num">07</span><span class="label">Đáp ứng bậc 1</span><span class="status">Có</span></button>
+  <button class="nav-item" id="nav-8" onclick="showDay(8)"><span class="num">08</span><span class="label">Số phức &amp; RLC bậc 2</span><span class="status">Có</span></button>
+  <button class="nav-item" id="nav-9" onclick="showDay(9)"><span class="num">09</span><span class="label">RLC &amp; Phasor</span><span class="status">Có</span></button>
+  <button class="nav-item" id="nav-10" onclick="showDay(10)"><span class="num">10</span><span class="label">Phasor &amp; Tổng ôn</span><span class="status">Có</span></button>
+  </nav>
+
+  <div class="content-area">
+    <div class="day-section active" id="day-1">
+      <div class="page">
+
+  <span class="badge">NGÀY 1 / 10 · SVOBODA &amp; DORF, 9TH ED.</span>
+  <h1>Biến mạch điện &amp; Nhập môn phần tử mạch</h1>
+  <p class="subtitle">Thay thế Ch.1 (Electric Circuit Variables) + đầu Ch.2 (Circuit Elements). Không cần mở sách, chỉ cần trang này.</p>
+
+  <h2 class="section-title"><span class="letter">A</span> Lý thuyết</h2>
+  <p class="section-hint">Đọc chủ động, khoảng 40 phút. Mọi công thức quan trọng được gom lại ở thẻ tra cứu bên dưới.</p>
+
+  <div class="refcard">
+    <span class="tag">THẺ TRA CỨU NHANH</span>
+    <div class="refcard-grid">
+      <div><span class="f">i = dq/dt</span>dòng điện</div>
+      <div><span class="f">v = dw/dq</span>điện áp</div>
+      <div><span class="f">p = v·i</span>công suất (theo PSC)</div>
+      <div><span class="f">p = −v·i</span>công suất (ngược PSC)</div>
+      <div><span class="f">v = iR</span>Ohm (theo PSC)</div>
+      <div><span class="f">p = i²R = v²/R</span>công suất trên R (≥0)</div>
+      <div><span class="f">w = ∫p dt</span>năng lượng</div>
+      <div><span class="f">ΣP = 0</span>bảo toàn công suất toàn mạch</div>
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>A1. Dòng điện</h3>
+    <p>Dòng điện là tốc độ dịch chuyển điện tích qua tiết diện dây dẫn: <span class="formula">i(t) = dq(t)/dt</span> (Ampe, A = Coulomb/giây).</p>
+    <p><b>Mũi tên dòng điện bạn vẽ chỉ là quy ước bạn tự chọn</b>, không phải chiều thật. Giải ra i &lt; 0 nghĩa là dòng thực chạy ngược chiều mũi tên, không phải bạn vẽ sai.</p>
+  </div>
+
+  <div class="note">
+    <h3>A2. Điện áp</h3>
+    <p>Điện áp giữa 2 điểm = năng lượng cần để di chuyển 1 đơn vị điện tích dương từ điểm này sang điểm kia: <span class="formula">v = dw/dq</span> (Volt, V = Joule/Coulomb).</p>
+    <p>Tương tự dòng điện: dấu <b>+/−</b> bạn đặt cũng chỉ là quy ước. Giải ra v âm → cực bạn ghi "+" thực ra có điện thế thấp hơn.</p>
+  </div>
+
+  <div class="note">
+    <h3>A3. Quy ước dấu thụ động (Passive Sign Convention)</h3>
+    <p>Khi <b>mũi tên dòng điện đi vào đúng cực "+"</b> của điện áp trên cùng một phần tử → phần tử đó đang được vẽ theo PSC.</p>
+    <div class="callout warn">
+      <span class="tag">⚠ QUAN TRỌNG NHẤT NGÀY 1</span>
+      Theo PSC, <span class="formula">p = v·i</span>: p&gt;0 là <b>hấp thụ</b>, p&lt;0 là <b>phát</b>.
+      Không theo PSC (dòng vào cực "−"): đổi dấu, <span class="formula">p = −v·i</span>.
+      Luôn tự hỏi "mũi tên có vào đúng dấu + không?" trước khi viết công thức. Đây là lỗi phổ biến nhất.
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>A4. Công suất, năng lượng, và bảo toàn công suất</h3>
+    <p><span class="formula">p(t) = v(t)·i(t)</span> (W) · <span class="formula">w(t) = ∫p(t)dt</span> (J)</p>
+    <p>Tại mọi thời điểm, <b>tổng công suất hấp thụ = tổng công suất phát ra</b> trong toàn mạch. Đây là công cụ kiểm tra đáp số cực mạnh: giải xong, cộng tổng p (theo đúng PSC) của mọi phần tử, phải ra 0.</p>
+  </div>
+
+  <div class="note">
+    <h3>A5. Passive vs Active</h3>
+    <p><b>Passive</b> (điện trở, tụ, cuộn cảm): không thể phát năng lượng ròng theo thời gian. <b>Active</b> (nguồn): có thể.</p>
+  </div>
+
+  <div class="note">
+    <h3>A6. Điện trở &amp; Ohm theo PSC</h3>
+    <p><span class="formula">v = iR</span> &nbsp; <span class="formula">p = i²R = v²/R</span>. Luôn ≥ 0 vì điện trở luôn hấp thụ, không bao giờ phát.</p>
+  </div>
+
+  <div class="note">
+    <h3>A7. Nguồn độc lập lý tưởng</h3>
+    <p><b>Nguồn áp</b> giữ điện áp cố định bất kể dòng qua nó. <b>Nguồn dòng</b> giữ dòng cố định bất kể điện áp trên nó.</p>
+    <div class="callout tip">
+      <span class="tag">✓ 2 QUY TẮC CẤM</span>
+      Không bao giờ ngắn mạch một nguồn áp lý tưởng (ra dòng vô cực). Không bao giờ để hở mạch một nguồn dòng lý tưởng (ra áp vô cực).
+    </div>
+  </div>
+
+  <div class="divider">◆ ◆ ◆</div>
+
+  <h2 class="section-title"><span class="letter">B</span> Ví dụ mẫu</h2>
+  <p class="section-hint">Tự che phần lời giải, làm thử trước rồi mới bấm mở ra so đáp án.</p>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 1</span>
+    <h3>Kiểm tra dấu công suất</h3>
+    <p>Một phần tử có dòng điện i = 3 A đi <b>vào đúng cực +</b> (tuân PSC), điện áp đo được v = −4 V. Phần tử đang hấp thụ hay phát công suất? Bao nhiêu?</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 320 140">
+        <rect x="120" y="40" width="80" height="60" rx="8" fill="var(--paper)" stroke="var(--blue)" stroke-width="2" stroke-dasharray="6 4"/>
+        <line x1="20" y1="70" x2="118" y2="70" stroke="var(--ink)" stroke-width="2.2" marker-end="url(#arrow)"/>
+        <line x1="200" y1="70" x2="300" y2="70" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="60" y="58" text-anchor="middle" font-family="var(--font-mono)" font-size="14" fill="var(--copper)">i = 3 A</text>
+        <text x="134" y="65" text-anchor="middle" font-size="18" fill="var(--ink)">+</text>
+        <text x="186" y="65" text-anchor="middle" font-size="18" fill="var(--ink)">−</text>
+        <text x="160" y="100" text-anchor="middle" font-family="var(--font-mono)" font-size="13" fill="var(--ink-soft)">v = −4 V</text>
+      </svg>
+      <div class="diagram-caption">Dòng điện đi vào đúng cực "+" → sơ đồ đang tuân theo PSC</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step">Tuân PSC nên <span class="formula">p = v·i = (−4)(3) = −12 W</span></div>
+        <div class="step">p &lt; 0 → phần tử đang <b>phát</b> <span class="answer-inline">12 W</span> ra mạch ngoài.</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 2</span>
+    <h3>Năng lượng từ công suất theo thời gian</h3>
+    <p>Một nguồn phát công suất p(t) = 10·e<sup>−2t</sup> W với t ≥ 0. Tính tổng năng lượng phát ra từ t = 0 đến t = ∞.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 320 180">
+        <line x1="50" y1="20" x2="50" y2="150" stroke="var(--ink)" stroke-width="1.6"/>
+        <line x1="50" y1="150" x2="300" y2="150" stroke="var(--ink)" stroke-width="1.6"/>
+        <path d="M50,150 L50,30 C120,40 160,90 220,120 C255,136 280,144 300,148 L300,150 Z"
+              fill="var(--amber)" opacity="0.22" stroke="none"/>
+        <path d="M50,30 C120,40 160,90 220,120 C255,136 280,144 300,148"
+              fill="none" stroke="var(--copper)" stroke-width="2.2"/>
+        <text x="16" y="26" font-family="var(--font-mono)" font-size="12.5" fill="var(--ink-soft)">p [W]</text>
+        <text x="278" y="167" font-family="var(--font-mono)" font-size="12.5" fill="var(--ink-soft)">t [s]</text>
+        <text x="130" y="55" font-family="var(--font-mono)" font-size="12.5" fill="var(--copper)">p(t)=10e⁻²ᵗ</text>
+        <text x="150" y="122" font-family="var(--font-mono)" font-size="12.5" fill="var(--amber)">diện tích = w</text>
+      </svg>
+      <div class="diagram-caption">Năng lượng w = diện tích dưới đường cong p(t), chính là ∫p dt</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step"><span class="formula">w = ∫₀^∞ 10e⁻²ᵗ dt = 10·[−½e⁻²ᵗ]₀^∞ = 10·(0 − (−½))</span></div>
+        <div class="step">w = <span class="answer-inline">5 J</span></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 3</span>
+    <h3>Mạch nối tiếp: kiểm tra bảo toàn công suất</h3>
+    <p>Nguồn áp lý tưởng 12 V nối tiếp với R₁ = 2 Ω và R₂ = 4 Ω (mạch vòng đơn).</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 320 220">
+        <line x1="60" y1="50" x2="60" y2="85" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#vsource-v" x="40" y="85" width="40" height="40"/>
+        <line x1="60" y1="125" x2="60" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="20" y="108" font-family="var(--font-mono)" font-size="13" fill="var(--blue)">12 V</text>
+
+        <line x1="60" y1="50" x2="118" y2="50" stroke="var(--ink)" stroke-width="2.2" marker-end="url(#arrow)"/>
+        <use href="#res-h" x="130" y="40" width="60" height="20"/>
+        <line x1="190" y1="50" x2="260" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="160" y="30" text-anchor="middle" font-family="var(--font-mono)" font-size="13" fill="var(--ink)">R1 = 2Ω</text>
+        <text x="160" y="70" text-anchor="middle" font-family="var(--font-mono)" font-size="12" fill="var(--copper)">v_R1 = 4V</text>
+        <text x="85" y="42" text-anchor="middle" font-family="var(--font-mono)" font-size="12" fill="var(--copper)">i = 2A</text>
+
+        <line x1="260" y1="50" x2="260" y2="90" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-v" x="250" y="90" width="20" height="60"/>
+        <line x1="260" y1="150" x2="260" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="272" y="120" font-family="var(--font-mono)" font-size="13" fill="var(--ink)">R2</text>
+        <text x="272" y="136" font-family="var(--font-mono)" font-size="13" fill="var(--ink)">4Ω</text>
+        <text x="272" y="105" font-family="var(--font-mono)" font-size="11.5" fill="var(--copper)">v_R2=8V</text>
+
+        <line x1="260" y1="170" x2="60" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+      </svg>
+      <div class="diagram-caption">Vòng đơn: nguồn 12V nối tiếp R1 và R2, dòng điện i chạy cùng chiều kim đồng hồ</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step">R_tổng = 2 + 4 = 6Ω → <span class="formula">i = 12/6 = 2A</span></div>
+        <div class="step">v_R1 = i·R1 = 4V, v_R2 = i·R2 = 8V. KVL: 4+8=12 ✓</div>
+        <div class="step">p_R1 = i²R1 = 8W, p_R2 = i²R2 = 16W (đều hấp thụ)</div>
+        <div class="step">Nguồn phát p = v·i = 12×2 = 24W. Kiểm tra: <span class="answer-inline">24W phát = 8+16 = 24W hấp thụ ✓</span></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 4</span>
+    <h3>Nguồn dòng song song điện trở</h3>
+    <p>Nguồn dòng lý tưởng 5 A song song với R = 10 Ω.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 320 200">
+        <line x1="60" y1="40" x2="260" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+        <line x1="60" y1="160" x2="260" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+
+        <line x1="90" y1="40" x2="90" y2="70" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#isource-v" x="70" y="70" width="40" height="40"/>
+        <line x1="90" y1="110" x2="90" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="40" y="95" font-family="var(--font-mono)" font-size="13" fill="var(--copper)">5 A</text>
+
+        <line x1="220" y1="40" x2="220" y2="80" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-v" x="210" y="80" width="20" height="60"/>
+        <line x1="220" y1="140" x2="220" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="232" y="106" font-family="var(--font-mono)" font-size="13" fill="var(--ink)">R=10Ω</text>
+
+        <line x1="150" y1="46" x2="150" y2="154" stroke="var(--blue)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <text x="150" y="102" text-anchor="middle" font-family="var(--font-mono)" font-size="12.5" fill="var(--blue)" transform="rotate(-90 150 102)">v = 50V</text>
+        <text x="65" y="32" font-size="16" fill="var(--ink)">+</text>
+        <text x="65" y="176" font-size="16" fill="var(--ink)">−</text>
+      </svg>
+      <div class="diagram-caption">Hai nhánh song song giữa 2 nút chung: nguồn dòng bên trái, điện trở bên phải</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step"><span class="formula">v = i·R = 5×10 = 50V</span> (chung cho cả 2 nhánh vì song song)</div>
+        <div class="step">p_R = i²R = 25×10 = 250W (hấp thụ)</div>
+        <div class="step">Nguồn dòng phát p = v·i = 50×5 = <span class="answer-inline">250W</span>, khớp bảo toàn công suất ✓</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="divider">◆ ◆ ◆</div>
+
+  <h2 class="section-title"><span class="letter">C</span> Bài tập tự luyện</h2>
+  <p class="section-hint">Tự làm trước, chỉ mở đáp số để so kết quả. Không có lời giải chi tiết, ép bạn tự tính.</p>
+
+  <ol class="problems">
+    <li>
+      Một phần tử có v = 8 V, dòng điện i = −2 A đi vào cực <b>−</b> (không theo PSC). Phần tử hấp thụ hay phát? Bao nhiêu W?
+      <div class="diagram-wrap">
+        <svg viewBox="0 0 320 140">
+          <rect x="120" y="40" width="80" height="60" rx="8" fill="var(--paper)" stroke="var(--blue)" stroke-width="2" stroke-dasharray="6 4"/>
+          <line x1="20" y1="70" x2="118" y2="70" stroke="var(--ink)" stroke-width="2.2"/>
+          <line x1="300" y1="70" x2="202" y2="70" stroke="var(--ink)" stroke-width="2.2" marker-end="url(#arrow)"/>
+          <text x="255" y="58" text-anchor="middle" font-family="var(--font-mono)" font-size="14" fill="var(--copper)">i = 2 A</text>
+          <text x="134" y="65" text-anchor="middle" font-size="18" fill="var(--ink)">+</text>
+          <text x="186" y="65" text-anchor="middle" font-size="18" fill="var(--ink)">−</text>
+          <text x="160" y="100" text-anchor="middle" font-family="var(--font-mono)" font-size="13" fill="var(--ink-soft)">v = 8 V</text>
+        </svg>
+        <div class="diagram-caption">Chú ý: mũi tên dòng điện đi vào cực "−", không phải "+"</div>
+      </div>
+      <details><summary>Xem đáp số</summary><div class="solution">Hấp thụ, <span class="answer-inline">16 W</span></div></details>
+    </li>
+
+    <li>
+      Một thiết bị nhận công suất p(t) = 20·e<sup>−0.5t</sup> W, t ≥ 0. Tính năng lượng hấp thụ trong khoảng t = 0 đến t = 2s.
+      <details><summary>Xem đáp số</summary><div class="solution">w = ∫₀² 20e⁻⁰·⁵ᵗ dt = 40(1−e⁻¹) ≈ <span class="answer-inline">25.28 J</span></div></details>
+    </li>
+
+    <li>
+      Mạch nối tiếp: nguồn áp 20 V, ba điện trở R1=1Ω, R2=3Ω, R3=4Ω. Tính dòng điện i, điện áp trên mỗi điện trở, kiểm tra bảo toàn công suất.
+      <div class="diagram-wrap">
+        <svg viewBox="0 0 320 220">
+          <line x1="50" y1="50" x2="50" y2="85" stroke="var(--ink)" stroke-width="2.2"/>
+          <use href="#vsource-v" x="30" y="85" width="40" height="40"/>
+          <line x1="50" y1="125" x2="50" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+          <text x="10" y="108" font-family="var(--font-mono)" font-size="12.5" fill="var(--blue)">20V</text>
+
+          <line x1="50" y1="50" x2="90" y2="50" stroke="var(--ink)" stroke-width="2.2" marker-end="url(#arrow)"/>
+          <text x="70" y="42" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--copper)">i</text>
+          <use href="#res-h" x="90" y="40" width="60" height="20"/>
+          <text x="120" y="30" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R1=1Ω</text>
+          <line x1="150" y1="50" x2="180" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+          <use href="#res-h" x="180" y="40" width="60" height="20"/>
+          <text x="210" y="30" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R2=3Ω</text>
+          <line x1="240" y1="50" x2="270" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+
+          <line x1="270" y1="50" x2="270" y2="90" stroke="var(--ink)" stroke-width="2.2"/>
+          <use href="#res-v" x="260" y="90" width="20" height="60"/>
+          <line x1="270" y1="150" x2="270" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+          <text x="282" y="122" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R3=4Ω</text>
+
+          <line x1="270" y1="170" x2="50" y1="170" x2="50" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        </svg>
+        <div class="diagram-caption">Nguồn 20V nối tiếp R1, R2, R3</div>
+      </div>
+      <details><summary>Xem đáp số</summary><div class="solution">i=2.5A · v1=2.5V · v2=7.5V · v3=10V · tổng hấp thụ <span class="answer-inline">50W</span> = công suất nguồn phát</div></details>
+    </li>
+
+    <li>
+      Nguồn dòng 3 A song song với R = 6 Ω. Tính điện áp và công suất trên R.
+      <div class="diagram-wrap">
+        <svg viewBox="0 0 320 200">
+          <line x1="60" y1="40" x2="260" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+          <line x1="60" y1="160" x2="260" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+          <line x1="90" y1="40" x2="90" y2="70" stroke="var(--ink)" stroke-width="2.2"/>
+          <use href="#isource-v" x="70" y="70" width="40" height="40"/>
+          <line x1="90" y1="110" x2="90" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+          <text x="40" y="95" font-family="var(--font-mono)" font-size="13" fill="var(--copper)">3 A</text>
+          <line x1="220" y1="40" x2="220" y2="80" stroke="var(--ink)" stroke-width="2.2"/>
+          <use href="#res-v" x="210" y="80" width="20" height="60"/>
+          <line x1="220" y1="140" x2="220" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+          <text x="232" y="106" font-family="var(--font-mono)" font-size="13" fill="var(--ink)">R=6Ω</text>
+        </svg>
+      </div>
+      <details><summary>Xem đáp số</summary><div class="solution">v = <span class="answer-inline">18 V</span>, p = <span class="answer-inline">54 W</span></div></details>
+    </li>
+
+    <li>
+      Một điện trở 100 Ω có dòng điện i = 0.5 A chạy qua. Tính công suất tiêu thụ và năng lượng tiêu thụ sau 10 giây (dòng không đổi).
+      <div class="diagram-wrap">
+        <svg viewBox="0 0 320 100">
+          <line x1="20" y1="50" x2="118" y2="50" stroke="var(--ink)" stroke-width="2.2" marker-end="url(#arrow)"/>
+          <use href="#res-h" x="120" y="40" width="80" height="20"/>
+          <line x1="200" y1="50" x2="300" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+          <text x="65" y="42" text-anchor="middle" font-family="var(--font-mono)" font-size="13" fill="var(--copper)">i=0.5A</text>
+          <text x="160" y="30" text-anchor="middle" font-family="var(--font-mono)" font-size="13" fill="var(--ink)">R=100Ω</text>
+        </svg>
+      </div>
+      <details><summary>Xem đáp số</summary><div class="solution">p = <span class="answer-inline">25 W</span>, w = <span class="answer-inline">250 J</span></div></details>
+    </li>
+
+    <li>
+      Một phần tử X có v=−6V, i=4A, tuân theo PSC. Một điện trở 3Ω hấp thụ đúng phần công suất mà X phát ra. Tính dòng điện qua điện trở đó. <i>(Gợi ý: tính công suất X phát ra trước, rồi dùng p=i²R ngược lại cho R.)</i>
+      <details><summary>Xem đáp số</summary><div class="solution">X phát 24W → i qua R = √(24/3) = <span class="answer-inline">2.83 A</span></div></details>
+    </li>
+  </ol>
+
+  <div class="divider">◆ ◆ ◆</div>
+
+  <h2 class="section-title"><span class="letter">D</span> Câu hỏi tự kiểm tra khái niệm</h2>
+  <p class="section-hint">Không cần tính toán. Tự trả lời bằng lời của bạn, đây là cách kiểm tra bạn hiểu thật hay chỉ nhớ công thức.</p>
+
+  <ol class="concept">
+    <li>Vì sao công suất tiêu thụ trên điện trở (p=i²R) không bao giờ âm, dù i có thể âm?</li>
+    <li>Nếu bạn vẽ mũi tên dòng điện tùy ý rồi giải ra i&lt;0, điều đó có nghĩa bạn vẽ sai đề bài không?</li>
+    <li>Vì sao không được ngắn mạch một nguồn áp lý tưởng, nhưng ngắn mạch một nguồn dòng lý tưởng lại hoàn toàn bình thường?</li>
+    <li>Cộng tổng p (theo đúng PSC) của mọi phần tử trong một mạch bất kỳ: kết quả phải bằng bao nhiêu? Vì sao đây là công cụ kiểm tra bài làm tốt?</li>
+  </ol>
+
+  <footer>
+    Xong Ngày 1. Ngày 2: nguồn phụ thuộc + KVL/KCL chính thức + chia áp/chia dòng. Soạn theo cùng định dạng này.
+  </footer>
+
+</div>
+      </div>
+    </div>
+    <div class="day-section" id="day-2">
+      <div class="page">
+
+  <span class="badge">NGÀY 2 / 10 &middot; SVOBODA &amp; DORF, CH.2 (HẾT) + CH.3</span>
+  <h1>Nguồn phụ thuộc &amp; Mạch điện trở</h1>
+  <p class="subtitle">Ch.2 (hết): nguồn phụ thuộc. Ch.3: KVL, KCL, chia áp, chia dòng.</p>
+
+  <h2 class="section-title"><span class="letter">A</span> Lý thuyết</h2>
+  <p class="section-hint">Đọc chủ động, khoảng 40 phút.</p>
+
+  <div class="refcard">
+    <span class="tag">THẺ TRA CỨU NHANH</span>
+    <div class="refcard-grid">
+      <div><span class="f">KVL</span>tổng đại số v quanh 1 vòng kín = 0</div>
+      <div><span class="f">KCL</span>tổng đại số i vào 1 nút = 0</div>
+      <div><span class="f">R_eq = R1+R2+...</span>điện trở nối tiếp</div>
+      <div><span class="f">1/R_eq = 1/R1+1/R2+...</span>điện trở song song</div>
+      <div><span class="f">v_R1 = v&middot;R1/(R1+R2)</span>chia áp (2 điện trở nối tiếp)</div>
+      <div><span class="f">i_R1 = i&middot;R2/(R1+R2)</span>chia dòng (2 điện trở song song, dùng R &ldquo;đối diện&rdquo;)</div>
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>A1. Nguồn phụ thuộc (dependent sources)</h3>
+    <p>Khác nguồn độc lập (giá trị cố định), nguồn phụ thuộc có giá trị <b>tỉ lệ với một điện áp hoặc dòng điện khác trong mạch</b>. Ký hiệu hình thoi (không phải hình tròn) để phân biệt.</p>
+    <p>4 loại, phân biệt theo &ldquo;điều khiển bởi gì, xuất ra gì&rdquo;:</p>
+    <p>&bull; <b>VCVS</b> (nguồn áp điều khiển bởi áp): v = &mu;&middot;v_x, &mu; không đơn vị<br>
+    &bull; <b>CCVS</b> (nguồn áp điều khiển bởi dòng): v = r&middot;i_x, r đơn vị &Omega;<br>
+    &bull; <b>VCCS</b> (nguồn dòng điều khiển bởi áp): i = g&middot;v_x, g đơn vị S<br>
+    &bull; <b>CCCS</b> (nguồn dòng điều khiển bởi dòng): i = &beta;&middot;i_x, &beta; không đơn vị</p>
+  </div>
+
+  <div class="note">
+    <h3>A2. Định luật Kirchhoff về điện áp (KVL)</h3>
+    <p>Đi một vòng theo bất kỳ chiều nào quanh một vòng kín, <b>tổng đại số các điện áp bằng 0</b>. Quy tắc dấu: chọn 1 chiều đi, mỗi lần đi qua 1 phần tử, nếu gặp cực &ldquo;+&rdquo; trước thì ghi +v, gặp &ldquo;&minus;&rdquo; trước thì ghi &minus;v (hoặc ngược lại, miễn nhất quán suốt vòng).</p>
+    <div class="callout warn">
+      <span class="tag">&#9888; DỄ SAI NHẤT</span>
+      Chọn 1 chiều đi (thường cùng chiều kim đồng hồ) và giữ nguyên quy tắc dấu suốt cả vòng. Đổi quy tắc giữa chừng là lỗi phổ biến nhất khi mới học KVL.
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>A3. Định luật Kirchhoff về dòng điện (KCL)</h3>
+    <p>Tại một nút bất kỳ, <b>tổng đại số dòng điện bằng 0</b> (dòng vào dương, dòng ra âm, hoặc ngược lại, miễn nhất quán). Đây là hệ quả trực tiếp của bảo toàn điện tích, điện tích không thể tự sinh ra hay biến mất tại một điểm.</p>
+  </div>
+
+  <div class="note">
+    <h3>A4. Điện trở nối tiếp &amp; song song</h3>
+    <p>Nối tiếp: <span class="formula">R_eq = R1+R2+...</span> (luôn &ge; điện trở lớn nhất)</p>
+    <p>Song song: <span class="formula">1/R_eq = 1/R1+1/R2+...</span> (luôn &le; điện trở nhỏ nhất). Với 2 điện trở: R_eq = R1R2/(R1+R2).</p>
+  </div>
+
+  <div class="note">
+    <h3>A5. Chia áp &amp; chia dòng</h3>
+    <p><b>Chia áp</b> (2 điện trở nối tiếp, nguồn v ở 2 đầu): điện áp trên R1 tỉ lệ thuận với chính R1: v_R1 = v&middot;R1/(R1+R2)</p>
+    <p><b>Chia dòng</b> (2 điện trở song song, nguồn i bơm vào): dòng qua R1 tỉ lệ thuận với điện trở <b>còn lại</b> (R2), không phải R1: i_R1 = i&middot;R2/(R1+R2)</p>
+    <div class="callout tip">
+      <span class="tag">&#10003; MẸO NHỚ</span>
+      Chia áp dùng R “của chính nó” ở tử số. Chia dòng dùng R “đối diện” ở tử số, ngược lại. Nhầm chỗ này rất phổ biến.
+    </div>
+  </div>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">B</span> Ví dụ mẫu</h2>
+  <p class="section-hint">Tự che phần lời giải, làm thử trước rồi mới bấm mở ra so đáp án.</p>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 1</span>
+    <h3>KVL với 2 nguồn áp đối chiều</h3>
+    <p>Vòng đơn: nguồn 15V và nguồn 5V mắc đối cực nhau (ngược chiều), nối tiếp R1=2&Omega; và R2=3&Omega;. Tìm dòng điện i.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 320 220">
+        <line x1="50" y1="50" x2="50" y2="85" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#vsource-v" x="30" y="85" width="40" height="40"/>
+        <line x1="50" y1="125" x2="50" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="8" y="108" font-family="var(--font-mono)" font-size="12.5" fill="var(--blue)">15V</text>
+
+        <line x1="50" y1="50" x2="90" y2="50" stroke="var(--ink)" stroke-width="2.2" marker-end="url(#arrow)"/>
+        <text x="70" y="42" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--copper)">i</text>
+        <use href="#res-h" x="90" y="40" width="60" height="20"/>
+        <text x="120" y="30" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R1=2&Omega;</text>
+        <line x1="150" y1="50" x2="220" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+
+        <line x1="270" y1="50" x2="270" y2="85" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#vsource-v" x="250" y="85" width="40" height="40" transform="rotate(180 270 105)"/>
+        <line x1="270" y1="125" x2="270" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="282" y="108" font-family="var(--font-mono)" font-size="12.5" fill="var(--blue)">5V</text>
+        <line x1="220" y1="50" x2="270" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+
+        <line x1="270" y1="170" x2="180" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-h" x="120" y="160" width="60" height="20"/>
+        <text x="150" y="196" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R2=3&Omega;</text>
+        <line x1="120" y1="170" x2="50" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+      </svg>
+      <div class="diagram-caption">Nguồn 15V và 5V mắc đối cực trong cùng 1 vòng, nối tiếp R1, R2</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step">Chọn chiều i cùng chiều kim đồng hồ, theo chiều thúc đẩy của nguồn 15V (nguồn lớn hơn thắng thế).</div>
+        <div class="step">KVL (đi theo chiều i, cộng dồn các số hạng): <span class="formula">15 &minus; i&middot;R1 &minus; 5 &minus; i&middot;R2 = 0</span></div>
+        <div class="step">15 &minus; 5 = i(R1+R2) &rarr; 10 = i&middot;5 &rarr; <span class="answer-inline">i = 2A</span></div>
+        <div class="step">Ý nghĩa: 2 nguồn đối chiều thì EMF hiệu dụng chỉ còn 15&minus;5=10V, giống như 1 nguồn 10V duy nhất.</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 2</span>
+    <h3>Vòng có nguồn phụ thuộc (CCVS)</h3>
+    <p>Vòng đơn: nguồn độc lập 24V, R1=4&Omega;, và một CCVS v=2i (i chính là dòng điện của vòng này, hình thoi trên sơ đồ). Tìm i.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 320 220">
+        <line x1="50" y1="50" x2="50" y2="85" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#vsource-v" x="30" y="85" width="40" height="40"/>
+        <line x1="50" y1="125" x2="50" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="8" y="108" font-family="var(--font-mono)" font-size="12.5" fill="var(--blue)">24V</text>
+
+        <line x1="50" y1="50" x2="90" y2="50" stroke="var(--ink)" stroke-width="2.2" marker-end="url(#arrow)"/>
+        <text x="70" y="42" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--copper)">i</text>
+        <use href="#res-h" x="90" y="40" width="60" height="20"/>
+        <text x="120" y="30" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R1=4&Omega;</text>
+        <line x1="150" y1="50" x2="270" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+
+        <line x1="270" y1="50" x2="270" y2="85" stroke="var(--ink)" stroke-width="2.2"/>
+        <polygon points="270,85 294,105 270,125 246,105" fill="var(--paper)" stroke="var(--copper)" stroke-width="2.2"/>
+        <text x="270" y="109" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="var(--copper)">2i</text>
+        <line x1="270" y1="125" x2="270" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+
+        <line x1="270" y1="170" x2="50" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+      </svg>
+      <div class="diagram-caption">Hình thoi = ký hiệu nguồn phụ thuộc, ở đây v phụ thuộc chính dòng điện i của vòng</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step">KVL theo chiều i: <span class="formula">24 &minus; i&middot;R1 &minus; 2i = 0</span></div>
+        <div class="step">24 = i&middot;4 + 2i = 6i &rarr; <span class="answer-inline">i = 4A</span></div>
+        <div class="step">Nguồn phụ thuộc &ldquo;tự tham chiếu&rdquo; vào chính dòng điện nó nằm trên là dạng bài rất hay gặp, cứ viết KVL bình thường rồi thay thế v=2i vào là được, không có gì đặc biệt hơn.</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 3</span>
+    <h3>Chia áp</h3>
+    <p>Nguồn 18V nối tiếp R1=3k&Omega; và R2=6k&Omega;. Tìm điện áp trên R2.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 220">
+        <line x1="50" y1="50" x2="50" y2="85" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#vsource-v" x="30" y="85" width="40" height="40"/>
+        <line x1="50" y1="125" x2="50" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="8" y="108" font-family="var(--font-mono)" font-size="12.5" fill="var(--blue)">18V</text>
+
+        <line x1="50" y1="50" x2="110" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-h" x="110" y="40" width="60" height="20"/>
+        <line x1="170" y1="50" x2="230" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="140" y="30" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R1=3k&Omega;</text>
+
+        <line x1="230" y1="50" x2="230" y2="90" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-v" x="220" y="90" width="20" height="60"/>
+        <line x1="230" y1="150" x2="230" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="242" y="120" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R2=6k&Omega;</text>
+        <text x="242" y="136" font-family="var(--font-mono)" font-size="11" fill="var(--copper)">v_R2=?</text>
+
+        <line x1="230" y1="170" x2="50" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+      </svg>
+      <div class="diagram-caption">Chia áp: R1 nối tiếp R2, muốn tìm phần áp rơi trên R2</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step"><span class="formula">v_R2 = v&middot;R2/(R1+R2) = 18&middot;6/(3+6) = 18&middot;(2/3)</span></div>
+        <div class="step"><span class="answer-inline">v_R2 = 12V</span></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 4</span>
+    <h3>Chia dòng</h3>
+    <p>Nguồn dòng 9A song song với R1=4&Omega; và R2=2&Omega; (cả 3 cùng song song). Tìm dòng qua R1.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 200">
+        <line x1="60" y1="30" x2="260" y2="30" stroke="var(--ink)" stroke-width="2.2"/>
+        <line x1="60" y1="170" x2="260" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <line x1="90" y1="30" x2="90" y2="60" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#isource-v" x="70" y="60" width="40" height="40"/>
+        <line x1="90" y1="100" x2="90" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="38" y="85" font-family="var(--font-mono)" font-size="13" fill="var(--copper)">9A</text>
+
+        <line x1="170" y1="30" x2="170" y2="65" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-v" x="160" y="65" width="20" height="60"/>
+        <line x1="170" y1="125" x2="170" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="182" y="98" font-family="var(--font-mono)" font-size="12" fill="var(--ink)">R1=4&Omega;</text>
+        <text x="182" y="114" font-family="var(--font-mono)" font-size="11" fill="var(--copper)">i_R1=?</text>
+
+        <line x1="230" y1="30" x2="230" y2="65" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-v" x="220" y="65" width="20" height="60"/>
+        <line x1="230" y1="125" x2="230" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="238" y="98" font-family="var(--font-mono)" font-size="12" fill="var(--ink)">R2=2&Omega;</text>
+      </svg>
+      <div class="diagram-caption">Chia dòng: R1 và R2 cùng song song với nguồn dòng 9A</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step">Chia dòng dùng điện trở &ldquo;đối diện&rdquo; (R2) ở tử số: <span class="formula">i_R1 = i&middot;R2/(R1+R2) = 9&middot;2/(4+2) = 9&middot;(1/3)</span></div>
+        <div class="step"><span class="answer-inline">i_R1 = 3A</span></div>
+        <div class="step">Kiểm tra: i_R2 = 9&middot;4/6 = 6A. Tổng 3+6=9A ✓ khớp nguồn dòng.</div>
+      </div>
+    </details>
+  </div>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">C</span> Bài tập tự luyện</h2>
+  <p class="section-hint">Tự làm trước, chỉ mở đáp số để so kết quả.</p>
+
+  <ol class="problems">
+    <li>
+      Vòng đơn: nguồn 20V và nguồn 8V đối cực, R1=3&Omega;, R2=1&Omega;. Tìm i.
+      <details><summary>Xem đáp số</summary><div class="solution">i = (20&minus;8)/(3+1) = <span class="answer-inline">3A</span></div></details>
+    </li>
+
+    <li>
+      Tại một nút có 3 dòng điện đi vào: 5A, 3A, và một dòng i chưa biết đi ra. Nếu tổng dòng vào phải bằng tổng dòng ra, i bằng bao nhiêu?
+      <details><summary>Xem đáp số</summary><div class="solution">i = 5+3 = <span class="answer-inline">8A</span></div></details>
+    </li>
+
+    <li>
+      Tính điện trở tương đương của mạng: R1=6&Omega; song song R2=3&Omega;, rồi nối tiếp với R3=5&Omega;.
+      <details><summary>Xem đáp số</summary><div class="solution">R1||R2 = 6&middot;3/9 = 2&Omega;. R_eq = 2+5 = <span class="answer-inline">7&Omega;</span></div></details>
+    </li>
+
+    <li>
+      Nguồn 24V nối tiếp R1=2k&Omega;, R2=4k&Omega;. Tìm v_R1.
+      <details><summary>Xem đáp số</summary><div class="solution">v_R1 = 24&middot;2/(2+4) = <span class="answer-inline">8V</span></div></details>
+    </li>
+
+    <li>
+      Nguồn dòng 12A song song R1=6&Omega;, R2=3&Omega;. Tìm i_R2 (dùng đúng công thức chia dòng, chú ý R nào lên tử số).
+      <details><summary>Xem đáp số</summary><div class="solution">i_R2 = 12&middot;R1/(R1+R2) = 12&middot;6/9 = <span class="answer-inline">8A</span></div></details>
+    </li>
+
+    <li>
+      Vòng đơn: nguồn 30V, R=5&Omega;, và VCVS v=3v_x trong đó v_x là điện áp trên chính R đó. Tìm i. (Gợi ý: v_x = i&middot;R, viết KVL rồi thế vào.)
+      <details><summary>Xem đáp số</summary><div class="solution">v_x=5i. KVL: 30&minus;5i&minus;3(5i)=0 &rarr; 30=5i+15i=20i &rarr; i = <span class="answer-inline">1.5A</span></div></details>
+    </li>
+
+  </ol>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">D</span> Câu hỏi tự kiểm tra khái niệm</h2>
+  <p class="section-hint">Không cần tính toán, tự trả lời bằng lời của bạn.</p>
+
+  <ol class="concept">
+    <li>Phân biệt 4 loại nguồn phụ thuộc chỉ bằng một câu: “điều khiển bởi gì, xuất ra gì”.</li>
+    <li>Vì sao công thức chia dòng lại dùng điện trở “đối diện” ở tử số, trong khi chia áp lại dùng chính điện trở đó?</li>
+    <li>Nếu một mạch có điện trở mắc kiểu “cầu” (bridge, không thuần nối tiếp/song song), công thức nối tiếp/song song ở A4 còn dùng được không? Cách nào sẽ giải được mạch dạng này (sẽ học ở Ngày 3)?</li>
+    <li>KVL và KCL có phải chỉ áp dụng được cho mạch điện trở thuần không, hay áp dụng được cho mọi loại mạch (kể cả có tụ, cuộn cảm, nguồn phụ thuộc)?</li>
+  </ol>
+
+
+  <footer>
+    Xong Ngày 2. Ngày 3: phương pháp phân tích node voltage &amp; mesh current, kỹ thuật quan trọng nhất của cả 10 chương.
+  </footer>
+
+      </div>
+    </div>
+    <div class="day-section" id="day-3">
+      <div class="page">
+
+  <span class="badge">NGÀY 3 / 10 &middot; SVOBODA &amp; DORF, CH.4</span>
+  <h1>Phương pháp phân tích: Node &amp; Mesh</h1>
+  <p class="subtitle">Kỹ thuật cốt lõi số 1: node voltage và mesh current.</p>
+
+  <h2 class="section-title"><span class="letter">A</span> Lý thuyết</h2>
+  <p class="section-hint">Đọc chủ động, khoảng 40 phút.</p>
+
+  <div class="refcard">
+    <span class="tag">THẺ TRA CỨU NHANH</span>
+    <div class="refcard-grid">
+      <div><span class="f">V_ref = 0</span>chọn 1 nút làm đất (nút chuẩn)</div>
+      <div><span class="f">i (A&rarr;B) = (V_A&minus;V_B)/R</span>dòng qua điện trở giữa 2 nút</div>
+      <div><span class="f">supernode</span>nguồn áp nối giữa 2 nút không đất</div>
+      <div><span class="f">v_R = &Sigma;(i_mesh)&middot;R</span>áp trên nhánh chung của 2 mesh</div>
+      <div><span class="f">supermesh</span>nguồn dòng nằm giữa 2 mesh</div>
+      <div><span class="f">số pt cần</span>node: (số nút &minus; 1). mesh: số vòng độc lập</div>
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>A1. Phương pháp điện áp nút (node voltage)</h3>
+    <p>Bước làm: (1) chọn 1 nút làm <b>nút chuẩn</b> (đất, 0V) :  thường chọn nút có nhiều nhánh nối vào nhất. (2) Gán biến điện áp cho các nút còn lại. (3) Viết KCL tại mỗi nút không đất, biểu diễn dòng qua điện trở theo Ohm: dòng từ nút A sang nút B qua điện trở R là (V_A&minus;V_B)/R. (4) Giải hệ phương trình tuyến tính.</p>
+  </div>
+
+  <div class="note">
+    <h3>A2. Nguồn trong phương pháp node</h3>
+    <p><b>Nguồn dòng</b> tại 1 nút: cộng thẳng vào phương trình KCL của nút đó (vào dương, ra âm).</p>
+    <p><b>Nguồn áp nối giữa 1 nút và đất:</b> biết ngay điện áp nút đó = giá trị nguồn, không cần viết KCL cho nút này &rarr; giảm 1 ẩn.</p>
+    <p><b>Nguồn áp nối giữa 2 nút không đất (floating):</b> dùng kỹ thuật <b>supernode</b>: gộp 2 nút thành 1 vùng, viết KCL cho tổng dòng ra khỏi cả vùng, rồi thêm phương trình ràng buộc V_A&minus;V_B = giá trị nguồn.</p>
+    <div class="callout warn">
+      <span class="tag">&#9888; SUPERNODE</span>
+      Supernode dùng khi nguồn áp KHÔNG có cực nào chạm đất. Nếu 1 cực đã chạm đất thì không cần supernode, chỉ cần gán thẳng giá trị.
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>A3. Phương pháp dòng điện vòng (mesh current)</h3>
+    <p>Chỉ dùng được cho mạch phẳng (planar, vẽ được không dây nào chồng chéo). Bước làm: (1) Gán 1 biến dòng điện cho mỗi vòng độc lập (mesh), thường theo chiều kim đồng hồ. (2) Viết KVL quanh mỗi vòng: điện áp trên 1 điện trở dùng chung 2 vòng = (tổng đại số các dòng mesh qua nó)&times;R. (3) Giải hệ phương trình.</p>
+  </div>
+
+  <div class="note">
+    <h3>A4. Nguồn trong phương pháp mesh</h3>
+    <p><b>Nguồn áp</b> nằm trên 1 nhánh chỉ thuộc 1 mesh: cộng thẳng vào phương trình KVL của mesh đó.</p>
+    <p><b>Nguồn dòng</b> nằm trên nhánh chỉ thuộc 1 mesh: biết ngay dòng mesh đó = giá trị nguồn (chú ý dấu theo chiều), giảm 1 ẩn.</p>
+    <p><b>Nguồn dòng</b> nằm trên nhánh dùng chung 2 mesh (không có điện trở song song để đơn giản hóa): dùng <b>supermesh</b>: bỏ nhánh đó ra khỏi việc viết KVL, viết KVL cho vòng ngoài gộp của 2 mesh, rồi thêm ràng buộc hiệu 2 dòng mesh = giá trị nguồn dòng.</p>
+  </div>
+
+  <div class="note">
+    <h3>A5. Chọn node hay mesh?</h3>
+    <p>Đếm số phương trình cần thiết của mỗi cách rồi chọn cách ít ẩn hơn: node cần (số nút &minus; 1) phương trình, mesh cần (số mesh) phương trình. Mạch nhiều nguồn dòng thường hợp node hơn (nguồn dòng dễ xử lý ở node). Mạch nhiều nguồn áp, ít vòng, thường hợp mesh hơn.</p>
+    <div class="callout tip">
+      <span class="tag">&#10003; ĐÂY LÀ CHƯƠNG QUAN TRỌNG NHẤT</span>
+      Gần như mọi bài toán mạch lớn ở các chương sau (kể cả miền phasor Ngày 9 và 10) đều quy về 1 trong 2 kỹ thuật này. Đầu tư thời gian ở Ngày 3 sẽ tiết kiệm rất nhiều thời gian về sau.
+    </div>
+  </div>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">B</span> Ví dụ mẫu</h2>
+  <p class="section-hint">Tự che phần lời giải, làm thử trước rồi mới bấm mở ra so đáp án.</p>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 1</span>
+    <h3>Node voltage cơ bản (2 nút)</h3>
+    <p>Nguồn dòng 6A bơm vào nút A. R1=2&Omega; nối A xuống đất. R2=2&Omega; nối A với B. R3=2&Omega; nối B xuống đất. Tìm V_A, V_B.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 210">
+        <circle cx="90" cy="60" r="3.5" fill="var(--ink)"/>
+        <text x="90" y="42" text-anchor="middle" font-family="var(--font-mono)" font-size="13" fill="var(--blue)">V_A</text>
+        <circle cx="210" cy="60" r="3.5" fill="var(--ink)"/>
+        <text x="210" y="42" text-anchor="middle" font-family="var(--font-mono)" font-size="13" fill="var(--blue)">V_B</text>
+
+        <line x1="60" y1="60" x2="88" y2="60" stroke="var(--ink)" stroke-width="2.2" marker-end="url(#arrow)"/>
+        <text x="45" y="50" text-anchor="middle" font-family="var(--font-mono)" font-size="12" fill="var(--copper)">6A</text>
+
+        <line x1="92" y1="60" x2="205" y2="60" stroke="var(--ink)" stroke-width="0"/>
+        <line x1="92" y1="60" x2="150" y2="60" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-h" x="150" y="50" width="60" height="20"/>
+        <text x="180" y="42" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R2=2&Omega;</text>
+
+        <line x1="90" y1="63" x2="90" y2="100" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-v" x="80" y="100" width="20" height="60"/>
+        <line x1="90" y1="160" x2="90" y2="180" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#gnd" x="75" y="180" width="30" height="22"/>
+        <text x="60" y="130" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R1=2&Omega;</text>
+
+        <line x1="210" y1="63" x2="210" y2="100" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-v" x="200" y="100" width="20" height="60"/>
+        <line x1="210" y1="160" x2="210" y2="180" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#gnd" x="195" y="180" width="30" height="22"/>
+        <text x="222" y="130" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R3=2&Omega;</text>
+      </svg>
+      <div class="diagram-caption">2 nút không đất (A, B) cộng thêm nút đất. Ký hiệu đất ở dưới mỗi điện trở về 0V.</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step">KCL tại A (dòng ra = dòng vào từ nguồn): <span class="formula">V_A/R1 + (V_A&minus;V_B)/R2 = 6</span> &rarr; V_A/2+(V_A&minus;V_B)/2=6 &rarr; nhân 2: 2V_A&minus;V_B=12</div>
+        <div class="step">KCL tại B (không nguồn ngoài, dòng ra = 0): <span class="formula">(V_B&minus;V_A)/R2 + V_B/R3 = 0</span> &rarr; nhân 2: 2V_B&minus;V_A=0 &rarr; V_A=2V_B</div>
+        <div class="step">Thế vào pt đầu: 2(2V_B)&minus;V_B=12 &rarr; 3V_B=12 &rarr; V_B=4V, V_A=8V</div>
+        <div class="step"><span class="answer-inline">V_A = 8V, V_B = 4V</span>. Kiểm tra: (8&minus;4)/2 + 4/2 = 2+2=4... với KCL tại A: 8/2+(8&minus;4)/2=4+2=6 ✓</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 2</span>
+    <h3>Supernode (nguồn áp giữa 2 nút)</h3>
+    <p>Nguồn dòng 3A bơm vào nút A. R1=10&Omega; nối A xuống đất, R2=10&Omega; nối B xuống đất. Giữa A và B là nguồn áp 5V (cực + tại A, floating, không chạm đất). Tìm V_A, V_B.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 210">
+        <circle cx="90" cy="60" r="3.5" fill="var(--ink)"/>
+        <text x="80" y="42" text-anchor="middle" font-family="var(--font-mono)" font-size="13" fill="var(--blue)">V_A</text>
+        <circle cx="210" cy="60" r="3.5" fill="var(--ink)"/>
+        <text x="220" y="42" text-anchor="middle" font-family="var(--font-mono)" font-size="13" fill="var(--blue)">V_B</text>
+
+        <line x1="60" y1="60" x2="88" y2="60" stroke="var(--ink)" stroke-width="2.2" marker-end="url(#arrow)"/>
+        <text x="45" y="50" text-anchor="middle" font-family="var(--font-mono)" font-size="12" fill="var(--copper)">3A</text>
+
+        <line x1="93" y1="60" x2="207" y2="60" stroke="var(--ink)" stroke-width="2.2" stroke-dasharray="1 6"/>
+        <use href="#vsource-v" x="130" y="40" width="40" height="40" transform="rotate(90 150 60)"/>
+        <text x="150" y="30" text-anchor="middle" font-family="var(--font-mono)" font-size="12" fill="var(--blue)">5V</text>
+
+        <line x1="90" y1="63" x2="90" y2="100" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-v" x="80" y="100" width="20" height="60"/>
+        <line x1="90" y1="160" x2="90" y2="180" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#gnd" x="75" y="180" width="30" height="22"/>
+        <text x="55" y="130" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R1=10&Omega;</text>
+
+        <line x1="210" y1="63" x2="210" y2="100" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-v" x="200" y="100" width="20" height="60"/>
+        <line x1="210" y1="160" x2="210" y2="180" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#gnd" x="195" y="180" width="30" height="22"/>
+        <text x="222" y="130" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R2=10&Omega;</text>
+
+        <path d="M75,45 Q150,15 225,45" fill="none" stroke="var(--amber)" stroke-width="1.4" stroke-dasharray="4 3"/>
+        <text x="150" y="12" text-anchor="middle" font-family="var(--font-mono)" font-size="10.5" fill="var(--amber)">supernode (gộp A+B)</text>
+      </svg>
+      <div class="diagram-caption">Nguồn 5V nằm hoàn toàn giữa A và B (floating), không cực nào chạm đất, nên phải dùng supernode</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step">Nguồn 5V không chạm đất &rarr; dùng supernode: gộp KCL của A và B thành 1 phương trình, tổng dòng ra 2 nhánh xuống đất = dòng bơm vào: <span class="formula">V_A/10 + V_B/10 = 3</span> &rarr; V_A+V_B=30</div>
+        <div class="step">Ràng buộc nguồn áp: <span class="formula">V_A &minus; V_B = 5</span></div>
+        <div class="step">Cộng 2 phương trình: 2V_A=35 &rarr; V_A=17.5V, V_B=12.5V</div>
+        <div class="step"><span class="answer-inline">V_A = 17.5V, V_B = 12.5V</span>. Kiểm tra: 17.5&minus;12.5=5 ✓, 17.5/10+12.5/10=3 ✓</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 3</span>
+    <h3>Mesh current cơ bản (2 mesh)</h3>
+    <p>Mesh1 (trái): nguồn 16V, R1=2&Omega;, nhánh chung R2=4&Omega;. Mesh2 (phải): nhánh chung R2=4&Omega;, R3=6&Omega;, nguồn 4V. Cả 2 nguồn cùng thúc đẩy dòng theo chiều kim đồng hồ. Tìm i1, i2.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 340 200">
+        <line x1="40" y1="40" x2="40" y2="75" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#vsource-v" x="20" y="75" width="40" height="40"/>
+        <line x1="40" y1="115" x2="40" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="4" y="98" font-family="var(--font-mono)" font-size="12" fill="var(--blue)">16V</text>
+
+        <line x1="40" y1="40" x2="80" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-h" x="80" y="30" width="60" height="20"/>
+        <line x1="140" y1="40" x2="180" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="110" y="22" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R1=2&Omega;</text>
+
+        <line x1="180" y1="40" x2="180" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-v" x="170" y="70" width="20" height="60"/>
+        <text x="192" y="103" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R2=4&Omega;</text>
+        <text x="60" y="100" text-anchor="middle" font-family="var(--font-mono)" font-size="16" fill="var(--copper)">i1 &#8635;</text>
+        <text x="230" y="100" text-anchor="middle" font-family="var(--font-mono)" font-size="16" fill="var(--copper)">i2 &#8635;</text>
+
+        <line x1="180" y1="40" x2="220" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-h" x="220" y="30" width="60" height="20"/>
+        <line x1="280" y1="40" x2="300" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="250" y="22" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R3=6&Omega;</text>
+
+        <line x1="300" y1="40" x2="300" y2="75" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#vsource-v" x="280" y="75" width="40" height="40"/>
+        <line x1="300" y1="115" x2="300" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="308" y="98" font-family="var(--font-mono)" font-size="12" fill="var(--blue)">4V</text>
+
+        <line x1="300" y1="160" x2="40" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+      </svg>
+      <div class="diagram-caption">2 mesh, R2 là nhánh chung. Cả 2 nguồn thúc đẩy dòng theo chiều kim đồng hồ</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step">KVL mesh1 (đi theo chiều i1): <span class="formula">&minus;16 + i1&middot;R1 + (i1&minus;i2)&middot;R2 = 0</span> &rarr; 2i1+4(i1&minus;i2)=16 &rarr; 6i1&minus;4i2=16 &rarr; 3i1&minus;2i2=8</div>
+        <div class="step">KVL mesh2 (đi theo chiều i2): <span class="formula">&minus;4 + i2&middot;R3 + (i2&minus;i1)&middot;R2 = 0</span> &rarr; 6i2+4(i2&minus;i1)=4 &rarr; 10i2&minus;4i1=4 &rarr; 5i2&minus;2i1=2</div>
+        <div class="step">Từ pt 1: i2=(3i1&minus;8)/2. Thế vào pt 2: 5(3i1&minus;8)/2 &minus; 2i1=2 &rarr; nhân 2: 15i1&minus;40&minus;4i1=4 &rarr; 11i1=44 &rarr; i1=4A</div>
+        <div class="step"><span class="answer-inline">i1 = 4A, i2 = 2A</span>. Dòng thực qua R2 (nhánh chung, theo chiều i1) = i1&minus;i2 = 2A</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 4</span>
+    <h3>Supermesh (nguồn dòng giữa 2 mesh)</h3>
+    <p>Mesh1: nguồn 24V, R1=2&Omega;. Mesh2: R2=3&Omega;. Nhánh chung giữa 2 mesh là nguồn dòng 2A (không có điện trở), chiều sao cho i1&minus;i2=2. Tìm i1, i2.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 340 200">
+        <line x1="40" y1="40" x2="40" y2="75" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#vsource-v" x="20" y="75" width="40" height="40"/>
+        <line x1="40" y1="115" x2="40" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="4" y="98" font-family="var(--font-mono)" font-size="12" fill="var(--blue)">24V</text>
+
+        <line x1="40" y1="40" x2="80" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-h" x="80" y="30" width="60" height="20"/>
+        <line x1="140" y1="40" x2="180" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="110" y="22" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R1=2&Omega;</text>
+
+        <line x1="180" y1="40" x2="180" y2="75" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#isource-v" x="160" y="75" width="40" height="40"/>
+        <line x1="180" y1="115" x2="180" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="192" y="103" font-family="var(--font-mono)" font-size="12" fill="var(--copper)">2A</text>
+        <text x="60" y="100" text-anchor="middle" font-family="var(--font-mono)" font-size="16" fill="var(--copper)">i1 &#8635;</text>
+        <text x="230" y="100" text-anchor="middle" font-family="var(--font-mono)" font-size="16" fill="var(--copper)">i2 &#8635;</text>
+
+        <line x1="180" y1="40" x2="220" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-h" x="220" y="30" width="60" height="20"/>
+        <line x1="280" y1="40" x2="300" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="250" y="22" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R2=3&Omega;</text>
+
+        <line x1="300" y1="40" x2="300" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+        <line x1="300" y1="160" x2="40" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+      </svg>
+      <div class="diagram-caption">Nhánh chung là nguồn dòng 2A thuần túy (không điện trở), buộc phải dùng supermesh</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step">Bỏ nhánh nguồn dòng ra khỏi việc viết KVL, viết KVL cho vòng ngoài gộp (supermesh), đi qua R1 (theo i1) và R2 (theo i2): <span class="formula">&minus;24 + i1&middot;R1 + i2&middot;R2 = 0</span> &rarr; 2i1+3i2=24</div>
+        <div class="step">Ràng buộc từ nguồn dòng: <span class="formula">i1 &minus; i2 = 2</span> &rarr; i1=i2+2</div>
+        <div class="step">Thế vào: 2(i2+2)+3i2=24 &rarr; 5i2+4=24 &rarr; i2=4A</div>
+        <div class="step"><span class="answer-inline">i1 = 6A, i2 = 4A</span>. Kiểm tra: 2(6)+3(4)=12+12=24 ✓, 6&minus;4=2 ✓</div>
+      </div>
+    </details>
+  </div>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">C</span> Bài tập tự luyện</h2>
+  <p class="section-hint">Tự làm trước, chỉ mở đáp số để so kết quả.</p>
+
+  <ol class="problems">
+    <li>
+      Nguồn dòng 4A bơm vào nút A. R1=4&Omega; nối A xuống đất. R2=4&Omega; nối A với B. R3=4&Omega; nối B xuống đất. Tìm V_A, V_B bằng node voltage.
+      <details><summary>Xem đáp số</summary><div class="solution">V_A = <span class="answer-inline">10.67V</span> (32/3), V_B = <span class="answer-inline">5.33V</span> (16/3)</div></details>
+    </li>
+
+    <li>
+      2 nút A, B (không đất). Nguồn áp 10V nối trực tiếp giữa A và đất (cực + tại A). R=5&Omega; nối A và B. R2=5&Omega; nối B xuống đất. Tìm V_B. (Gợi ý: V_A đã biết ngay, không cần supernode.)
+      <details><summary>Xem đáp số</summary><div class="solution">V_A=10V (biết ngay). KCL tại B: (V_B&minus;10)/5+V_B/5=0 &rarr; 2V_B=10 &rarr; V_B = <span class="answer-inline">5V</span></div></details>
+    </li>
+
+    <li>
+      2 mesh: mesh1 có nguồn 20V và R1=4&Omega;; mesh2 có R2=6&Omega; và nguồn 8V (cùng chiều thúc đẩy); nhánh chung R3=2&Omega;. Tìm i1, i2.
+      <details><summary>Xem đáp số</summary><div class="solution">6i1&minus;2i2=20, 8i2&minus;2i1=8 &rarr; i1 = <span class="answer-inline">4A</span>, i2 = <span class="answer-inline">2A</span></div></details>
+    </li>
+
+    <li>
+      2 mesh chung 1 điện trở R=5&Omega;. Mesh1 chỉ có nguồn 30V (không điện trở riêng). Mesh2 có R2=10&Omega;. Nguồn 30V thúc đẩy i1 cùng chiều kim đồng hồ. Tìm i1, i2.
+      <details><summary>Xem đáp số</summary><div class="solution">&minus;30+5(i1&minus;i2)=0 và 10i2+5(i2&minus;i1)=0 &rarr; i1&minus;i2=6 và i1=3i2 &rarr; i1 = <span class="answer-inline">9A</span>, i2 = <span class="answer-inline">3A</span></div></details>
+    </li>
+
+    <li>
+      Mạch có 3 nút không đất (ngoài đất). Nếu dùng node voltage cần mấy phương trình? Nếu mạch đó có 2 mesh độc lập, dùng mesh cần mấy phương trình? Phương pháp nào ít ẩn hơn ở đây?
+      <details><summary>Xem đáp số</summary><div class="solution">Node: 3 phương trình. Mesh: 2 phương trình &rarr; mesh <span class="answer-inline">ít ẩn hơn</span> trong trường hợp này</div></details>
+    </li>
+
+    <li>
+      Một nguồn dòng 5A nằm trên nhánh chỉ thuộc mesh2 (không chia sẻ với mesh nào khác). Không cần viết KVL đầy đủ, i2 bằng bao nhiêu ngay lập tức?
+      <details><summary>Xem đáp số</summary><div class="solution">i2 = <span class="answer-inline">5A</span> (hoặc &minus;5A tùy chiều quy ước, bằng thẳng giá trị nguồn dòng vì nhánh này chỉ thuộc 1 mesh)</div></details>
+    </li>
+
+  </ol>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">D</span> Câu hỏi tự kiểm tra khái niệm</h2>
+  <p class="section-hint">Không cần tính toán, tự trả lời bằng lời của bạn.</p>
+
+  <ol class="concept">
+    <li>Vì sao chọn nút có nhiều nhánh nối vào nhất làm nút chuẩn (đất) thường giúp bài toán gọn hơn?</li>
+    <li>Supernode và supermesh có điểm gì giống nhau về bản chất (cả 2 đều xử lý loại nguồn nào)?</li>
+    <li>Nếu một mạch chỉ có 2 nút (kể cả đất) nhưng có 5 nhánh song song, node voltage cần mấy phương trình?</li>
+    <li>Sau khi giải ra các dòng điện mesh (i1, i2, ...), làm sao để tính dòng thực tế qua 1 điện trở cụ thể nằm giữa 2 mesh?</li>
+  </ol>
+
+
+  <footer>
+    Xong Ngày 3, chương quan trọng nhất. Ngày 4: định lý mạch (biến đổi nguồn, xếp chồng, Thevenin, Norton, truyền công suất cực đại).
+  </footer>
+
+      </div>
+    </div>
+    <div class="day-section" id="day-4">
+      <div class="page">
+
+  <span class="badge">NGÀY 4 / 10 &middot; SVOBODA &amp; DORF, CH.5</span>
+  <h1>Định lý mạch</h1>
+  <p class="subtitle">Kỹ thuật cốt lõi số 2: biến đổi nguồn, xếp chồng, Thevenin, Norton, truyền công suất cực đại.</p>
+
+  <h2 class="section-title"><span class="letter">A</span> Lý thuyết</h2>
+  <p class="section-hint">Đọc chủ động, khoảng 40 phút.</p>
+
+  <div class="refcard">
+    <span class="tag">THẺ TRA CỨU NHANH</span>
+    <div class="refcard-grid">
+      <div><span class="f">I = V/R, R giữ nguyên</span>biến đổi nguồn áp &harr; nguồn dòng</div>
+      <div><span class="f">đáp ứng = &Sigma; đáp ứng riêng</span>xếp chồng (tắt nguồn kia: áp&rarr;ngắn mạch, dòng&rarr;hở mạch)</div>
+      <div><span class="f">V_th = v hở mạch</span>Thevenin</div>
+      <div><span class="f">R_th = R nhìn vào, tắt nguồn</span>Thevenin / Norton</div>
+      <div><span class="f">I_N = i ngắn mạch, R_N=R_th</span>Norton</div>
+      <div><span class="f">R_L=R_th, P_max=V_th&sup2;/(4R_th)</span>truyền công suất cực đại</div>
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>A1. Biến đổi nguồn (source transformation)</h3>
+    <p>Nguồn áp V nối tiếp R có thể đổi thành nguồn dòng I=V/R song song R (và ngược lại), miễn giữ nguyên đặc tính nhìn từ bên ngoài. Dùng để gộp nhiều nhánh song song thành 1 nhánh duy nhất, đơn giản hóa mạch trước khi tính.</p>
+    <div class="callout warn">
+      <span class="tag">&#9888; KHÔNG ÁP DỤNG ĐƯỢC KHI</span>
+      R=0 (nguồn áp lý tưởng, không có điện trở nối tiếp) hoặc R=&infin; (nguồn dòng lý tưởng, không có điện trở song song). Không thể biến đổi nguồn lý tưởng &ldquo;trần&rdquo;.
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>A2. Xếp chồng (superposition)</h3>
+    <p>Trong mạch tuyến tính có nhiều nguồn độc lập, đáp ứng tổng = tổng đáp ứng do <b>từng nguồn tác động riêng lẻ</b>. Khi xét 1 nguồn, tắt tất cả nguồn độc lập còn lại: nguồn áp &rarr; thay bằng dây nối (ngắn mạch), nguồn dòng &rarr; thay bằng hở mạch.</p>
+    <div class="callout warn">
+      <span class="tag">&#9888; NGUỒN PHỤ THUỘC</span>
+      Nguồn phụ thuộc KHÔNG BAO GIỜ được tắt trong bất kỳ bước nào của xếp chồng, chỉ tắt nguồn độc lập.
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>A3. Thevenin</h3>
+    <p>Bất kỳ mạch tuyến tính 2 cực nào cũng thay được bằng 1 nguồn áp V_th nối tiếp 1 điện trở R_th.</p>
+    <p><b>V_th</b> = điện áp hở mạch tại 2 cực (tháo tải ra, đo áp).<br>
+    <b>R_th</b> = điện trở nhìn vào từ 2 cực khi đã tắt hết nguồn độc lập (áp&rarr;ngắn mạch, dòng&rarr;hở mạch).</p>
+  </div>
+
+  <div class="note">
+    <h3>A4. Norton</h3>
+    <p>Tương đương với nguồn dòng I_N song song R_N. <span class="formula">I_N</span> = dòng ngắn mạch tại 2 cực. <span class="formula">R_N = R_th</span> luôn luôn (2 điện trở này là một). Norton chính là Thevenin sau khi biến đổi nguồn (A1).</p>
+  </div>
+
+  <div class="note">
+    <h3>A5. Truyền công suất cực đại</h3>
+    <p>Với 1 mạch nguồn có Thevenin (V_th, R_th) nuôi tải R_L, công suất truyền tới tải đạt cực đại khi <span class="formula">R_L = R_th</span>, và <span class="formula">P_max = V_th&sup2;/(4R_th)</span>.</p>
+    <div class="callout tip">
+      <span class="tag">&#10003; LƯU Ý</span>
+      Đây là điều kiện để CÔNG SUẤT TRÊN TẢI cực đại, không phải hiệu suất cực đại (khi R_L=R_th, một nửa công suất luôn bị tiêu hao trên chính R_th, hiệu suất chỉ 50%).
+    </div>
+  </div>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">B</span> Ví dụ mẫu</h2>
+  <p class="section-hint">Tự che phần lời giải, làm thử trước rồi mới bấm mở ra so đáp án.</p>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 1</span>
+    <h3>Biến đổi nguồn để gộp mạch</h3>
+    <p>3 nhánh song song nuôi tải R_L=2&Omega;: nhánh 1 là nguồn 12V nối tiếp R1=4&Omega;, nhánh 2 là nguồn dòng 1A, nhánh 3 là R2=4&Omega;. Tìm dòng qua R_L.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 360 200">
+        <line x1="50" y1="40" x2="310" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+        <line x1="50" y1="160" x2="310" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+
+        <line x1="80" y1="40" x2="80" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#vsource-v" x="60" y="50" width="40" height="40"/>
+        <line x1="80" y1="90" x2="80" y2="100" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-v" x="70" y="100" width="20" height="60"/>
+        <text x="35" y="70" font-family="var(--font-mono)" font-size="12" fill="var(--blue)">12V</text>
+        <text x="92" y="130" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R1=4&Omega;</text>
+
+        <line x1="160" y1="40" x2="160" y2="60" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#isource-v" x="140" y="60" width="40" height="40"/>
+        <line x1="160" y1="100" x2="160" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="122" y="85" font-family="var(--font-mono)" font-size="12" fill="var(--copper)">1A</text>
+
+        <line x1="220" y1="40" x2="220" y2="70" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-v" x="210" y="70" width="20" height="60"/>
+        <line x1="220" y1="130" x2="220" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="232" y="105" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R2=4&Omega;</text>
+
+        <line x1="280" y1="40" x2="280" y2="70" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-v" x="270" y="70" width="20" height="60"/>
+        <line x1="280" y1="130" x2="280" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="292" y="105" font-family="var(--font-mono)" font-size="11.5" fill="var(--copper)">R_L=2&Omega;</text>
+      </svg>
+      <div class="diagram-caption">3 nhánh song song nuôi R_L, cần gộp lại trước khi tính</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step">Đổi nhánh 1 (V nối tiếp R) sang Norton: <span class="formula">I1 = 12/4 = 3A</span> song song R1=4&Omega;</div>
+        <div class="step">Gộp 2 nguồn dòng cùng chiều: I_total = 3+1 = 4A. Gộp R1 song song R2: <span class="formula">R_eq = 4&middot;4/(4+4) = 2&Omega;</span></div>
+        <div class="step">Mạch còn lại: nguồn Norton 4A, R_eq=2&Omega;, song song R_L=2&Omega;. Chia dòng: <span class="formula">i_L = 4&middot;R_eq/(R_eq+R_L) = 4&middot;2/4</span></div>
+        <div class="step"><span class="answer-inline">i_L = 2A</span> (v_L = i_L&middot;R_L = 4V)</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 2</span>
+    <h3>Xếp chồng (superposition)</h3>
+    <p>Nguồn 10V nối tiếp R1=5&Omega; nuôi nút A. Nguồn dòng 2A bơm thẳng vào A. R2=5&Omega; từ A xuống đất. Tìm V_A bằng xếp chồng.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 340 200">
+        <line x1="50" y1="40" x2="290" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="170" y="26" text-anchor="middle" font-family="var(--font-mono)" font-size="12.5" fill="var(--blue)">V_A</text>
+        <line x1="50" y1="160" x2="290" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+
+        <line x1="80" y1="40" x2="80" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#vsource-v" x="60" y="50" width="40" height="40"/>
+        <line x1="80" y1="90" x2="80" y2="100" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-v" x="70" y="100" width="20" height="60"/>
+        <text x="30" y="70" font-family="var(--font-mono)" font-size="12" fill="var(--blue)">10V</text>
+        <text x="92" y="130" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R1=5&Omega;</text>
+
+        <line x1="170" y1="40" x2="170" y2="60" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#isource-v" x="150" y="60" width="40" height="40"/>
+        <line x1="170" y1="100" x2="170" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="132" y="85" font-family="var(--font-mono)" font-size="12" fill="var(--copper)">2A</text>
+
+        <line x1="250" y1="40" x2="250" y2="70" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-v" x="240" y="70" width="20" height="60"/>
+        <line x1="250" y1="130" x2="250" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="262" y="105" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R2=5&Omega;</text>
+      </svg>
+      <div class="diagram-caption">2 nguồn độc lập cùng nuôi nút A qua R1, R2</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step"><b>Bước 1, chỉ giữ nguồn 10V</b> (tắt nguồn dòng &rarr; hở mạch nhánh đó): mạch còn lại là chia áp R1, R2 nối tiếp: <span class="formula">V_A&prime; = 10&middot;5/(5+5) = 5V</span></div>
+        <div class="step"><b>Bước 2, chỉ giữ nguồn dòng 2A</b> (tắt nguồn áp &rarr; ngắn mạch, R1 và R2 thành song song từ A xuống đất): <span class="formula">R1||R2 = 2.5&Omega;</span>, <span class="formula">V_A&Prime; = 2&middot;2.5 = 5V</span></div>
+        <div class="step">Cộng lại: <span class="formula">V_A = V_A&prime; + V_A&Prime; = 5+5</span></div>
+        <div class="step"><span class="answer-inline">V_A = 10V</span></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 3</span>
+    <h3>Thevenin</h3>
+    <p>Nguồn 20V nối tiếp R1=4&Omega;, tại nút giữa có R2=6&Omega; xuống đất. Tải R_L nối vào 2 cực a, b (song song R2). Tìm V_th, R_th nhìn từ a, b. Nếu sau đó nối R_L=3.6&Omega;, tìm dòng qua tải.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 340 220">
+        <line x1="50" y1="50" x2="50" y2="85" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#vsource-v" x="30" y="85" width="40" height="40"/>
+        <line x1="50" y1="125" x2="50" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="8" y="108" font-family="var(--font-mono)" font-size="12.5" fill="var(--blue)">20V</text>
+
+        <line x1="50" y1="50" x2="110" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-h" x="110" y="40" width="60" height="20"/>
+        <line x1="170" y1="50" x2="230" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="140" y="30" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R1=4&Omega;</text>
+
+        <line x1="230" y1="50" x2="230" y2="90" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-v" x="220" y="90" width="20" height="60"/>
+        <line x1="230" y1="150" x2="230" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="242" y="120" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R2=6&Omega;</text>
+
+        <line x1="230" y1="170" x2="50" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+
+        <line x1="230" y1="50" x2="280" y2="50" stroke="var(--blue)" stroke-width="1.6" stroke-dasharray="4 3"/>
+        <line x1="230" y1="170" x2="280" y2="170" stroke="var(--blue)" stroke-width="1.6" stroke-dasharray="4 3"/>
+        <text x="290" y="54" font-family="var(--font-mono)" font-size="14" fill="var(--blue)">a</text>
+        <text x="290" y="174" font-family="var(--font-mono)" font-size="14" fill="var(--blue)">b</text>
+        <text x="255" y="112" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--blue)">R_L</text>
+        <text x="255" y="124" text-anchor="middle" font-family="var(--font-mono)" font-size="9" fill="var(--ink-soft)">(tháo ra khi</text>
+        <text x="255" y="134" text-anchor="middle" font-family="var(--font-mono)" font-size="9" fill="var(--ink-soft)">tìm V_th)</text>
+      </svg>
+      <div class="diagram-caption">Tìm Thevenin nhìn từ cực a, b. R_L sẽ nối vào đây sau khi đã có V_th, R_th</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step">V_th = áp hở mạch tại a,b (chính là áp trên R2, chia áp bình thường): <span class="formula">V_th = 20&middot;6/(4+6) = 12V</span></div>
+        <div class="step">R_th = nhìn vào a,b khi tắt nguồn 20V (ngắn mạch): <span class="formula">R_th = R1||R2 = 4&middot;6/10 = 2.4&Omega;</span></div>
+        <div class="step">Nối R_L=3.6&Omega;: <span class="formula">i_L = V_th/(R_th+R_L) = 12/(2.4+3.6) = 12/6</span></div>
+        <div class="step"><span class="answer-inline">V_th = 12V, R_th = 2.4&Omega;, i_L = 2A</span></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 4</span>
+    <h3>Truyền công suất cực đại (tiếp Ví dụ 3)</h3>
+    <p>Dùng lại V_th=12V, R_th=2.4&Omega; ở Ví dụ 3. Chọn R_L bằng bao nhiêu để công suất trên tải cực đại? Tính P_max.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 200">
+        <line x1="50" y1="40" x2="50" y2="75" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#vsource-v" x="30" y="75" width="40" height="40"/>
+        <line x1="50" y1="115" x2="50" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="8" y="98" font-family="var(--font-mono)" font-size="12.5" fill="var(--blue)">V_th=12V</text>
+
+        <line x1="50" y1="40" x2="90" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-h" x="90" y="30" width="60" height="20"/>
+        <line x1="150" y1="40" x2="220" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="120" y="22" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R_th=2.4&Omega;</text>
+
+        <line x1="220" y1="40" x2="220" y2="70" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-v" x="210" y="70" width="20" height="60"/>
+        <line x1="220" y1="130" x2="220" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="232" y="105" font-family="var(--font-mono)" font-size="11.5" fill="var(--copper)">R_L=2.4&Omega;</text>
+
+        <line x1="220" y1="160" x2="50" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+      </svg>
+      <div class="diagram-caption">Mạch tương đương Thevenin nối với tải tối ưu R_L=R_th</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step"><span class="formula">R_L = R_th = 2.4&Omega;</span></div>
+        <div class="step"><span class="formula">P_max = V_th&sup2;/(4R_th) = 144/(4&middot;2.4) = 144/9.6</span></div>
+        <div class="step"><span class="answer-inline">P_max = 15W</span></div>
+      </div>
+    </details>
+  </div>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">C</span> Bài tập tự luyện</h2>
+  <p class="section-hint">Tự làm trước, chỉ mở đáp số để so kết quả.</p>
+
+  <ol class="problems">
+    <li>
+      Nguồn 8V nối tiếp R=2&Omega;. Đổi sang dạng Norton tương đương.
+      <details><summary>Xem đáp số</summary><div class="solution">I_N = 8/2 = <span class="answer-inline">4A</span> song song R=2&Omega;</div></details>
+    </li>
+
+    <li>
+      Mạch có nguồn 12V (qua R1=3&Omega;) và nguồn dòng 4A cùng nuôi 1 nút A, R2=6&Omega; từ A xuống đất. Dùng xếp chồng, tìm V_A.
+      <details><summary>Xem đáp số</summary><div class="solution">Chỉ V: V_A&prime;=12&middot;6/9=8V. Chỉ I: R1||R2=2&Omega;, V_A&Prime;=4&middot;2=8V. Tổng V_A = <span class="answer-inline">16V</span></div></details>
+    </li>
+
+    <li>
+      Nguồn 30V nối tiếp R1=2&Omega;, tại nút giữa có R2=4&Omega; xuống đất, tải nối ở đó. Tìm V_th và R_th.
+      <details><summary>Xem đáp số</summary><div class="solution">V_th = 30&middot;4/6 = <span class="answer-inline">20V</span>, R_th = 2||4 = <span class="answer-inline">1.33&Omega;</span></div></details>
+    </li>
+
+    <li>
+      Một mạch có V_th=9V, R_th=3&Omega;. Tìm R_L để công suất cực đại, và giá trị P_max.
+      <details><summary>Xem đáp số</summary><div class="solution">R_L = <span class="answer-inline">3&Omega;</span>, P_max = 81/12 = <span class="answer-inline">6.75W</span></div></details>
+    </li>
+
+    <li>
+      Một nguồn dòng lý tưởng 5A (không có điện trở song song nào cả) có biến đổi được sang nguồn áp không? Vì sao?
+      <details><summary>Xem đáp số</summary><div class="solution"><span class="answer-inline">Không</span>, vì R song song bằng &infin;, không có điện trở hữu hạn để tính V=IR</div></details>
+    </li>
+
+    <li>
+      Nếu R_L = 2&middot;R_th (gấp đôi điện trở Thevenin) thay vì R_L=R_th, công suất trên tải có còn là cực đại không? Nó lớn hơn hay nhỏ hơn P_max?
+      <details><summary>Xem đáp số</summary><div class="solution"><span class="answer-inline">Nhỏ hơn P_max</span> (chỉ R_L=R_th mới cho công suất cực đại, mọi giá trị R_L khác đều cho công suất nhỏ hơn)</div></details>
+    </li>
+
+  </ol>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">D</span> Câu hỏi tự kiểm tra khái niệm</h2>
+  <p class="section-hint">Không cần tính toán, tự trả lời bằng lời của bạn.</p>
+
+  <ol class="concept">
+    <li>Vì sao R_N (Norton) luôn luôn bằng R_th (Thevenin), không bao giờ khác nhau?</li>
+    <li>Khi dùng xếp chồng, vì sao nguồn phụ thuộc không bao giờ được tắt trong khi nguồn độc lập thì phải tắt lần lượt?</li>
+    <li>R_L=R_th cho công suất TRÊN TẢI cực đại, nhưng hiệu suất truyền năng lượng lúc đó chỉ khoảng 50%. Giải thích tại sao 2 khái niệm này (công suất cực đại và hiệu suất cực đại) lại khác nhau.</li>
+    <li>Nếu một mạch có nguồn phụ thuộc, cách tìm R_th có gì khác so với mạch chỉ có nguồn độc lập (gợi ý: không thể chỉ đơn giản tắt hết nguồn rồi nhìn điện trở tương đương)?</li>
+  </ol>
+
+
+  <footer>
+    Xong Ngày 4. Ngày 5: bộ khuếch đại thuật toán (op-amp), thuần đại số, dễ thở hơn sau 2 ngày nặng vừa rồi.
+  </footer>
+
+      </div>
+    </div>
+    <div class="day-section" id="day-5">
+      <div class="page">
+
+  <span class="badge">NGÀY 5 / 10 &middot; SVOBODA &amp; DORF, CH.6</span>
+  <h1>Bộ khuếch đại thuật toán (Op-amp)</h1>
+  <p class="subtitle">Thuần đại số, dễ thở hơn 2 ngày trước. Chỉ cần nhớ đúng 2 quy tắc vàng.</p>
+
+  <h2 class="section-title"><span class="letter">A</span> Lý thuyết</h2>
+  <p class="section-hint">Đọc chủ động, khoảng 40 phút.</p>
+
+  <div class="refcard">
+    <span class="tag">THẺ TRA CỨU NHANH</span>
+    <div class="refcard-grid">
+      <div><span class="f">i+ = i&minus; = 0</span>quy tắc vàng 1: dòng vào 2 chân = 0</div>
+      <div><span class="f">V+ = V&minus;</span>quy tắc vàng 2 (có hồi tiếp âm)</div>
+      <div><span class="f">Vout = &minus;(Rf/Rin)&middot;Vin</span>mạch đảo</div>
+      <div><span class="f">Vout = Vin&middot;(1+Rf/Rg)</span>mạch không đảo</div>
+      <div><span class="f">Vout = &minus;Rf&middot;(V1/R1+V2/R2+...)</span>mạch cộng</div>
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>A1. 2 quy tắc vàng của op-amp lý tưởng</h3>
+    <p>(1) Dòng điện vào 2 chân + và &minus; đều bằng 0 (trở kháng vào coi như vô cực).<br>
+    (2) Nếu mạch có <b>hồi tiếp âm</b> (đường dây nối từ ngõ ra về lại chân &minus;), thì V+ = V&minus; (gọi là &ldquo;ngắn mạch ảo&rdquo;, virtual short, dù thực tế không có dây nối trực tiếp giữa 2 chân).</p>
+    <div class="callout warn">
+      <span class="tag">&#9888; CHỈ ÁP DỤNG V+=V&minus; KHI CÓ HỒI TIẾP ÂM</span>
+      Nếu mạch không có đường hồi tiếp từ ngõ ra về chân &minus;, quy tắc V+=V&minus; không áp dụng được (op-amp sẽ bão hòa ở điện áp nguồn cấp).
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>A2. Mạch khuếch đại đảo (inverting)</h3>
+    <p>Vin qua Rin vào chân &minus;, Rf hồi tiếp từ Vout về chân &minus;, chân + nối đất. Vì V+=0 nên V&minus;=0 (đất ảo, virtual ground). KCL tại chân &minus; (dòng vào op-amp=0 nên dòng qua Rin = dòng qua Rf): <span class="formula">Vin/Rin = &minus;Vout/Rf</span> &rarr; <span class="formula">Vout = &minus;(Rf/Rin)&middot;Vin</span>. Hệ số khuếch đại luôn âm.</p>
+  </div>
+
+  <div class="note">
+    <h3>A3. Mạch khuếch đại không đảo (non-inverting)</h3>
+    <p>Vin vào thẳng chân +, Rf và Rg tạo chia áp hồi tiếp về chân &minus;. V&minus;=V+=Vin. KCL tại chân &minus;: dòng qua Rg (xuống đất) = dòng qua Rf (từ Vout): <span class="formula">Vin/Rg = (Vout&minus;Vin)/Rf</span> &rarr; <span class="formula">Vout = Vin(1+Rf/Rg)</span>. Hệ số luôn dương và &ge;1.</p>
+  </div>
+
+  <div class="note">
+    <h3>A4. Mạch cộng &amp; mạch trừ</h3>
+    <p><b>Mạch cộng</b> (đảo, nhiều ngõ vào cùng qua điện trở riêng vào chân &minus;): <span class="formula">Vout = &minus;Rf&middot;(V1/R1+V2/R2+...)</span></p>
+    <p><b>Mạch trừ</b>: 1 ngõ vào chân + (qua chia áp), 1 ngõ vào chân &minus; (qua Rin+Rf). Nếu điện trở đối xứng: <span class="formula">Vout = (Rf/Rin)(V2&minus;V1)</span></p>
+  </div>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">B</span> Ví dụ mẫu</h2>
+  <p class="section-hint">Tự che phần lời giải, làm thử trước rồi mới bấm mở ra so đáp án.</p>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 1</span>
+    <h3>Mạch khuếch đại đảo</h3>
+    <p>Rin=2k&Omega;, Rf=10k&Omega;, Vin=0.5V. Tìm Vout.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 320 210">
+        <circle cx="35" cy="85" r="3" fill="var(--ink)"/>
+        <text x="35" y="72" text-anchor="middle" font-family="var(--font-mono)" font-size="12" fill="var(--copper)">Vin</text>
+        <line x1="38" y1="85" x2="68" y2="85" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-h" x="68" y="75" width="60" height="20"/>
+        <text x="98" y="68" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">Rin</text>
+        <line x1="128" y1="85" x2="158" y2="85" stroke="var(--ink)" stroke-width="2.2"/>
+
+        <use href="#opamp" x="150" y="60" width="100" height="90"/>
+        <text x="140" y="82" font-size="12" fill="var(--blue)">&minus;</text>
+        <text x="140" y="128" font-size="12" fill="var(--blue)">+</text>
+
+        <line x1="158" y1="125" x2="158" y2="150" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#gnd" x="143" y="150" width="30" height="22"/>
+
+        <line x1="242" y1="105" x2="242" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+        <line x1="182" y1="40" x2="230" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-h" x="170" y="30" width="60" height="20"/>
+        <text x="200" y="22" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">Rf</text>
+        <line x1="158" y1="85" x2="158" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+        <line x1="158" y1="40" x2="170" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+
+        <line x1="242" y1="105" x2="280" y2="105" stroke="var(--ink)" stroke-width="2.2"/>
+        <circle cx="283" cy="105" r="3" fill="var(--ink)"/>
+        <text x="283" y="95" text-anchor="middle" font-family="var(--font-mono)" font-size="12" fill="var(--copper)">Vout</text>
+      </svg>
+      <div class="diagram-caption">Mạch đảo: Vin qua Rin vào chân &minus;, Rf hồi tiếp, chân + nối đất</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step"><span class="formula">Vout = &minus;(Rf/Rin)&middot;Vin = &minus;(10/2)&middot;0.5</span></div>
+        <div class="step"><span class="answer-inline">Vout = &minus;2.5V</span></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 2</span>
+    <h3>Mạch khuếch đại không đảo</h3>
+    <p>Rg=1k&Omega;, Rf=9k&Omega;, Vin=1V. Tìm Vout.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 320 210">
+        <circle cx="90" cy="125" r="3" fill="var(--ink)"/>
+        <text x="90" y="145" text-anchor="middle" font-family="var(--font-mono)" font-size="12" fill="var(--copper)">Vin</text>
+        <line x1="93" y1="125" x2="158" y2="125" stroke="var(--ink)" stroke-width="2.2"/>
+
+        <use href="#opamp" x="150" y="60" width="100" height="90"/>
+        <text x="140" y="82" font-size="12" fill="var(--blue)">&minus;</text>
+        <text x="140" y="128" font-size="12" fill="var(--blue)">+</text>
+
+        <line x1="158" y1="85" x2="120" y2="85" stroke="var(--ink)" stroke-width="2.2"/>
+        <line x1="120" y1="85" x2="120" y2="100" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-v" x="110" y="100" width="20" height="60"/>
+        <line x1="120" y1="160" x2="120" y2="180" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#gnd" x="105" y="180" width="30" height="22"/>
+        <text x="90" y="130" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">Rg</text>
+
+        <line x1="242" y1="105" x2="242" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+        <line x1="182" y1="40" x2="230" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-h" x="170" y="30" width="60" height="20"/>
+        <text x="200" y="22" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">Rf</text>
+        <line x1="158" y1="85" x2="158" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+        <line x1="158" y1="40" x2="170" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+
+        <line x1="242" y1="105" x2="280" y2="105" stroke="var(--ink)" stroke-width="2.2"/>
+        <circle cx="283" cy="105" r="3" fill="var(--ink)"/>
+        <text x="283" y="95" text-anchor="middle" font-family="var(--font-mono)" font-size="12" fill="var(--copper)">Vout</text>
+      </svg>
+      <div class="diagram-caption">Mạch không đảo: Vin vào thẳng chân +, Rf/Rg chia áp hồi tiếp về chân &minus;</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step"><span class="formula">Vout = Vin(1+Rf/Rg) = 1&middot;(1+9/1)</span></div>
+        <div class="step"><span class="answer-inline">Vout = 10V</span></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 3</span>
+    <h3>Mạch cộng (summing amplifier)</h3>
+    <p>R1=1k&Omega; (V1=2V), R2=2k&Omega; (V2=3V), Rf=2k&Omega;. Tìm Vout.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 320 220">
+        <circle cx="20" cy="60" r="3" fill="var(--ink)"/>
+        <text x="20" y="47" text-anchor="middle" font-family="var(--font-mono)" font-size="12" fill="var(--copper)">V1</text>
+        <line x1="23" y1="60" x2="53" y2="60" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-h" x="53" y="50" width="60" height="20"/>
+        <text x="83" y="42" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="var(--ink)">R1</text>
+        <line x1="113" y1="60" x2="150" y2="60" stroke="var(--ink)" stroke-width="2.2"/>
+
+        <circle cx="20" cy="110" r="3" fill="var(--ink)"/>
+        <text x="20" y="128" text-anchor="middle" font-family="var(--font-mono)" font-size="12" fill="var(--copper)">V2</text>
+        <line x1="23" y1="110" x2="53" y2="110" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-h" x="53" y="100" width="60" height="20"/>
+        <text x="83" y="128" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="var(--ink)">R2</text>
+        <line x1="113" y1="110" x2="150" y2="110" stroke="var(--ink)" stroke-width="2.2"/>
+
+        <line x1="150" y1="60" x2="150" y2="110" stroke="var(--ink)" stroke-width="2.2"/>
+        <line x1="150" y1="85" x2="158" y2="85" stroke="var(--ink)" stroke-width="2.2"/>
+
+        <use href="#opamp" x="150" y="60" width="100" height="90"/>
+        <text x="140" y="82" font-size="12" fill="var(--blue)">&minus;</text>
+        <text x="140" y="128" font-size="12" fill="var(--blue)">+</text>
+
+        <line x1="158" y1="125" x2="158" y2="150" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#gnd" x="143" y="150" width="30" height="22"/>
+
+        <line x1="242" y1="105" x2="242" y2="20" stroke="var(--ink)" stroke-width="2.2"/>
+        <line x1="182" y1="20" x2="230" y2="20" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-h" x="170" y="10" width="60" height="20"/>
+        <text x="200" y="6" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">Rf</text>
+        <line x1="158" y1="85" x2="158" y2="20" stroke="var(--ink)" stroke-width="0"/>
+        <line x1="150" y1="20" x2="170" y2="20" stroke="var(--ink)" stroke-width="2.2"/>
+        <line x1="150" y1="20" x2="150" y2="60" stroke="var(--ink)" stroke-width="0"/>
+
+        <line x1="242" y1="105" x2="280" y2="105" stroke="var(--ink)" stroke-width="2.2"/>
+        <circle cx="283" cy="105" r="3" fill="var(--ink)"/>
+        <text x="283" y="95" text-anchor="middle" font-family="var(--font-mono)" font-size="12" fill="var(--copper)">Vout</text>
+      </svg>
+      <div class="diagram-caption">2 ngõ vào qua điện trở riêng, cùng gộp vào chân &minus;</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step"><span class="formula">Vout = &minus;Rf&middot;(V1/R1 + V2/R2) = &minus;2k&middot;(2/1k + 3/2k)</span></div>
+        <div class="step">= &minus;2000&middot;(0.002+0.0015) = &minus;2000&middot;0.0035</div>
+        <div class="step"><span class="answer-inline">Vout = &minus;7V</span></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 4</span>
+    <h3>Bài toán thiết kế ngược</h3>
+    <p>Muốn mạch đảo có hệ số khuếch đại &minus;4 (Vout=&minus;4Vin), cho Rin=2.5k&Omega; có sẵn. Chọn Rf bao nhiêu? (Sơ đồ giống hệt Ví dụ 1.)</p>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step"><span class="formula">|gain| = Rf/Rin = 4</span> &rarr; Rf = 4&middot;Rin = 4&middot;2.5k</div>
+        <div class="step"><span class="answer-inline">Rf = 10k&Omega;</span></div>
+      </div>
+    </details>
+  </div>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">C</span> Bài tập tự luyện</h2>
+  <p class="section-hint">Tự làm trước, chỉ mở đáp số để so kết quả.</p>
+
+  <ol class="problems">
+    <li>
+      Mạch đảo: Rin=4k&Omega;, Rf=12k&Omega;, Vin=&minus;0.5V. Tìm Vout.
+      <details><summary>Xem đáp số</summary><div class="solution">Vout = &minus;(12/4)&middot;(&minus;0.5) = <span class="answer-inline">1.5V</span></div></details>
+    </li>
+
+    <li>
+      Mạch không đảo: Rg=2k&Omega;, Rf=6k&Omega;, Vin=2V. Tìm Vout.
+      <details><summary>Xem đáp số</summary><div class="solution">Vout = 2&middot;(1+6/2) = 2&middot;4 = <span class="answer-inline">8V</span></div></details>
+    </li>
+
+    <li>
+      Mạch cộng: R1=2k&Omega;(V1=1V), R2=4k&Omega;(V2=2V), Rf=4k&Omega;. Tìm Vout.
+      <details><summary>Xem đáp số</summary><div class="solution">Vout = &minus;4k(1/2k+2/4k) = &minus;4k(0.0005+0.0005)=&minus;4k&middot;0.001 = <span class="answer-inline">&minus;4V</span></div></details>
+    </li>
+
+    <li>
+      Muốn mạch không đảo có hệ số khuếch đại đúng bằng 1 (Vout=Vin), chọn Rf và Rg thế nào? (Gợi ý: xét công thức 1+Rf/Rg=1.)
+      <details><summary>Xem đáp số</summary><div class="solution">Rf = <span class="answer-inline">0&Omega;</span> (nối tắt thẳng ngõ ra về chân &minus;, Rg bất kỳ hoặc hở luôn cũng được, đây gọi là mạch voltage follower)</div></details>
+    </li>
+
+    <li>
+      Một mạch đảo có Rin=5k&Omega;, muốn Vout=&minus;6V khi Vin=1.5V. Tìm Rf.
+      <details><summary>Xem đáp số</summary><div class="solution">|gain|=6/1.5=4 &rarr; Rf=4&middot;5k = <span class="answer-inline">20k&Omega;</span></div></details>
+    </li>
+
+    <li>
+      Dòng điện chạy vào chân + và chân &minus; của op-amp lý tưởng là bao nhiêu, bất kể điện áp đặt vào?
+      <details><summary>Xem đáp số</summary><div class="solution"><span class="answer-inline">0A</span> (luôn luôn, đây là quy tắc vàng số 1)</div></details>
+    </li>
+
+  </ol>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">D</span> Câu hỏi tự kiểm tra khái niệm</h2>
+  <p class="section-hint">Không cần tính toán, tự trả lời bằng lời của bạn.</p>
+
+  <ol class="concept">
+    <li>Virtual short (V+=V&minus;) và virtual ground (V&minus;=0 khi chân + nối đất) khác nhau ở điểm nào?</li>
+    <li>Vì sao dòng điện vào 2 chân op-amp lại bằng 0 dù rõ ràng có điện áp đặt vào chân đó?</li>
+    <li>Mạch không đảo luôn có hệ số khuếch đại &ge;1, trong khi mạch đảo có thể cho hệ số khuếch đại nhỏ hơn 1 (suy giảm). Vì sao có sự khác biệt này?</li>
+    <li>Nếu KHÔNG có đường hồi tiếp Rf nào cả (op-amp hở, chạy vòng hở), quy tắc V+=V&minus; còn dùng được không? Điều gì xảy ra với Vout trong thực tế?</li>
+  </ol>
+
+
+  <footer>
+    Xong Ngày 5. Ngày 6: phần tử tích trữ năng lượng, tụ điện và cuộn cảm, chuẩn bị cho 2 chương transient sắp tới.
+  </footer>
+
+      </div>
+    </div>
+    <div class="day-section" id="day-6">
+      <div class="page">
+
+  <span class="badge">NGÀY 6 / 10 &middot; SVOBODA &amp; DORF, CH.7</span>
+  <h1>Phần tử tích trữ năng lượng</h1>
+  <p class="subtitle">Tụ điện, cuộn cảm: quan hệ v-i, năng lượng, ghép nối tiếp/song song, trạng thái xác lập.</p>
+
+  <h2 class="section-title"><span class="letter">A</span> Lý thuyết</h2>
+  <p class="section-hint">Đọc chủ động, khoảng 40 phút.</p>
+
+  <div class="refcard">
+    <span class="tag">THẺ TRA CỨU NHANH</span>
+    <div class="refcard-grid">
+      <div><span class="f">i = C&middot;dv/dt</span>tụ điện</div>
+      <div><span class="f">v = L&middot;di/dt</span>cuộn cảm</div>
+      <div><span class="f">w = &frac12;Cv&sup2;</span>năng lượng trên tụ</div>
+      <div><span class="f">w = &frac12;Li&sup2;</span>năng lượng trên cuộn cảm</div>
+      <div><span class="f">C song song: C_eq=C1+C2</span>tụ (ngược điện trở!)</div>
+      <div><span class="f">C nối tiếp: 1/C_eq=1/C1+1/C2</span>tụ (ngược điện trở!)</div>
+      <div><span class="f">L nối tiếp: L_eq=L1+L2</span>cuộn cảm (giống điện trở)</div>
+      <div><span class="f">Xác lập DC: tụ hở, cuộn cảm ngắn</span>steady state</div>
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>A1. Tụ điện (capacitor)</h3>
+    <p>Điện tích tỉ lệ điện áp: q=Cv. Đạo hàm 2 vế: <span class="formula">i = C&middot;dv/dt</span>. Năng lượng lưu trữ: <span class="formula">w = &frac12;Cv&sup2;</span></p>
+  </div>
+
+  <div class="note">
+    <h3>A2. Cuộn cảm (inductor)</h3>
+    <p><span class="formula">v = L&middot;di/dt</span> (đối xứng với tụ điện, chỉ đổi vai trò v và i). Năng lượng lưu trữ: <span class="formula">w = &frac12;Li&sup2;</span></p>
+  </div>
+
+  <div class="note">
+    <h3>A3. Tính liên tục: không đổi đột ngột</h3>
+    <p>Điện áp trên tụ <b>không thể đổi đột ngột</b> (v_C liên tục theo t). Dòng qua cuộn cảm <b>không thể đổi đột ngột</b> (i_L liên tục theo t).</p>
+    <div class="callout tip">
+      <span class="tag">&#10003; VÌ SAO</span>
+      Nếu v_C đổi đột ngột (nhảy bậc) thì dv/dt=&infin;, kéo theo i=C&middot;dv/dt=&infin; và công suất/năng lượng vô cực, vô lý về mặt vật lý. Tương tự cho i_L và v=L&middot;di/dt. Đây là lý do v_C(0&#8315;)=v_C(0&#8314;) và i_L(0&#8315;)=i_L(0&#8314;), sẽ dùng liên tục ở Ngày 7.
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>A4. Ghép nối tiếp &amp; song song</h3>
+    <p><b>Tụ điện</b> nối tiếp: 1/C_eq=1/C1+1/C2+... . Tụ điện song song: C_eq=C1+C2+... <b>(ngược với điện trở!)</b></p>
+    <p><b>Cuộn cảm</b> nối tiếp: L_eq=L1+L2+... . Cuộn cảm song song: 1/L_eq=1/L1+1/L2+... (giống hệt điện trở, không ngược như tụ).</p>
+    <div class="callout warn">
+      <span class="tag">&#9888; DỄ NHẦM NHẤT NGÀY 6</span>
+      Tụ điện là phần tử DUY NHẤT có công thức nối tiếp/song song bị đảo ngược so với điện trở. Cuộn cảm thì giống điện trở hoàn toàn.
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>A5. Trạng thái xác lập DC (steady state)</h3>
+    <p>Khi mạch DC đã hoạt động đủ lâu (dv/dt=0, di/dt=0): <b>tụ điện coi như hở mạch</b> (i=C&middot;0=0), <b>cuộn cảm coi như ngắn mạch</b> (v=L&middot;0=0). Đây là kỹ thuật cực kỳ hữu ích để tìm x(&infin;) ở Ngày 7.</p>
+  </div>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">B</span> Ví dụ mẫu</h2>
+  <p class="section-hint">Tự che phần lời giải, làm thử trước rồi mới bấm mở ra so đáp án.</p>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 1</span>
+    <h3>Dòng qua tụ điện khi biết v(t)</h3>
+    <p>Tụ C=50&mu;F có v(t)=4sin(100t) V. Tìm i(t).</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 140">
+        <line x1="30" y1="70" x2="128" y2="70" stroke="var(--ink)" stroke-width="2.2" marker-end="url(#arrow)"/>
+        <text x="75" y="58" text-anchor="middle" font-family="var(--font-mono)" font-size="13" fill="var(--copper)">i(t) = ?</text>
+        <use href="#cap-h" x="130" y="50" width="40" height="40"/>
+        <line x1="170" y1="70" x2="270" y2="70" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="150" y="110" text-anchor="middle" font-family="var(--font-mono)" font-size="12" fill="var(--ink-soft)">v(t)=4sin(100t) V</text>
+        <text x="150" y="30" text-anchor="middle" font-family="var(--font-mono)" font-size="12" fill="var(--ink)">C = 50&mu;F</text>
+      </svg>
+      <div class="diagram-caption">Cho v(t), tìm i(t) bằng đạo hàm</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step"><span class="formula">i = C&middot;dv/dt = 50&times;10&#8315;&#8310;&middot; d/dt[4sin(100t)]</span></div>
+        <div class="step">= 50&times;10&#8315;&#8310;&middot;4&middot;100&middot;cos(100t) = 50&times;10&#8315;&#8310;&middot;400&middot;cos(100t)</div>
+        <div class="step"><span class="answer-inline">i(t) = 20cos(100t) mA</span></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 2</span>
+    <h3>Áp trên cuộn cảm khi biết i(t)</h3>
+    <p>Cuộn cảm L=0.5H có i(t)=2t&sup2; A (t&ge;0). Tìm v(t) và tính giá trị tại t=2s.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 140">
+        <line x1="30" y1="70" x2="128" y2="70" stroke="var(--ink)" stroke-width="2.2" marker-end="url(#arrow)"/>
+        <text x="75" y="58" text-anchor="middle" font-family="var(--font-mono)" font-size="13" fill="var(--copper)">i(t)=2t&sup2; A</text>
+        <use href="#ind-v" x="150" y="50" width="20" height="40" transform="rotate(90 160 70)"/>
+        <line x1="130" y1="70" x2="170" y2="70" stroke="var(--ink)" stroke-width="0"/>
+        <line x1="170" y1="70" x2="270" y2="70" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="150" y="110" text-anchor="middle" font-family="var(--font-mono)" font-size="12" fill="var(--ink-soft)">v(t) = ?</text>
+        <text x="150" y="30" text-anchor="middle" font-family="var(--font-mono)" font-size="12" fill="var(--ink)">L = 0.5H</text>
+      </svg>
+      <div class="diagram-caption">Cho i(t), tìm v(t) bằng đạo hàm</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step"><span class="formula">v = L&middot;di/dt = 0.5&middot;d/dt[2t&sup2;] = 0.5&middot;4t</span></div>
+        <div class="step">v(t) = 2t</div>
+        <div class="step">Tại t=2s: <span class="answer-inline">v = 4V</span></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 3</span>
+    <h3>Năng lượng lưu trữ trên tụ điện</h3>
+    <p>Tụ C=10&mu;F được nạp đến điện áp V=100V. Tính năng lượng lưu trữ.</p>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step"><span class="formula">w = &frac12;Cv&sup2; = &frac12;&middot;10&times;10&#8315;&#8310;&middot;100&sup2; = &frac12;&middot;10&times;10&#8315;&#8310;&middot;10000</span></div>
+        <div class="step">= &frac12;&middot;0.1 = 0.05J</div>
+        <div class="step"><span class="answer-inline">w = 50mJ</span></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 4</span>
+    <h3>Mạch DC ở trạng thái xác lập</h3>
+    <p>Nguồn 12V, R1=3&Omega; nối tiếp, tại nút đó có R2=6&Omega; xuống đất và tụ C song song R2. Mạch đã chạy đủ lâu (xác lập). Tìm V_C.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 320 200">
+        <line x1="50" y1="50" x2="50" y2="85" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#vsource-v" x="30" y="85" width="40" height="40"/>
+        <line x1="50" y1="125" x2="50" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="8" y="108" font-family="var(--font-mono)" font-size="12.5" fill="var(--blue)">12V</text>
+
+        <line x1="50" y1="50" x2="110" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-h" x="110" y="40" width="60" height="20"/>
+        <line x1="170" y1="50" x2="230" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="140" y="30" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R1=3&Omega;</text>
+
+        <line x1="230" y1="50" x2="230" y2="90" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-v" x="220" y="90" width="20" height="60"/>
+        <line x1="230" y1="150" x2="230" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="242" y="120" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R2=6&Omega;</text>
+
+        <line x1="280" y1="50" x2="280" y2="90" stroke="var(--blue)" stroke-width="2" stroke-dasharray="1 5"/>
+        <use href="#cap-v" x="270" y="90" width="20" height="20"/>
+        <line x1="280" y1="110" x2="280" y2="170" stroke="var(--blue)" stroke-width="2" stroke-dasharray="1 5"/>
+        <text x="292" y="105" font-family="var(--font-mono)" font-size="11" fill="var(--blue)">C</text>
+        <text x="230" y="30" font-family="var(--font-mono)" font-size="10" fill="var(--blue)">(hở mạch ở xác lập)</text>
+
+        <line x1="230" y1="50" x2="280" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <line x1="280" y1="170" x2="50" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+      </svg>
+      <div class="diagram-caption">Tụ vẽ nét đứt để nhắc: ở xác lập DC nó coi như hở mạch</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step">Ở xác lập, tụ hở mạch (không dòng qua) &rarr; mạch chỉ còn nguồn, R1, R2 nối tiếp bình thường</div>
+        <div class="step">Dòng qua mạch: <span class="formula">i = 12/(3+6) = 1.33A</span></div>
+        <div class="step">V_C = áp trên R2 (vì tụ song song R2, không dòng qua tụ nên áp đo được = áp trên R2): <span class="formula">V_C = 12&middot;6/(3+6)</span></div>
+        <div class="step"><span class="answer-inline">V_C = 8V</span></div>
+      </div>
+    </details>
+  </div>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">C</span> Bài tập tự luyện</h2>
+  <p class="section-hint">Tự làm trước, chỉ mở đáp số để so kết quả.</p>
+
+  <ol class="problems">
+    <li>
+      Tụ C=20&mu;F có v(t)=10cos(50t) V. Tìm i(t).
+      <details><summary>Xem đáp số</summary><div class="solution">i=C dv/dt=20e-6&middot;(&minus;10&middot;50)sin(50t) = <span class="answer-inline">&minus;10sin(50t) mA</span></div></details>
+    </li>
+
+    <li>
+      Cuộn cảm L=0.2H có i(t)=5t A. Tìm v(t).
+      <details><summary>Xem đáp số</summary><div class="solution">v = L&middot;di/dt = 0.2&middot;5 = <span class="answer-inline">1V (hằng số)</span></div></details>
+    </li>
+
+    <li>
+      Cuộn cảm L=2H có dòng i=3A chạy qua. Tính năng lượng lưu trữ.
+      <details><summary>Xem đáp số</summary><div class="solution">w=&frac12;Li&sup2;=&frac12;&middot;2&middot;9 = <span class="answer-inline">9J</span></div></details>
+    </li>
+
+    <li>
+      2 tụ C1=6&mu;F, C2=3&mu;F mắc nối tiếp. Tính C_eq. (Nhớ: tụ nối tiếp dùng công thức giống điện trở SONG SONG.)
+      <details><summary>Xem đáp số</summary><div class="solution">1/C_eq=1/6+1/3=1/6+2/6=3/6 &rarr; C_eq = <span class="answer-inline">2&mu;F</span></div></details>
+    </li>
+
+    <li>
+      2 cuộn cảm L1=4H, L2=6H mắc song song. Tính L_eq.
+      <details><summary>Xem đáp số</summary><div class="solution">1/L_eq=1/4+1/6=3/12+2/12=5/12 &rarr; L_eq = 12/5 = <span class="answer-inline">2.4H</span></div></details>
+    </li>
+
+    <li>
+      Mạch DC xác lập có nguồn 20V, R1=2&Omega; nối tiếp với cuộn cảm L, rồi L nối tiếp R2=3&Omega; xuống đất (không tụ). Tìm dòng điện xác lập qua mạch.
+      <details><summary>Xem đáp số</summary><div class="solution">Ở xác lập cuộn cảm ngắn mạch (như dây dẫn thường) &rarr; i=20/(2+3) = <span class="answer-inline">4A</span></div></details>
+    </li>
+
+  </ol>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">D</span> Câu hỏi tự kiểm tra khái niệm</h2>
+  <p class="section-hint">Không cần tính toán, tự trả lời bằng lời của bạn.</p>
+
+  <ol class="concept">
+    <li>Vì sao điện áp trên tụ không thể đổi đột ngột, còn dòng qua cuộn cảm cũng vậy? Trả lời bằng chính công thức i=Cdv/dt và v=Ldi/dt, không học thuộc lòng.</li>
+    <li>Vì sao công thức nối tiếp/song song của tụ điện lại ngược với điện trở, trong khi cuộn cảm thì giống điện trở? (Gợi ý: so sánh vai trò của C trong i=Cdv/dt với vai trò của R trong i=v/R.)</li>
+    <li>Ở trạng thái xác lập DC, dòng điện qua tụ điện luôn bằng 0. Vậy dòng điện qua cuộn cảm ở trạng thái xác lập DC có luôn bằng 0 không? Vì sao khác tụ điện?</li>
+    <li>Nếu một mạch vừa đóng nguồn (t=0), tụ điện trước đó chưa hề nạp, thì i qua tụ ngay tại t=0&#8314; có thể nhảy vọt lên rất lớn không? Còn v_C thì sao?</li>
+  </ol>
+
+
+  <footer>
+    Xong Ngày 6. Ngày 7: dùng chính những công thức hôm nay để giải mạch RL/RC theo thời gian, chương bản lề trước khi vào số phức.
+  </footer>
+
+      </div>
+    </div>
+    <div class="day-section" id="day-7">
+      <div class="page">
+
+  <span class="badge">NGÀY 7 / 10 &middot; SVOBODA &amp; DORF, CH.8</span>
+  <h1>Đáp ứng đầy đủ mạch RL &amp; RC bậc 1</h1>
+  <p class="subtitle">Công thức vạn năng, cách tìm x(0), x(&infin;), &tau;.</p>
+
+  <h2 class="section-title"><span class="letter">A</span> Lý thuyết</h2>
+  <p class="section-hint">Đọc chủ động, khoảng 40 phút.</p>
+
+  <div class="refcard">
+    <span class="tag">THẺ TRA CỨU NHANH</span>
+    <div class="refcard-grid">
+      <div><span class="f">x(t)=x(&infin;)+[x(0)&minus;x(&infin;)]e&#8315;&#8319;/&#964;</span>công thức vạn năng bậc 1</div>
+      <div><span class="f">&tau;=RC</span>mạch RC</div>
+      <div><span class="f">&tau;=L/R</span>mạch RL</div>
+      <div><span class="f">x(0&#8314;)=x(0&#8315;)</span>chỉ đúng cho v_C và i_L</div>
+      <div><span class="f">x(&infin;)</span>thay tụ&rarr;hở, cuộn cảm&rarr;ngắn, giải DC</div>
+      <div><span class="f">&tau;=R_th&middot;C hoặc L/R_th</span>R_th nhìn từ 2 cực phần tử tích trữ</div>
+      <div><span class="f">1&tau;&asymp;63%, 3&tau;&asymp;95%, 5&tau;&asymp;99.3%</span>% giá trị cuối đạt được</div>
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>A1. Công thức vạn năng cho mạch bậc 1</h3>
+    <p><span class="formula">x(t) = x(&infin;) + [x(0&#8314;) &minus; x(&infin;)]&middot;e&#8315;&#8319;/&#964;</span></p>
+    <p>x có thể là v hoặc i bất kỳ trong mạch. Chỉ cần tìm đúng 3 con số: x(0&#8314;), x(&infin;), và &tau;, rồi thế vào công thức trên là xong. Toàn bộ Ngày 7 chỉ xoay quanh cách tìm 3 con số này.</p>
+  </div>
+
+  <div class="note">
+    <h3>A2. Tìm x(0&#8314;)</h3>
+    <p>Dùng tính liên tục đã học Ngày 6: <span class="formula">v_C(0&#8314;)=v_C(0&#8315;)</span> và <span class="formula">i_L(0&#8314;)=i_L(0&#8315;)</span>, tức giá trị ngay SAU thời điểm chuyển mạch = giá trị ngay TRƯỚC đó.</p>
+    <div class="callout warn">
+      <span class="tag">&#9888; CHỈ v_C VÀ i_L LIÊN TỤC</span>
+      Các đại lượng khác (dòng qua điện trở, áp trên cuộn cảm...) CÓ THỂ nhảy bậc tại t=0. Chỉ v_C và i_L là chắc chắn liên tục.
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>A3. Tìm x(&infin;)</h3>
+    <p>Thay tụ điện bằng hở mạch, cuộn cảm bằng ngắn mạch (dùng lại kỹ thuật xác lập DC ở Ngày 6), rồi giải mạch DC thông thường sau khi đã chuyển mạch.</p>
+  </div>
+
+  <div class="note">
+    <h3>A4. Tìm &tau;</h3>
+    <p><span class="formula">&tau; = R_th&middot;C</span> (mạch RC) hoặc <span class="formula">&tau; = L/R_th</span> (mạch RL), với R_th là điện trở Thevenin nhìn từ 2 cực của tụ/cuộn cảm (tắt hết nguồn độc lập, dùng lại kỹ thuật Ngày 4).</p>
+  </div>
+
+  <div class="note">
+    <h3>A5. Ý nghĩa của &tau;</h3>
+    <p>Sau 1&tau;: đạt 63.2% giá trị cuối. Sau 3&tau;: đạt 95%. Sau 5&tau;: đạt 99.3% (coi như xác lập hoàn toàn).</p>
+    <div class="callout tip">
+      <span class="tag">&#10003; HAY BỊ HỎI TRONG QUIZ</span>
+      Nhớ nằm lòng: 1&tau;&asymp;63%, 5&tau;&asymp;xác lập. Đây là câu hỏi trắc nghiệm rất phổ biến.
+    </div>
+  </div>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">B</span> Ví dụ mẫu</h2>
+  <p class="section-hint">Tự che phần lời giải, làm thử trước rồi mới bấm mở ra so đáp án.</p>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 1</span>
+    <h3>Mạch RC xả điện (discharge)</h3>
+    <p>Tụ C=100&mu;F đã nạp sẵn đến V0=20V. Tại t=0, tụ được nối với R=5k&Omega; để xả (không còn nguồn nào khác). Tìm v_C(t) và giá trị tại t=0.5s.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 280 200">
+        <line x1="60" y1="40" x2="220" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+        <line x1="60" y1="160" x2="220" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+
+        <line x1="90" y1="40" x2="90" y2="70" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#cap-v" x="80" y="70" width="20" height="20"/>
+        <line x1="90" y1="90" x2="90" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="35" y="85" font-family="var(--font-mono)" font-size="11.5" fill="var(--blue)">v_C(0)=20V</text>
+        <text x="60" y="105" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">C=100&mu;F</text>
+
+        <line x1="190" y1="40" x2="190" y2="70" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-v" x="180" y="70" width="20" height="60"/>
+        <line x1="190" y1="130" x2="190" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="200" y="100" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R=5k&Omega;</text>
+      </svg>
+      <div class="diagram-caption">Không còn nguồn, tụ xả năng lượng đã tích trữ qua R</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step">x(&infin;)=0 (không nguồn, cuối cùng tụ xả hết về 0). x(0&#8314;)=20V (liên tục từ trước switching).</div>
+        <div class="step"><span class="formula">&tau; = RC = 5000&middot;100&times;10&#8315;&#8310; = 0.5s</span></div>
+        <div class="step"><span class="formula">v(t) = 0 + [20&minus;0]e&#8315;&#8319;/&#8302;.&#8309; = 20e&#8315;&sup2;&#8319;</span></div>
+        <div class="step">Tại t=0.5s: v = 20e&#8315;&sup9; = 20&middot;0.368 &rarr; <span class="answer-inline">v = 7.36V</span></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 2</span>
+    <h3>Mạch RC nạp điện (charging)</h3>
+    <p>Nguồn 15V đóng vào tại t=0 (trước đó tụ chưa nạp, v_C(0)=0), qua R=2k&Omega; nối tiếp tụ C=250&mu;F. Tìm v_C(t) và thời điểm đạt 63% giá trị cuối.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 220">
+        <line x1="50" y1="50" x2="50" y2="85" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#vsource-v" x="30" y="85" width="40" height="40"/>
+        <line x1="50" y1="125" x2="50" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="8" y="108" font-family="var(--font-mono)" font-size="12.5" fill="var(--blue)">15V</text>
+
+        <line x1="50" y1="50" x2="110" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-h" x="110" y="40" width="60" height="20"/>
+        <line x1="170" y1="50" x2="230" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="140" y="30" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R=2k&Omega;</text>
+
+        <line x1="230" y1="50" x2="230" y2="80" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#cap-v" x="220" y="80" width="20" height="20"/>
+        <line x1="230" y1="100" x2="230" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="242" y="95" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">C=250&mu;F</text>
+        <text x="242" y="112" font-family="var(--font-mono)" font-size="11" fill="var(--copper)">v_C(0)=0</text>
+
+        <line x1="230" y1="170" x2="50" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+      </svg>
+      <div class="diagram-caption">Nguồn đóng tại t=0, tụ nạp dần từ 0V đến 15V</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step">x(&infin;)=15V (ở xác lập tụ hở mạch, không dòng qua R, toàn bộ 15V rơi trên tụ). x(0&#8314;)=0.</div>
+        <div class="step"><span class="formula">&tau; = RC = 2000&middot;250&times;10&#8315;&#8310; = 0.5s</span></div>
+        <div class="step"><span class="formula">v(t) = 15 + [0&minus;15]e&#8315;&sup2;&#8319; = 15(1&minus;e&#8315;&sup2;&#8319;)</span></div>
+        <div class="step">Đạt 63% giá trị cuối chính là lúc <span class="answer-inline">t = &tau; = 0.5s</span> (đúng theo định nghĩa của &tau;)</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 3</span>
+    <h3>Mạch RL xả điện (discharge)</h3>
+    <p>Trước t=0, nguồn 10V, R=5&Omega;, cuộn cảm L=2H đã chạy xác lập (i(0&#8315;)=10/5=2A). Tại t=0, nguồn bị ngắt và thay bằng dây nối tắt. Tìm i(t).</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 280 200">
+        <line x1="60" y1="50" x2="60" y2="90" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#ind-v" x="50" y="90" width="20" height="60"/>
+        <line x1="60" y1="150" x2="60" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="20" y="120" font-family="var(--font-mono)" font-size="12" fill="var(--ink)">L=2H</text>
+        <text x="15" y="70" font-family="var(--font-mono)" font-size="11" fill="var(--blue)">i(0)=2A</text>
+
+        <line x1="60" y1="50" x2="200" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="130" y="40" text-anchor="middle" font-family="var(--font-mono)" font-size="16" fill="var(--copper)">&#8635; i(t)</text>
+
+        <line x1="200" y1="50" x2="200" y2="90" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-v" x="190" y="90" width="20" height="60"/>
+        <line x1="200" y1="150" x2="200" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="212" y="120" font-family="var(--font-mono)" font-size="12" fill="var(--ink)">R=5&Omega;</text>
+
+        <line x1="200" y1="170" x2="60" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+      </svg>
+      <div class="diagram-caption">Cuộn cảm xả dòng điện đã tích trữ qua R sau khi nguồn bị ngắt</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step">x(0&#8314;)=i(0&#8315;)=2A (liên tục qua cuộn cảm). x(&infin;)=0 (không nguồn).</div>
+        <div class="step"><span class="formula">&tau; = L/R = 2/5 = 0.4s</span></div>
+        <div class="step"><span class="formula">i(t) = 0 + [2&minus;0]e&#8315;&#8319;/&#8304;.&#8308; = 2e&#8315;&sup2;.&#8309;&#8319;</span></div>
+        <div class="step"><span class="answer-inline">i(t) = 2e&#8315;&sup2;&middot;&#8309;&#8319; A</span></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 4</span>
+    <h3>Dùng Thevenin để tìm &tau; (mạch phức tạp hơn)</h3>
+    <p>Tụ C=20&mu;F nối với mạng gồm nguồn 30V, R1=3k&Omega; nối tiếp, rồi R2=6k&Omega; xuống đất song song tụ. Tại t=0 mạch được đóng, tụ chưa nạp trước đó. Tìm v_C(t).</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 320 200">
+        <line x1="50" y1="50" x2="50" y2="85" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#vsource-v" x="30" y="85" width="40" height="40"/>
+        <line x1="50" y1="125" x2="50" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="8" y="108" font-family="var(--font-mono)" font-size="12.5" fill="var(--blue)">30V</text>
+
+        <line x1="50" y1="50" x2="110" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-h" x="110" y="40" width="60" height="20"/>
+        <line x1="170" y1="50" x2="230" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="140" y="30" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R1=3k&Omega;</text>
+
+        <line x1="230" y1="50" x2="230" y2="90" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-v" x="220" y="90" width="20" height="60"/>
+        <line x1="230" y1="150" x2="230" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="242" y="120" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R2=6k&Omega;</text>
+
+        <line x1="280" y1="50" x2="280" y2="80" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#cap-v" x="270" y="80" width="20" height="20"/>
+        <line x1="280" y1="100" x2="280" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="290" y="95" font-family="var(--font-mono)" font-size="11" fill="var(--ink)">C=20&mu;F</text>
+
+        <line x1="230" y1="50" x2="280" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <line x1="280" y1="170" x2="50" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+      </svg>
+      <div class="diagram-caption">Dùng kỹ thuật Thevenin (Ngày 4) để tìm R_th trước khi tính &tau;</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step">x(&infin;): tụ hở mạch, chia áp R1,R2 bình thường: <span class="formula">v(&infin;) = 30&middot;6/(3+6) = 20V</span></div>
+        <div class="step">R_th nhìn từ tụ (tắt nguồn 30V): <span class="formula">R_th = R1||R2 = 3k&middot;6k/9k = 2k&Omega;</span></div>
+        <div class="step"><span class="formula">&tau; = R_th&middot;C = 2000&middot;20&times;10&#8315;&#8310; = 0.04s</span></div>
+        <div class="step">x(0&#8314;)=0 &rarr; <span class="answer-inline">v(t) = 20(1&minus;e&#8315;&sup2;&#8309;&#8319;)</span></div>
+      </div>
+    </details>
+  </div>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">C</span> Bài tập tự luyện</h2>
+  <p class="section-hint">Tự làm trước, chỉ mở đáp số để so kết quả.</p>
+
+  <ol class="problems">
+    <li>
+      Tụ C=50&mu;F nạp sẵn 10V, xả qua R=2k&Omega; từ t=0. Tìm &tau; và v_C(t).
+      <details><summary>Xem đáp số</summary><div class="solution">&tau;=2000&middot;50e-6=0.1s &rarr; v(t) = <span class="answer-inline">10e&#8315;&sup1;&#8304;&#8319; V</span></div></details>
+    </li>
+
+    <li>
+      Nguồn 24V đóng vào mạch RC tại t=0 (tụ chưa nạp), R=4k&Omega;, C=100&mu;F. Tìm v_C(t) và giá trị tại t&rarr;&infin;.
+      <details><summary>Xem đáp số</summary><div class="solution">&tau;=0.4s &rarr; v(t)=24(1&minus;e&#8315;&sup2;.&#8309;&#8319;), tại t&rarr;&infin; v_C = <span class="answer-inline">24V</span></div></details>
+    </li>
+
+    <li>
+      Trước t=0, mạch RL xác lập với nguồn 20V, R=4&Omega;, nên i(0&#8315;)=5A. Tại t=0, nguồn tăng lên 40V (vẫn cùng R). Tìm i(&infin;) và &tau; nếu L=2H.
+      <details><summary>Xem đáp số</summary><div class="solution">i(&infin;)=40/4 = <span class="answer-inline">10A</span>, &tau;=L/R=2/4 = <span class="answer-inline">0.5s</span></div></details>
+    </li>
+
+    <li>
+      Tính thời gian để một mạch RC đạt 95% giá trị xác lập, theo &tau;.
+      <details><summary>Xem đáp số</summary><div class="solution"><span class="answer-inline">t &asymp; 3&tau;</span></div></details>
+    </li>
+
+    <li>
+      Mạch RL có &tau;=0.2s. Sau bao lâu thì coi như đã đạt trạng thái xác lập hoàn toàn (99.3%)?
+      <details><summary>Xem đáp số</summary><div class="solution">t = 5&tau; = <span class="answer-inline">1s</span></div></details>
+    </li>
+
+    <li>
+      Một tụ C=10&mu;F nối với mạng điện trở có R_th=5k&Omega; nhìn từ 2 cực của tụ. Tính &tau;.
+      <details><summary>Xem đáp số</summary><div class="solution">&tau;=R_th&middot;C=5000&middot;10e-6 = <span class="answer-inline">0.05s</span></div></details>
+    </li>
+
+  </ol>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">D</span> Câu hỏi tự kiểm tra khái niệm</h2>
+  <p class="section-hint">Không cần tính toán, tự trả lời bằng lời của bạn.</p>
+
+  <ol class="concept">
+    <li>Công thức vạn năng bậc 1 chỉ cần 3 con số: x(0), x(&infin;), &tau;. Với mỗi con số, bạn dùng kỹ thuật của ngày nào đã học để tìm ra nó?</li>
+    <li>Vì sao khi tìm x(&infin;), ta luôn thay tụ bằng hở mạch và cuộn cảm bằng ngắn mạch, bất kể mạch phức tạp thế nào?</li>
+    <li>Nếu một bài toán hỏi dòng điện qua MỘT ĐIỆN TRỞ cụ thể (không phải qua tụ hay cuộn cảm) trong mạch RC/RL, giá trị này tại t=0&#8314; có nhất thiết bằng giá trị tại t=0&#8315; không?</li>
+    <li>R_th dùng để tính &tau; ở Ngày 7 có phải chính là R_th đã học ở Ngày 4 không? Cách tìm nó có gì khác không?</li>
+  </ol>
+
+
+  <footer>
+    Xong Ngày 7. Ngày 8: cấp tốc số phức rồi bắt đầu mạch RLC bậc 2, dùng lại đúng tư duy hôm nay nhưng với 2 hằng số thay vì 1.
+  </footer>
+
+      </div>
+    </div>
+    <div class="day-section" id="day-8">
+      <div class="page">
+
+  <span class="badge">NGÀY 8 / 10 &middot; SVOBODA &amp; DORF, CH.9 (BẮT ĐẦU)</span>
+  <h1>Cấp tốc số phức &amp; Mạch RLC bậc 2</h1>
+  <p class="subtitle">Số phức đủ dùng cho mạch điện, phương trình đặc trưng, 3 trường hợp nghiệm.</p>
+
+  <h2 class="section-title"><span class="letter">A</span> Lý thuyết</h2>
+  <p class="section-hint">Đọc chủ động, khoảng 40 phút.</p>
+
+  <div class="refcard">
+    <span class="tag">THẺ TRA CỨU NHANH</span>
+    <div class="refcard-grid">
+      <div><span class="f">z = a+jb</span>dạng đại số (rectangular)</div>
+      <div><span class="f">z = r&ang;&theta;, r=&radic;(a&sup2;+b&sup2;)</span>dạng cực (polar)</div>
+      <div><span class="f">cộng/trừ &rarr; rectangular</span>cộng phần thực, cộng phần ảo</div>
+      <div><span class="f">nhân/chia &rarr; polar</span>nhân/chia r, cộng/trừ &theta;</div>
+      <div><span class="f">e^(j&theta;) = cos&theta;+jsin&theta;</span>công thức Euler</div>
+      <div><span class="f">s&sup2;+2&alpha;s+&omega;&#8320;&sup2;=0</span>phương trình đặc trưng RLC</div>
+      <div><span class="f">s = &minus;&alpha;&plusmn;&radic;(&alpha;&sup2;&minus;&omega;&#8320;&sup2;)</span>nghiệm (công thức bậc 2)</div>
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>A1. Số phức: đủ dùng cho mạch điện</h3>
+    <p>Kỹ sư điện dùng <b>j</b> thay cho i (vì i đã dùng cho dòng điện): j&sup2;=&minus;1</p>
+    <p>Dạng đại số: z=a+jb. Dạng cực: z=r&ang;&theta;, với r=|z|=&radic;(a&sup2;+b&sup2;), &theta;=atan2(b,a) (để ý đúng góc phần tư).</p>
+    <p>Chuyển đổi: a=r&middot;cos&theta;, b=r&middot;sin&theta; (cực&rarr;đại số) và ngược lại r,&theta; như công thức trên.</p>
+  </div>
+
+  <div class="note">
+    <h3>A2. Quy tắc tính toán (chỉ cần nhớ 2 dòng)</h3>
+    <p><b>Cộng/trừ</b> &rarr; làm ở dạng <b>đại số</b> (cộng phần thực với phần thực, phần ảo với phần ảo)</p>
+    <p><b>Nhân/chia</b> &rarr; làm ở dạng <b>cực</b> (nhân/chia độ lớn r, cộng/trừ góc &theta;)</p>
+    <div class="callout tip">
+      <span class="tag">&#10003; SỐ PHỨC LIÊN HỢP</span>
+      z* = a&minus;jb (đổi dấu phần ảo). Dùng khi tính công suất phức ở Ch.11 sau này.
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>A3. Công thức Euler, nền tảng của phasor (Ngày 9)</h3>
+    <p><span class="formula">e^(j&theta;) = cos&theta; + j&middot;sin&theta;</span></p>
+    <p>Đây là lý do vì sao v(t)=Vm&middot;cos(&omega;t+&phi;) có thể biểu diễn gọn bằng phasor V=Vm&ang;&phi; (bỏ phần thời gian, giữ biên độ + pha). Sẽ dùng trực tiếp ở Ngày 9-10.</p>
+  </div>
+
+  <div class="note">
+    <h3>A4. Mạch RLC không nguồn: phương trình đặc trưng</h3>
+    <p>Với mạch RLC nối tiếp (không nguồn, chỉ đáp ứng tự nhiên): đoán nghiệm dạng e^(st), thế vào phương trình mạch, ra <b>phương trình đặc trưng</b>: <span class="formula">s&sup2;+2&alpha;s+&omega;&#8320;&sup2;=0</span>, với &alpha;=R/(2L) (hệ số tắt dần), &omega;&#8320;=1/&radic;(LC) (tần số tự nhiên).</p>
+    <p>Giải bằng công thức bậc 2 bình thường: <span class="formula">s = &minus;&alpha; &plusmn; &radic;(&alpha;&sup2;&minus;&omega;&#8320;&sup2;)</span></p>
+    <div class="callout tip">
+      <span class="tag">&#10003; KHÔNG CẦN HỌC PHƯƠNG TRÌNH VI PHÂN</span>
+      Toàn bộ Ch.9 chỉ là: đoán nghiệm mũ, ra phương trình bậc 2, giải bằng công thức quen thuộc. Đây là lý do số phức (không phải lý thuyết ODE) mới là thứ thật sự cần cho chương này.
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>A5. 3 trường hợp nghiệm</h3>
+    <p>&bull; <b>&alpha; &gt; &omega;&#8320;</b>: quá tắt dần (overdamped), 2 nghiệm thực âm phân biệt &rarr; x(t)=A1e^(s1t)+A2e^(s2t)</p>
+    <p>&bull; <b>&alpha; = &omega;&#8320;</b>: tới hạn (critically damped), nghiệm kép s=&minus;&alpha; &rarr; x(t)=(A1+A2t)e^(&minus;&alpha;t)</p>
+    <p>&bull; <b>&alpha; &lt; &omega;&#8320;</b>: dao động tắt dần (underdamped), nghiệm phức s=&minus;&alpha;&plusmn;j&omega;_d với &omega;_d=&radic;(&omega;&#8320;&sup2;&minus;&alpha;&sup2;) &rarr; x(t)=e^(&minus;&alpha;t)(A1cos&omega;_dt+A2sin&omega;_dt) ,  đây chính là chỗ cần số phức
+  </div>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">B</span> Ví dụ mẫu</h2>
+  <p class="section-hint">Tự che phần lời giải, làm thử trước rồi mới bấm mở ra so đáp án.</p>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 1</span>
+    <h3>Cộng &amp; nhân số phức</h3>
+    <p>z1=3+j4, z2=1&minus;j2. Tính z1+z2 và z1&times;z2.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 220">
+        <line x1="30" y1="110" x2="270" y2="110" stroke="var(--ink-soft)" stroke-width="1.4" marker-end="url(#arrow)"/>
+        <text x="272" y="115" font-family="var(--font-mono)" font-size="12" fill="var(--ink-soft)">Re</text>
+        <line x1="150" y1="200" x2="150" y2="20" stroke="var(--ink-soft)" stroke-width="1.4" marker-end="url(#arrow)"/>
+        <text x="155" y="18" font-family="var(--font-mono)" font-size="12" fill="var(--ink-soft)">Im</text>
+
+        <line x1="150" y1="110" x2="207" y2="33" stroke="var(--blue)" stroke-width="2.2" marker-end="url(#arrow)"/>
+        <text x="212" y="30" font-family="var(--font-mono)" font-size="12" fill="var(--blue)">z1=3+j4</text>
+
+        <line x1="150" y1="110" x2="167" y2="147" stroke="var(--copper)" stroke-width="2.2" marker-end="url(#arrow)"/>
+        <text x="172" y="155" font-family="var(--font-mono)" font-size="12" fill="var(--copper)">z2=1&minus;j2</text>
+
+        <line x1="150" y1="110" x2="227" y2="67" stroke="var(--amber)" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#arrow)"/>
+        <text x="232" y="64" font-family="var(--font-mono)" font-size="12" fill="var(--amber)">z1+z2=4+j2</text>
+
+        <line x1="207" y1="33" x2="227" y2="67" stroke="var(--ink-soft)" stroke-width="1" stroke-dasharray="2 3"/>
+        <line x1="167" y1="147" x2="227" y2="67" stroke="var(--ink-soft)" stroke-width="1" stroke-dasharray="2 3"/>
+      </svg>
+      <div class="diagram-caption">Cộng số phức = cộng vector (quy tắc hình bình hành)</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step"><b>Cộng</b> (dạng đại số): z1+z2 = (3+1)+j(4&minus;2) = <span class="answer-inline">4+j2</span></div>
+        <div class="step"><b>Nhân</b> (khai triển trực tiếp): z1&times;z2 = 3(1)+3(&minus;j2)+j4(1)+j4(&minus;j2) = 3&minus;j6+j4&minus;j&sup2;8 = 3&minus;j2+8 = <span class="answer-inline">11&minus;j2</span></div>
+        <div class="step">Kiểm tra bằng dạng cực: |z1|=5&ang;53.13&deg;, |z2|=&radic;5&ang;&minus;63.43&deg;. Tích: 5&radic;5&ang;(53.13&minus;63.43)&deg; = 11.18&ang;&minus;10.3&deg; &rarr; đổi lại đại số &asymp;11&minus;j2, khớp kết quả trên.</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 2</span>
+    <h3>Chuyển đổi đại số &harr; cực</h3>
+    <p>z = &minus;5+j5. Tìm dạng cực.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 220">
+        <line x1="30" y1="110" x2="270" y2="110" stroke="var(--ink-soft)" stroke-width="1.4" marker-end="url(#arrow)"/>
+        <text x="272" y="115" font-family="var(--font-mono)" font-size="12" fill="var(--ink-soft)">Re</text>
+        <line x1="150" y1="200" x2="150" y2="20" stroke="var(--ink-soft)" stroke-width="1.4" marker-end="url(#arrow)"/>
+        <text x="155" y="18" font-family="var(--font-mono)" font-size="12" fill="var(--ink-soft)">Im</text>
+
+        <line x1="150" y1="110" x2="50" y2="10" stroke="var(--blue)" stroke-width="2.4" marker-end="url(#arrow)"/>
+        <text x="35" y="30" font-family="var(--font-mono)" font-size="12" fill="var(--blue)">z=&minus;5+j5</text>
+        <text x="35" y="46" font-family="var(--font-mono)" font-size="12" fill="var(--copper)">r=7.07&ang;135&deg;</text>
+
+        <line x1="150" y1="110" x2="50" y2="110" stroke="var(--ink-soft)" stroke-width="1.4" stroke-dasharray="4 3"/>
+        <text x="80" y="126" font-family="var(--font-mono)" font-size="10.5" fill="var(--ink-soft)">Re=&minus;5</text>
+        <line x1="50" y1="110" x2="50" y2="10" stroke="var(--ink-soft)" stroke-width="1.4" stroke-dasharray="4 3"/>
+        <text x="15" y="70" font-family="var(--font-mono)" font-size="10.5" fill="var(--ink-soft)">Im=5</text>
+      </svg>
+      <div class="diagram-caption">Đường chiếu (nét đứt) xuống 2 trục thể hiện phần thực và phần ảo</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step"><span class="formula">r = &radic;(25+25) = &radic;50 = 5&radic;2 &asymp; 7.07</span></div>
+        <div class="step">&theta; = atan2(5,&minus;5) = 135&deg; (góc phần tư thứ II, vì Re&lt;0, Im&gt;0)</div>
+        <div class="step"><span class="answer-inline">z = 7.07&ang;135&deg;</span></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 3</span>
+    <h3>Xác định loại đáp ứng của mạch RLC</h3>
+    <p>Mạch RLC nối tiếp (không nguồn): R=200&Omega;, L=0.1H, C=10&mu;F. Đây là loại đáp ứng nào?</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 260 200">
+        <line x1="50" y1="50" x2="90" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-h" x="90" y="40" width="60" height="20"/>
+        <text x="120" y="30" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R=200&Omega;</text>
+        <line x1="150" y1="50" x2="200" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+
+        <line x1="200" y1="50" x2="200" y2="80" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#ind-v" x="190" y="80" width="20" height="60"/>
+        <text x="212" y="115" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">L=0.1H</text>
+        <line x1="200" y1="140" x2="200" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+
+        <line x1="200" y1="170" x2="90" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#cap-h" x="50" y="150" width="40" height="40"/>
+        <text x="70" y="192" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">C=10&mu;F</text>
+        <line x1="50" y1="170" x2="50" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+      </svg>
+      <div class="diagram-caption">Mạch RLC nối tiếp, đáp ứng tự nhiên (không nguồn độc lập)</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step"><span class="formula">&alpha; = R/(2L) = 200/0.2 = 1000</span></div>
+        <div class="step"><span class="formula">&omega;&#8320; = 1/&radic;(LC) = 1/&radic;(0.1&times;10&times;10&#8315;&#8310;) = 1/&radic;(10&#8315;&#8310;) = 1/0.001</span> = 1000</div>
+        <div class="step">&alpha; = &omega;&#8320; = 1000 &rarr; <span class="answer-inline">tới hạn (critically damped)</span></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 4</span>
+    <h3>Giải trường hợp quá tắt dần (overdamped)</h3>
+    <p>Cho &alpha;=5, &omega;&#8320;=3 (rad/s). Điều kiện đầu x(0)=10, x&prime;(0)=&minus;4. Tìm x(t).</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 180">
+        <line x1="40" y1="20" x2="40" y2="150" stroke="var(--ink)" stroke-width="1.6"/>
+        <line x1="40" y1="150" x2="290" y2="150" stroke="var(--ink)" stroke-width="1.6"/>
+        <path d="M40,50 C70,75 100,110 140,130 C190,148 240,150 290,150"
+              fill="none" stroke="var(--copper)" stroke-width="2.2"/>
+        <text x="10" y="26" font-family="var(--font-mono)" font-size="12" fill="var(--ink-soft)">x(t)</text>
+        <text x="270" y="167" font-family="var(--font-mono)" font-size="12" fill="var(--ink-soft)">t</text>
+        <text x="46" y="46" font-family="var(--font-mono)" font-size="11.5" fill="var(--blue)">x(0)=10</text>
+        <text x="120" y="105" font-family="var(--font-mono)" font-size="11" fill="var(--copper)">x(t)=11.25e&#8315;&#8319;&minus;1.25e&#8315;&#8313;&#8319;</text>
+      </svg>
+      <div class="diagram-caption">Đáp ứng quá tắt dần: tổng 2 hàm mũ giảm dần, không dao động</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step">Nghiệm đặc trưng: <span class="formula">s = &minus;5&plusmn;&radic;(25&minus;9) = &minus;5&plusmn;4</span> &rarr; s1=&minus;1, s2=&minus;9 (2 nghiệm thực &rarr; quá tắt dần, khớp vì &alpha;=5&gt;&omega;&#8320;=3)</div>
+        <div class="step">x(t) = A1e&#8315;&#8319;+A2e&#8315;&#8313;&#8319;. Điều kiện đầu: x(0)=A1+A2=10</div>
+        <div class="step">x&prime;(t)=&minus;A1e&#8315;&#8319;&minus;9A2e&#8315;&#8313;&#8319; &rarr; x&prime;(0)=&minus;A1&minus;9A2=&minus;4. Kết hợp 2 phương trình: A1=11.25, A2=&minus;1.25</div>
+        <div class="step"><span class="answer-inline">x(t) = 11.25e&#8315;&#8319; &minus; 1.25e&#8315;&#8313;&#8319;</span></div>
+      </div>
+    </details>
+  </div>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">C</span> Bài tập tự luyện</h2>
+  <p class="section-hint">Tự làm trước, chỉ mở đáp số để so kết quả.</p>
+
+  <ol class="problems">
+    <li>
+      z1=2+j3, z2=4&minus;j1. Tính z1&minus;z2 và z1&times;z2.
+      <details><summary>Xem đáp số</summary><div class="solution">z1&minus;z2 = <span class="answer-inline">&minus;2+j4</span>. z1&times;z2 = 8&minus;j2+j12&minus;j&sup2;3 = 8+j10+3 = <span class="answer-inline">11+j10</span></div></details>
+    </li>
+
+    <li>
+      Chuyển z=6&ang;60&deg; sang dạng đại số.
+      <details><summary>Xem đáp số</summary><div class="solution">a=6cos60&deg;=3, b=6sin60&deg;=5.196 &rarr; z = <span class="answer-inline">3+j5.2</span></div></details>
+    </li>
+
+    <li>
+      Chuyển z=4&minus;j4 sang dạng cực.
+      <details><summary>Xem đáp số</summary><div class="solution">r=&radic;32=5.66, &theta;=atan2(&minus;4,4)=&minus;45&deg; &rarr; z = <span class="answer-inline">5.66&ang;&minus;45&deg;</span></div></details>
+    </li>
+
+    <li>
+      Mạch RLC nối tiếp: R=40&Omega;, L=0.2H, C=50&mu;F. Tính &alpha;, &omega;&#8320;, xác định loại đáp ứng.
+      <details><summary>Xem đáp số</summary><div class="solution">&alpha;=40/0.4=100, &omega;&#8320;=1/&radic;(0.2&times;50e-6)=1/&radic;(1e-5)=316.2 &rarr; &alpha;&lt;&omega;&#8320; &rarr; <span class="answer-inline">dao động tắt dần (underdamped)</span></div></details>
+    </li>
+
+    <li>
+      Với &alpha;=4, &omega;&#8320;=4 (bằng nhau), viết dạng tổng quát của x(t) (không cần tìm hằng số).
+      <details><summary>Xem đáp số</summary><div class="solution">&alpha;=&omega;&#8320; &rarr; tới hạn &rarr; x(t) = <span class="answer-inline">(A1+A2t)e&#8315;&#8308;&#8319;</span></div></details>
+    </li>
+
+    <li>
+      Cho &alpha;=2, &omega;&#8320;=6. Tính nghiệm s (dạng phức, vì đây là trường hợp dao động tắt dần).
+      <details><summary>Xem đáp số</summary><div class="solution">s=&minus;2&plusmn;&radic;(4&minus;36)=&minus;2&plusmn;j&radic;32=&minus;2&plusmn;j5.66 &rarr; s = <span class="answer-inline">&minus;2&plusmn;j5.66</span></div></details>
+    </li>
+
+  </ol>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">D</span> Câu hỏi tự kiểm tra khái niệm</h2>
+  <p class="section-hint">Không cần tính toán, tự trả lời bằng lời của bạn.</p>
+
+  <ol class="concept">
+    <li>Vì sao cộng/trừ số phức lại dễ hơn ở dạng đại số, còn nhân/chia lại dễ hơn ở dạng cực?</li>
+    <li>Phương trình đặc trưng s&sup2;+2&alpha;s+&omega;&#8320;&sup2;=0 có phải là phương trình vi phân không? Vì sao nói giải nó chỉ cần đại số (công thức bậc 2)?</li>
+    <li>Nếu &alpha;=0 (không có điện trở R nào trong mạch RLC), &omega;_d bằng gì? Mạch lúc đó dao động thế nào theo thời gian (có tắt dần không)?</li>
+    <li>3 trường hợp overdamped/critically damped/underdamped khác nhau ở điểm nào trong công thức nghiệm s? Vì sao chỉ underdamped mới cần số phức?</li>
+  </ol>
+
+
+  <footer>
+    Xong Ngày 8. Ngày 9: hoàn thành Ch.9 (đáp ứng ép buộc) rồi bắt đầu phasor Ch.10, ứng dụng trực tiếp số phức vừa học.
+  </footer>
+
+      </div>
+    </div>
+    <div class="day-section" id="day-9">
+      <div class="page">
+
+  <span class="badge">NGÀY 9 / 10 &middot; SVOBODA &amp; DORF, CH.9 (HẾT) + CH.10 (BẮT ĐẦU)</span>
+  <h1>Hoàn thành RLC &amp; Bắt đầu Phasor</h1>
+  <p class="subtitle">Đáp ứng dao động tắt dần, đáp ứng ép buộc, phasor hóa, trở kháng.</p>
+
+  <h2 class="section-title"><span class="letter">A</span> Lý thuyết</h2>
+  <p class="section-hint">Đọc chủ động, khoảng 40 phút.</p>
+
+  <div class="refcard">
+    <span class="tag">THẺ TRA CỨU NHANH</span>
+    <div class="refcard-grid">
+      <div><span class="f">x(t)=e&#8315;&#945;&#8319;(A1cos&omega;_dt+A2sin&omega;_dt)</span>đáp ứng dao động tắt dần</div>
+      <div><span class="f">&omega;_d = &radic;(&omega;&#8320;&sup2;&minus;&alpha;&sup2;)</span>tần số dao động tắt dần</div>
+      <div><span class="f">v(t)=Vmcos(&omega;t+&phi;) &harr; V=Vm&ang;&phi;</span>phasor hóa</div>
+      <div><span class="f">Z_R=R</span>trở kháng điện trở</div>
+      <div><span class="f">Z_L=j&omega;L</span>trở kháng cuộn cảm</div>
+      <div><span class="f">Z_C=1/(j&omega;C)=&minus;j/(&omega;C)</span>trở kháng tụ điện</div>
+      <div><span class="f">V=Z&middot;I</span>luật Ohm dạng phasor</div>
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>A1. Hoàn thành đáp ứng dao động tắt dần (underdamped)</h3>
+    <p>Trường hợp &alpha;&lt;&omega;&#8320; (Ngày 8) cho nghiệm phức s=&minus;&alpha;&plusmn;j&omega;_d, với &omega;_d=&radic;(&omega;&#8320;&sup2;&minus;&alpha;&sup2;). Dạng nghiệm thực (dùng công thức Euler để gộp cặp nghiệm phức liên hợp lại): <span class="formula">x(t)=e&#8315;&#945;&#8319;(A1cos&omega;_dt+A2sin&omega;_dt)</span></p>
+    <p>Tìm A1, A2 từ điều kiện đầu x(0) và x&prime;(0), y hệt cách làm ở Ngày 8 với overdamped, chỉ khác dạng hàm.</p>
+  </div>
+
+  <div class="note">
+    <h3>A2. Đáp ứng ép buộc (forced response)</h3>
+    <p>Khi mạch RLC có thêm nguồn không đổi: đáp ứng đầy đủ = đáp ứng tự nhiên (dạng e^(st) như Ngày 8) + đáp ứng ép buộc (forced, chính là giá trị xác lập cuối cùng x(&infin;), giống hệt tư duy bậc 1 ở Ngày 7, chỉ khác là có 2 hằng số cần điều kiện đầu thay vì 1.</p>
+  </div>
+
+  <div class="note">
+    <h3>A3. Phasor hóa nguồn sin</h3>
+    <p>Nguồn sin v(t)=Vm&middot;cos(&omega;t+&phi;) được biểu diễn gọn bằng phasor (bỏ phần thời gian, giữ biên độ và pha): <span class="formula">V = Vm&ang;&phi;</span> (một số phức). Đây là ứng dụng trực tiếp của số phức học ở Ngày 8.</p>
+    <div class="callout warn">
+      <span class="tag">&#9888; PHASOR CHỈ DÙNG CHO 1 TẦN SỐ</span>
+      Mọi phasor trong cùng 1 bài toán phải cùng &omega;. Không được cộng trừ phasor của 2 nguồn khác tần số.
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>A4. Trở kháng (impedance)</h3>
+    <p><span class="formula">Z_R = R</span> (số thực, không đổi theo &omega;)<br>
+    <span class="formula">Z_L = j&omega;L</span> (số ảo dương, tăng theo &omega;)<br>
+    <span class="formula">Z_C = 1/(j&omega;C) = &minus;j/(&omega;C)</span> (số ảo âm, giảm theo &omega;)</p>
+    <p>Luật Ohm dạng phasor: <span class="formula">V = Z&middot;I</span> (y hệt v=iR, chỉ khác dùng số phức). Trở kháng nối tiếp/song song cộng/nghịch đảo y hệt điện trở.</p>
+  </div>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">B</span> Ví dụ mẫu</h2>
+  <p class="section-hint">Tự che phần lời giải, làm thử trước rồi mới bấm mở ra so đáp án.</p>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 1</span>
+    <h3>Đáp ứng dao động tắt dần đầy đủ</h3>
+    <p>Cho &alpha;=2, &omega;_d=3 (rad/s). Điều kiện đầu x(0)=5, x&prime;(0)=&minus;4. Tìm x(t).</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 320 200">
+        <line x1="40" y1="100" x2="300" y2="100" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <path d="M40,100 C50,45 60,20 75,25 C90,30 95,80 105,100 C112,113 120,120 130,110
+                 C140,100 148,80 158,85 C166,89 172,102 180,100
+                 C188,98 195,90 205,95 C215,100 225,102 240,100 C260,99 280,100 300,100"
+              fill="none" stroke="var(--copper)" stroke-width="2.2"/>
+        <path d="M40,100 C55,20 90,25 105,55 C120,80 140,90 160,95 C185,99 220,100 300,100"
+              fill="none" stroke="var(--blue)" stroke-width="1.3" stroke-dasharray="4 3"/>
+        <path d="M40,100 C55,180 90,175 105,145 C120,120 140,110 160,105 C185,101 220,100 300,100"
+              fill="none" stroke="var(--blue)" stroke-width="1.3" stroke-dasharray="4 3"/>
+        <text x="10" y="26" font-family="var(--font-mono)" font-size="12" fill="var(--ink-soft)">x(t)</text>
+        <text x="280" y="117" font-family="var(--font-mono)" font-size="12" fill="var(--ink-soft)">t</text>
+        <text x="46" y="118" font-family="var(--font-mono)" font-size="11" fill="var(--blue)">&plusmn;5.39e&#8315;&sup2;&#8319; (bao ngoài)</text>
+      </svg>
+      <div class="diagram-caption">Dao động hình sin, biên độ giảm dần theo đường bao e&#8315;&sup2;&#8319; (nét đứt)</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step">x(t) = e&#8315;&sup2;&#8319;(A1cos3t+A2sin3t). Tại t=0: x(0)=A1=5</div>
+        <div class="step">x&prime;(t) = &minus;2e&#8315;&sup2;&#8319;(A1cos3t+A2sin3t) + e&#8315;&sup2;&#8319;(&minus;3A1sin3t+3A2cos3t)</div>
+        <div class="step">x&prime;(0) = &minus;2A1+3A2 = &minus;4 &rarr; &minus;10+3A2=&minus;4 &rarr; A2=2</div>
+        <div class="step"><span class="answer-inline">x(t) = e&#8315;&sup2;&#8319;(5cos3t + 2sin3t)</span></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 2</span>
+    <h3>Phasor hóa &amp; chuyển ngược</h3>
+    <p>(a) Đổi v(t)=8cos(50t&minus;40&deg;) V sang phasor. (b) Cho I=3&ang;60&deg; A tại &omega;=100 rad/s, viết i(t).</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 220">
+        <line x1="30" y1="110" x2="270" y2="110" stroke="var(--ink-soft)" stroke-width="1.4" marker-end="url(#arrow)"/>
+        <text x="272" y="115" font-family="var(--font-mono)" font-size="12" fill="var(--ink-soft)">Re</text>
+        <line x1="150" y1="200" x2="150" y2="20" stroke="var(--ink-soft)" stroke-width="1.4" marker-end="url(#arrow)"/>
+        <text x="155" y="18" font-family="var(--font-mono)" font-size="12" fill="var(--ink-soft)">Im</text>
+
+        <line x1="150" y1="110" x2="204" y2="155" stroke="var(--blue)" stroke-width="2.4" marker-end="url(#arrow)"/>
+        <text x="185" y="175" font-family="var(--font-mono)" font-size="12.5" fill="var(--blue)">V=8&ang;&minus;40&deg;</text>
+        <path d="M190,110 A40,40 0 0,1 173,145" fill="none" stroke="var(--amber)" stroke-width="1.3"/>
+        <text x="195" y="130" font-family="var(--font-mono)" font-size="10.5" fill="var(--amber)">&minus;40&deg;</text>
+      </svg>
+      <div class="diagram-caption">Phasor V = mũi tên có độ dài (biên độ) và góc (pha), không còn phụ thuộc t</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step">(a) Bỏ phần thời gian, giữ biên độ và pha: <span class="answer-inline">V = 8&ang;&minus;40&deg; V</span></div>
+        <div class="step">(b) Làm ngược lại, thêm cos(&omega;t+pha): <span class="answer-inline">i(t) = 3cos(100t+60&deg;) A</span></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 3</span>
+    <h3>Tính trở kháng tại một tần số</h3>
+    <p>L=0.2H, C=50&mu;F, &omega;=100 rad/s. Tính Z_L và Z_C.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 220">
+        <line x1="30" y1="110" x2="270" y2="110" stroke="var(--ink-soft)" stroke-width="1.4" marker-end="url(#arrow)"/>
+        <text x="272" y="115" font-family="var(--font-mono)" font-size="12" fill="var(--ink-soft)">Re</text>
+        <line x1="150" y1="200" x2="150" y2="20" stroke="var(--ink-soft)" stroke-width="1.4" marker-end="url(#arrow)"/>
+        <text x="155" y="18" font-family="var(--font-mono)" font-size="12" fill="var(--ink-soft)">Im</text>
+
+        <line x1="150" y1="110" x2="150" y2="45" stroke="var(--blue)" stroke-width="2.4" marker-end="url(#arrow)"/>
+        <text x="158" y="45" font-family="var(--font-mono)" font-size="12.5" fill="var(--blue)">Z_L=j20&Omega;</text>
+
+        <line x1="150" y1="110" x2="150" y2="175" stroke="var(--copper)" stroke-width="2.4" marker-end="url(#arrow)"/>
+        <text x="158" y="185" font-family="var(--font-mono)" font-size="12.5" fill="var(--copper)">Z_C=&minus;j200&Omega;</text>
+        <text x="20" y="130" font-family="var(--font-mono)" font-size="10" fill="var(--ink-soft)">(không theo tỉ lệ)</text>
+      </svg>
+      <div class="diagram-caption">Z_L luôn nằm trên trục ảo dương, Z_C luôn nằm trên trục ảo âm</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step"><span class="formula">Z_L = j&omega;L = j&middot;100&middot;0.2 = j20&Omega;</span></div>
+        <div class="step"><span class="formula">Z_C = &minus;j/(&omega;C) = &minus;j/(100&middot;50&times;10&#8315;&#8310;) = &minus;j/0.005</span></div>
+        <div class="step"><span class="answer-inline">Z_L = j20&Omega;, Z_C = &minus;j200&Omega;</span></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 4</span>
+    <h3>Luật Ohm dạng phasor (mạch RL nối tiếp)</h3>
+    <p>R=10&Omega; nối tiếp Z_L=j20&Omega; (&omega;=100, L=0.2H như Ví dụ 3). Nguồn V=100&ang;0&deg; V. Tìm dòng điện I.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 220">
+        <line x1="50" y1="50" x2="50" y2="85" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#vsource-v" x="30" y="85" width="40" height="40"/>
+        <line x1="50" y1="125" x2="50" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="4" y="108" font-family="var(--font-mono)" font-size="12" fill="var(--blue)">V=100&ang;0&deg;</text>
+
+        <line x1="50" y1="50" x2="110" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-h" x="110" y="40" width="60" height="20"/>
+        <line x1="170" y1="50" x2="230" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="140" y="30" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R=10&Omega;</text>
+
+        <line x1="230" y1="50" x2="230" y2="90" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#ind-v" x="220" y="90" width="20" height="60"/>
+        <line x1="230" y1="150" x2="230" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="242" y="120" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">Z_L=j20&Omega;</text>
+
+        <line x1="230" y1="170" x2="50" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="70" y="42" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="var(--copper)">I=?</text>
+      </svg>
+      <div class="diagram-caption">Mạch RL nối tiếp trong miền phasor: y hệt mạch điện trở, chỉ khác dùng số phức</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step">Tổng trở: <span class="formula">Z = R+jZ_L = 10+j20&Omega;</span></div>
+        <div class="step">Đổi sang cực: |Z|=&radic;(100+400)=&radic;500&asymp;22.36, &ang;Z=atan(20/10)=63.43&deg; &rarr; Z=22.36&ang;63.43&deg;&Omega;</div>
+        <div class="step">Luật Ohm phasor: <span class="formula">I = V/Z = 100&ang;0&deg;/22.36&ang;63.43&deg;</span></div>
+        <div class="step"><span class="answer-inline">I = 4.47&ang;&minus;63.43&deg; A</span> (dòng trễ pha so với áp, đặc trưng của mạch có cuộn cảm)</div>
+      </div>
+    </details>
+  </div>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">C</span> Bài tập tự luyện</h2>
+  <p class="section-hint">Tự làm trước, chỉ mở đáp số để so kết quả.</p>
+
+  <ol class="problems">
+    <li>
+      Cho &alpha;=1, &omega;_d=2. Điều kiện đầu x(0)=4, x&prime;(0)=0. Tìm x(t).
+      <details><summary>Xem đáp số</summary><div class="solution">A1=4. x&prime;(0)=&minus;A1+2A2=0 &rarr; A2=2 &rarr; x(t) = <span class="answer-inline">e&#8315;&#8319;(4cos2t+2sin2t)</span></div></details>
+    </li>
+
+    <li>
+      Đổi v(t)=15cos(200t+30&deg;) V sang phasor.
+      <details><summary>Xem đáp số</summary><div class="solution">V = <span class="answer-inline">15&ang;30&deg; V</span></div></details>
+    </li>
+
+    <li>
+      Cho I=6&ang;&minus;90&deg; A tại &omega;=50 rad/s, viết i(t).
+      <details><summary>Xem đáp số</summary><div class="solution">i(t) = <span class="answer-inline">6cos(50t&minus;90&deg;) A</span> (= 6sin(50t), một cách viết khác)</div></details>
+    </li>
+
+    <li>
+      L=0.5H, &omega;=200 rad/s. Tính Z_L.
+      <details><summary>Xem đáp số</summary><div class="solution">Z_L=j&middot;200&middot;0.5 = <span class="answer-inline">j100&Omega;</span></div></details>
+    </li>
+
+    <li>
+      C=20&mu;F, &omega;=1000 rad/s. Tính Z_C.
+      <details><summary>Xem đáp số</summary><div class="solution">Z_C=&minus;j/(1000&middot;20e-6)=&minus;j/0.02 = <span class="answer-inline">&minus;j50&Omega;</span></div></details>
+    </li>
+
+    <li>
+      Mạch RC nối tiếp: R=30&Omega;, Z_C=&minus;j40&Omega;, nguồn V=50&ang;0&deg;V. Tìm I.
+      <details><summary>Xem đáp số</summary><div class="solution">Z=30&minus;j40=50&ang;&minus;53.13&deg;&Omega; &rarr; I=50&ang;0&deg;/50&ang;&minus;53.13&deg; = <span class="answer-inline">1&ang;53.13&deg; A</span></div></details>
+    </li>
+
+  </ol>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">D</span> Câu hỏi tự kiểm tra khái niệm</h2>
+  <p class="section-hint">Không cần tính toán, tự trả lời bằng lời của bạn.</p>
+
+  <ol class="concept">
+    <li>Vì sao nghiệm phức liên hợp s=&minus;&alpha;&plusmn;j&omega;_d lại gộp thành được dạng thực x(t)=e&#8315;&#945;&#8319;(A1cos&omega;_dt+A2sin&omega;_dt) mà không còn số j nào? (Gợi ý: dùng công thức Euler ở Ngày 8.)</li>
+    <li>Trở kháng Z_L=j&omega;L tăng khi &omega; tăng, còn Z_C=&minus;j/(&omega;C) giảm (về độ lớn) khi &omega; tăng. Điều này khớp với trực giác vật lý nào về cuộn cảm và tụ điện ở tần số cao?</li>
+    <li>Vì sao ở Ví dụ 4, dòng điện I lại &ldquo;trễ pha&rdquo; so với điện áp V (góc âm hơn)? Nếu mạch chỉ có R và tụ điện (RC) thay vì RL, dòng điện sẽ trễ hay sớm pha hơn áp?</li>
+    <li>Luật Ohm phasor V=Z&middot;I có hình thức giống hệt v=iR ở Ngày 1. Điểm khác biệt duy nhất về bản chất toán học giữa 2 công thức này là gì?</li>
+  </ol>
+
+
+  <footer>
+    Xong Ngày 9. Ngày 10 (cuối cùng): hoàn thành phasor với trở kháng nối tiếp/song song, node/mesh/Thevenin miền phasor, và tổng ôn toàn bộ 10 chương.
+  </footer>
+
+      </div>
+    </div>
+    <div class="day-section" id="day-10">
+      <div class="page">
+
+  <span class="badge">NGÀY 10 / 10 &middot; SVOBODA &amp; DORF, CH.10 (HẾT) + TỔNG ÔN</span>
+  <h1>Hoàn thành Phasor &amp; Tổng ôn</h1>
+  <p class="subtitle">Trở kháng nối tiếp/song song, node/mesh/Thevenin miền phasor, và nhìn lại cả 10 ngày.</p>
+
+  <h2 class="section-title"><span class="letter">A</span> Lý thuyết</h2>
+  <p class="section-hint">Đọc chủ động, khoảng 40 phút.</p>
+
+  <div class="refcard">
+    <span class="tag">THẺ TRA CỨU NHANH</span>
+    <div class="refcard-grid">
+      <div><span class="f">Z_eq = Z1+Z2+...</span>trở kháng nối tiếp</div>
+      <div><span class="f">1/Z_eq = 1/Z1+1/Z2+...</span>trở kháng song song (đổi dạng cực để chia)</div>
+      <div><span class="f">Node/mesh miền phasor</span>y hệt Ngày 3, thay R bằng Z, số thực bằng số phức</div>
+      <div><span class="f">V_th = v hở mạch (phasor)</span>Thevenin AC</div>
+      <div><span class="f">Z_th = Z nhìn vào, tắt nguồn</span>Thevenin AC</div>
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>A1. Trở kháng nối tiếp &amp; song song</h3>
+    <p>Nối tiếp: <span class="formula">Z_eq = Z1+Z2+...</span> (cộng số phức, làm ở dạng đại số, y hệt điện trở nhưng cộng cả phần ảo).</p>
+    <p>Song song: <span class="formula">1/Z_eq = 1/Z1+1/Z2+...</span>. Mẹo tính nhanh: đổi Z1, Z2 sang dạng cực trước, nhân/chia sẽ dễ hơn nhiều so với làm trực tiếp ở dạng đại số.</p>
+  </div>
+
+  <div class="note">
+    <h3>A2. Node voltage &amp; Mesh current trong miền phasor</h3>
+    <p>Quy trình y hệt Ngày 3 (node voltage, mesh current, supernode, supermesh), chỉ khác duy nhất: mọi con số bây giờ là số phức (điện áp, dòng điện, và trở kháng thay cho điện trở). Toàn bộ 4 bước của Ngày 3 áp dụng lại nguyên vẹn.</p>
+    <div class="callout tip">
+      <span class="tag">&#10003; TIN TỐT</span>
+      Bạn không học kỹ thuật mới nào ở đây cả. Ngày 10 chỉ là Ngày 3 + Ngày 4, làm lại với số phức thay vì số thực.
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>A3. Thevenin &amp; Norton trong miền phasor (AC)</h3>
+    <p>Y hệt Ngày 4: <span class="formula">V_th</span> = điện áp hở mạch (phasor). <span class="formula">Z_th</span> = trở kháng nhìn vào 2 cực khi tắt hết nguồn độc lập. Norton: I_N = dòng ngắn mạch, Z_N=Z_th.</p>
+  </div>
+
+  <div class="note">
+    <h3>A4. Tổng ôn 10 chương: bản đồ tư duy</h3>
+    <p>Ngày 1 đến 2: biến, phần tử, KVL/KCL, chia áp/dòng &rarr; ngôn ngữ cơ bản.<br>
+    Ngày 3: node/mesh &rarr; kỹ thuật giải mọi mạch điện trở.<br>
+    Ngày 4: Thevenin/Norton/xếp chồng/max power &rarr; đơn giản hóa mạch, phân tích tải.<br>
+    Ngày 5: op-amp &rarr; ứng dụng của KCL+KVL với 2 quy tắc riêng.<br>
+    Ngày 6 đến 7: C, L, và đáp ứng bậc 1 (RL/RC) &rarr; mạch có &ldquo;trí nhớ&rdquo; theo thời gian.<br>
+    Ngày 8 đến 9: số phức, RLC bậc 2, phasor &rarr; công cụ toán học mới cho tần số.<br>
+    Ngày 10: phasor hoàn chỉnh &rarr; áp lại TOÀN BỘ kỹ thuật Ngày 3 đến 4 nhưng bằng số phức.</p>
+  </div>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">B</span> Ví dụ mẫu</h2>
+  <p class="section-hint">Tự che phần lời giải, làm thử trước rồi mới bấm mở ra so đáp án.</p>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 1</span>
+    <h3>Trở kháng song song</h3>
+    <p>Z1=10&Omega; (điện trở thuần) song song Z2=j10&Omega; (cuộn cảm thuần). Tìm Z_eq.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 260 200">
+        <line x1="50" y1="40" x2="210" y2="40" stroke="var(--ink)" stroke-width="2.2"/>
+        <line x1="50" y1="160" x2="210" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+
+        <line x1="90" y1="40" x2="90" y2="70" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-v" x="80" y="70" width="20" height="60"/>
+        <line x1="90" y1="130" x2="90" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="102" y="105" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">Z1=10&Omega;</text>
+
+        <line x1="170" y1="40" x2="170" y2="70" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#ind-v" x="160" y="70" width="20" height="60"/>
+        <line x1="170" y1="130" x2="170" y2="160" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="12" y="105" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">Z2=j10&Omega;</text>
+        <text x="130" y="25" text-anchor="middle" font-family="var(--font-mono)" font-size="12" fill="var(--copper)">Z_eq=?</text>
+      </svg>
+      <div class="diagram-caption">Trở kháng song song: đổi dạng cực để nhân chia cho dễ, rồi đổi lại đại số</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step"><span class="formula">Z_eq = Z1Z2/(Z1+Z2) = (10&middot;j10)/(10+j10)</span></div>
+        <div class="step">Đổi mẫu số sang cực: 10+j10 = 10&radic;2&ang;45&deg;. Tử số: j100 = 100&ang;90&deg;</div>
+        <div class="step">Z_eq = 100&ang;90&deg;/(10&radic;2&ang;45&deg;) = 7.07&ang;45&deg;&Omega;. Đổi lại đại số: 7.07cos45&deg;=5, 7.07sin45&deg;=5</div>
+        <div class="step"><span class="answer-inline">Z_eq = 5+j5&Omega;</span></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 2</span>
+    <h3>Chia áp trong miền phasor</h3>
+    <p>Nguồn V=20&ang;0&deg;V nối tiếp Z1=5&Omega; (thuần trở) và Z2=j5&Omega; (thuần cảm). Tìm V2 (áp trên Z2).</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 220">
+        <line x1="50" y1="50" x2="50" y2="85" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#vsource-v" x="30" y="85" width="40" height="40"/>
+        <line x1="50" y1="125" x2="50" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="4" y="108" font-family="var(--font-mono)" font-size="12" fill="var(--blue)">V=20&ang;0&deg;</text>
+
+        <line x1="50" y1="50" x2="110" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-h" x="110" y="40" width="60" height="20"/>
+        <line x1="170" y1="50" x2="230" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="140" y="30" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">Z1=5&Omega;</text>
+
+        <line x1="230" y1="50" x2="230" y2="90" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#ind-v" x="220" y="90" width="20" height="60"/>
+        <line x1="230" y1="150" x2="230" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="242" y="120" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">Z2=j5&Omega;</text>
+        <text x="242" y="136" font-family="var(--font-mono)" font-size="11" fill="var(--copper)">V2=?</text>
+
+        <line x1="230" y1="170" x2="50" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+      </svg>
+      <div class="diagram-caption">Chia áp phasor: cùng công thức Ngày 2, chỉ thay điện trở bằng trở kháng</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step">Công thức chia áp y hệt Ngày 2, chỉ đổi sang số phức: <span class="formula">V2 = V&middot;Z2/(Z1+Z2) = 20&ang;0&deg;&middot;j5/(5+j5)</span></div>
+        <div class="step">5+j5 = 5&radic;2&ang;45&deg;. j5 = 5&ang;90&deg;</div>
+        <div class="step">V2 = 20&middot;5&ang;90&deg;/(5&radic;2&ang;45&deg;) = 14.14&ang;45&deg;V. Đổi đại số: 14.14cos45&deg;=10, 14.14sin45&deg;=10</div>
+        <div class="step"><span class="answer-inline">V2 = 10+j10V = 14.14&ang;45&deg;V</span></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 3</span>
+    <h3>Thevenin trong miền phasor (AC)</h3>
+    <p>Nguồn V=30&ang;0&deg;V nối tiếp Z1=6&Omega; (thuần trở), tại nút giữa có Z2=j8&Omega; (thuần cảm) xuống đất. Tìm V_th, Z_th nhìn từ a, b.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 320 220">
+        <line x1="50" y1="50" x2="50" y2="85" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#vsource-v" x="30" y="85" width="40" height="40"/>
+        <line x1="50" y1="125" x2="50" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="4" y="108" font-family="var(--font-mono)" font-size="12" fill="var(--blue)">V=30&ang;0&deg;</text>
+
+        <line x1="50" y1="50" x2="110" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-h" x="110" y="40" width="60" height="20"/>
+        <line x1="170" y1="50" x2="230" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="140" y="30" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">Z1=6&Omega;</text>
+
+        <line x1="230" y1="50" x2="230" y2="90" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#ind-v" x="220" y="90" width="20" height="60"/>
+        <line x1="230" y1="150" x2="230" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="242" y="120" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">Z2=j8&Omega;</text>
+
+        <line x1="230" y1="170" x2="50" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <line x1="230" y1="50" x2="270" y2="50" stroke="var(--blue)" stroke-width="1.6" stroke-dasharray="4 3"/>
+        <line x1="230" y1="170" x2="270" y2="170" stroke="var(--blue)" stroke-width="1.6" stroke-dasharray="4 3"/>
+        <text x="278" y="54" font-family="var(--font-mono)" font-size="14" fill="var(--blue)">a</text>
+        <text x="278" y="174" font-family="var(--font-mono)" font-size="14" fill="var(--blue)">b</text>
+      </svg>
+      <div class="diagram-caption">Y hệt quy trình Thevenin Ngày 4, chỉ khác dùng số phức</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step">V_th (chia áp, hở mạch): <span class="formula">V_th = 30&middot;j8/(6+j8)</span>. 6+j8=10&ang;53.13&deg;, j8=8&ang;90&deg;</div>
+        <div class="step">V_th = 30&middot;8&ang;90&deg;/10&ang;53.13&deg; = 24&ang;36.87&deg;V = <span class="answer-inline">19.2+j14.4V</span></div>
+        <div class="step">Z_th (tắt nguồn, Z1 song song Z2): <span class="formula">Z_th = 6&middot;j8/(6+j8) = 48&ang;90&deg;/10&ang;53.13&deg;</span> = 4.8&ang;36.87&deg;&Omega;</div>
+        <div class="step"><span class="answer-inline">Z_th = 3.84+j2.88&Omega;</span></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">VÍ DỤ 4</span>
+    <h3>Tổng ôn: mesh 1 vòng trong miền phasor</h3>
+    <p>Vòng đơn: nguồn V=50&ang;0&deg;V, R=6&Omega;, Z_L=j8&Omega;. Tìm dòng điện I bằng KVL/luật Ohm phasor (đúng tinh thần Ngày 1 &amp; Ngày 3, chỉ khác dùng số phức).</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 220">
+        <line x1="50" y1="50" x2="50" y2="85" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#vsource-v" x="30" y="85" width="40" height="40"/>
+        <line x1="50" y1="125" x2="50" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="4" y="108" font-family="var(--font-mono)" font-size="12" fill="var(--blue)">V=50&ang;0&deg;</text>
+
+        <line x1="50" y1="50" x2="110" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#res-h" x="110" y="40" width="60" height="20"/>
+        <line x1="170" y1="50" x2="230" y2="50" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="140" y="30" text-anchor="middle" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">R=6&Omega;</text>
+
+        <line x1="230" y1="50" x2="230" y2="90" stroke="var(--ink)" stroke-width="2.2"/>
+        <use href="#ind-v" x="220" y="90" width="20" height="60"/>
+        <line x1="230" y1="150" x2="230" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="242" y="120" font-family="var(--font-mono)" font-size="11.5" fill="var(--ink)">Z_L=j8&Omega;</text>
+
+        <line x1="230" y1="170" x2="50" y2="170" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="130" y="100" text-anchor="middle" font-family="var(--font-mono)" font-size="16" fill="var(--copper)">&#8635; I</text>
+      </svg>
+      <div class="diagram-caption">Khép lại 10 ngày: cùng 1 kỹ thuật KVL/Ohm, chỉ đổi từ số thực sang số phức</div>
+    </div>
+    <details>
+      <summary>Xem lời giải</summary>
+      <div class="solution">
+        <div class="step">Tổng trở vòng: <span class="formula">Z = R+Z_L = 6+j8&Omega; = 10&ang;53.13&deg;&Omega;</span></div>
+        <div class="step">KVL/luật Ohm phasor: <span class="formula">I = V/Z = 50&ang;0&deg;/10&ang;53.13&deg;</span></div>
+        <div class="step"><span class="answer-inline">I = 5&ang;&minus;53.13&deg; A</span></div>
+        <div class="step">Đây chính xác là quy trình Ngày 1 (v=iR &rarr; V=ZI) và Ngày 3 (KVL quanh vòng), chỉ khác duy nhất: mọi con số bây giờ là số phức.</div>
+      </div>
+    </details>
+  </div>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">C</span> Bài tập tự luyện</h2>
+  <p class="section-hint">Tự làm trước, chỉ mở đáp số để so kết quả.</p>
+
+  <ol class="problems">
+    <li>
+      Z1=8&Omega; nối tiếp Z2=j6&Omega;. Tìm Z_eq (dạng đại số và dạng cực).
+      <details><summary>Xem đáp số</summary><div class="solution">Z_eq = 8+j6&Omega; = <span class="answer-inline">10&ang;36.87&deg;&Omega;</span></div></details>
+    </li>
+
+    <li>
+      Z1=j4&Omega; song song Z2=&minus;j4&Omega; (1 cuộn cảm, 1 tụ điện, cùng độ lớn). Tìm Z_eq.
+      <details><summary>Xem đáp số</summary><div class="solution">Z_eq=(j4)(&minus;j4)/(j4&minus;j4) = 16/0 &rarr; <span class="answer-inline">Z_eq &rarr; &infin; (hở mạch, cộng hưởng song song)</span></div></details>
+    </li>
+
+    <li>
+      Nguồn V=10&ang;0&deg;V nối tiếp Z1=3&Omega;, Z2=j4&Omega;. Tìm dòng điện I.
+      <details><summary>Xem đáp số</summary><div class="solution">Z=3+j4=5&ang;53.13&deg;&Omega; &rarr; I=10&ang;0&deg;/5&ang;53.13&deg; = <span class="answer-inline">2&ang;&minus;53.13&deg; A</span></div></details>
+    </li>
+
+    <li>
+      Một mạch AC có Z_th=4+j3&Omega;. Muốn truyền công suất cực đại (Ch.11, mở rộng khái niệm Ngày 4), tải Z_L nên chọn bằng bao nhiêu? (Gợi ý: liên hợp phức của Z_th.)
+      <details><summary>Xem đáp số</summary><div class="solution">Z_L = Z_th* = <span class="answer-inline">4&minus;j3&Omega;</span> (liên hợp phức, không chỉ đơn thuần bằng Z_th như mạch DC)</div></details>
+    </li>
+
+    <li>
+      Liệt kê 3 kỹ thuật của Ngày 3 và 4 (node, mesh, Thevenin) mà Ngày 10 áp dụng lại nguyên vẹn trong miền phasor.
+      <details><summary>Xem đáp số</summary><div class="solution"><span class="answer-inline">Node voltage, mesh current, Thevenin/Norton</span> (và xếp chồng, biến đổi nguồn), tất cả dùng số phức thay số thực</div></details>
+    </li>
+
+    <li>
+      Sau 10 ngày, hãy tự liệt kê (không xem lại) 3 công thức bạn thấy quan trọng nhất để mang vào buổi học đầu tiên trên lớp.
+      <details><summary>Xem đáp số</summary><div class="solution">Không có đáp án cố định, đây là bài tự tổng hợp. Gợi ý: <span class="answer-inline">V=ZI, công thức vạn năng bậc 1, V_th/Z_th</span> là 3 ứng cử viên mạnh</div></details>
+    </li>
+
+  </ol>
+
+
+  <div class="divider">&#9670; &#9670; &#9670;</div>
+
+  <h2 class="section-title"><span class="letter">D</span> Câu hỏi tự kiểm tra khái niệm</h2>
+  <p class="section-hint">Không cần tính toán, tự trả lời bằng lời của bạn.</p>
+
+  <ol class="concept">
+    <li>Toàn bộ Ngày 10 có thể tóm gọn trong 1 câu: &ldquo;lấy kỹ thuật Ngày ___ và ___, thay ___ bằng số phức&rdquo;. Tự điền vào chỗ trống.</li>
+    <li>Nhìn lại cả 10 ngày, đâu là 2 khái niệm bạn thấy mình cần ôn lại kỹ nhất trước khi vào học chính thức?</li>
+    <li>Vì sao việc học số phức và phasor (Ngày 8 và 9) lại được đặt SAU node/mesh/Thevenin (Ngày 3 và 4) thay vì trước? Thứ tự này có giúp việc học dễ hơn không?</li>
+    <li>Nếu phải giải thích cho một người chưa học gì về mạch điện, bạn sẽ tóm tắt “ý tưởng cốt lõi” của toàn bộ 10 chương này trong 2 câu như thế nào?</li>
+  </ol>
+
+
+  <footer>
+    Chúc mừng bạn đã hoàn thành lộ trình 10 ngày. Giờ đã sẵn sàng để bước vào 電路學 với nền tảng vững hơn phần lớn các bạn cùng lớp.
+  </footer>
+
+      </div>
+    </div>
+</div>
+
+<script>
+function showDay(n){
+  document.querySelectorAll('.day-section').forEach(function(el){ el.classList.remove('active'); });
+  document.querySelectorAll('.nav-item').forEach(function(el){ el.classList.remove('active'); });
+  document.getElementById('day-' + n).classList.add('active');
+  document.getElementById('nav-' + n).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+/* ---- Theo dõi tiến độ (lưu ở localStorage, dùng chung cho cả trang chủ) ---- */
+var SUBJECT_ID = 'dien-hoc';
+var TOTAL_DAYS = 10;
+var STORAGE_KEY = 'tuhoc-progress';
+
+function loadAllProgress(){
+  try{
+    var raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  }catch(e){ return {}; }
+}
+function saveAllProgress(all){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(all)); }catch(e){ /* lưu trữ không khả dụng, bỏ qua */ }
+}
+function isDayDone(day){
+  var all = loadAllProgress();
+  return !!(all[SUBJECT_ID] && all[SUBJECT_ID][day]);
+}
+function setDayDone(day, done){
+  var all = loadAllProgress();
+  if(!all[SUBJECT_ID]) all[SUBJECT_ID] = {};
+  all[SUBJECT_ID][day] = done;
+  saveAllProgress(all);
+  renderProgress();
+}
+
+function renderProgress(){
+  var doneCount = 0;
+  for(var d = 1; d <= TOTAL_DAYS; d++){
+    var done = isDayDone(d);
+    if(done) doneCount++;
+    var item = document.getElementById('nav-' + d);
+    if(item){
+      item.classList.toggle('done', done);
+      var st = item.querySelector('.status');
+      if(st) st.textContent = done ? '✓ Xong' : 'Đánh dấu';
+    }
+    var btn = document.getElementById('markdone-' + d);
+    if(btn){
+      btn.textContent = done ? '✓ Đã đánh dấu hoàn thành ngày ' + d : 'Đánh dấu hoàn thành ngày ' + d;
+      btn.classList.toggle('done', done);
+    }
+  }
+  var fill = document.getElementById('progress-bar-fill');
+  var label = document.getElementById('progress-label');
+  if(fill) fill.style.width = (doneCount / TOTAL_DAYS * 100) + '%';
+  if(label) label.textContent = doneCount + '/' + TOTAL_DAYS + ' hoàn thành';
+}
+
+// Gắn sự kiện bấm cho từng chấm trạng thái trong sidebar (không điều hướng khi bấm)
+document.querySelectorAll('.nav-item').forEach(function(item, idx){
+  var day = idx + 1;
+  var st = item.querySelector('.status');
+  if(st){
+    st.addEventListener('click', function(evt){
+      evt.stopPropagation();
+      setDayDone(day, !isDayDone(day));
+    });
+  }
+});
+
+// Chèn nút "Đánh dấu hoàn thành" vào cuối nội dung mỗi ngày
+document.querySelectorAll('.day-section').forEach(function(section, idx){
+  var day = idx + 1;
+  var page = section.querySelector('.page');
+  if(!page) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'mark-done-wrap';
+  var btn = document.createElement('button');
+  btn.id = 'markdone-' + day;
+  btn.className = 'mark-done-btn';
+  btn.type = 'button';
+  btn.addEventListener('click', function(){ setDayDone(day, !isDayDone(day)); });
+  wrap.appendChild(btn);
+  page.appendChild(wrap);
+});
+
+renderProgress();
+</script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+import {
+  getAuth, onAuthStateChanged, createUserWithEmailAndPassword,
+  signInWithEmailAndPassword, signOut
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+import {
+  getFirestore, doc, getDoc, setDoc, onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDckxGd03oTK5VgvU_SM9o4K5NgWQ3O2DI",
+  authDomain: "tu-hoc-80a3c.firebaseapp.com",
+  projectId: "tu-hoc-80a3c",
+  storageBucket: "tu-hoc-80a3c.firebasestorage.app",
+  messagingSenderId: "893935863550",
+  appId: "1:893935863550:web:00eb8614f985f581ee07af"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const STORAGE_KEY = 'tuhoc-progress'; // phải trùng key mà script phía trên dùng
+
+let currentUser = null;
+let unsubscribeSnapshot = null;
+
+function readLocalProgress(){
+  try{
+    var raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  }catch(e){ return {}; }
+}
+function writeLocalProgress(data){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }catch(e){}
+}
+function refreshUI(){
+  if (typeof window.renderProgress === 'function') window.renderProgress();
+}
+async function pushToFirestore(){
+  if(!currentUser) return;
+  try{
+    await setDoc(doc(db, 'progress', currentUser.uid), readLocalProgress());
+  }catch(e){ console.error('Không lưu được lên Firestore', e); }
+}
+function subscribeRemote(uid){
+  if(unsubscribeSnapshot) unsubscribeSnapshot();
+  unsubscribeSnapshot = onSnapshot(doc(db, 'progress', uid), function(snap){
+    if(snap.exists()){
+      writeLocalProgress(snap.data());
+      refreshUI();
+    }
+  });
+}
+
+onAuthStateChanged(auth, async function(user){
+  currentUser = user;
+  var loggedOutEl = document.getElementById('auth-logged-out');
+  var loggedInEl = document.getElementById('auth-logged-in');
+  var statusEl = document.getElementById('auth-status');
+  if(statusEl) statusEl.style.display = 'none';
+
+  if(user){
+    if(loggedOutEl) loggedOutEl.style.display = 'none';
+    if(loggedInEl) loggedInEl.style.display = 'inline-flex';
+    var emailDisplay = document.getElementById('auth-email-display');
+    if(emailDisplay) emailDisplay.textContent = '👤 ' + user.email;
+
+    try{
+      var ref = doc(db, 'progress', user.uid);
+      var snap = await getDoc(ref);
+      if(snap.exists()){
+        writeLocalProgress(snap.data());
+      } else {
+        await setDoc(ref, readLocalProgress());
+      }
+    }catch(e){ console.error(e); }
+
+    refreshUI();
+    subscribeRemote(user.uid);
+  } else {
+    if(loggedOutEl) loggedOutEl.style.display = 'inline-flex';
+    if(loggedInEl) loggedInEl.style.display = 'none';
+    if(unsubscribeSnapshot){ unsubscribeSnapshot(); unsubscribeSnapshot = null; }
+  }
+});
+
+var signinBtn = document.getElementById('auth-signin-btn');
+var signupBtn = document.getElementById('auth-signup-btn');
+var signoutBtn = document.getElementById('auth-signout-btn');
+var emailInput = document.getElementById('auth-email');
+var passInput = document.getElementById('auth-password');
+
+if(signinBtn) signinBtn.addEventListener('click', async function(){
+  try{ await signInWithEmailAndPassword(auth, emailInput.value.trim(), passInput.value); }
+  catch(e){ alert('Đăng nhập lỗi: ' + e.message); }
+});
+if(signupBtn) signupBtn.addEventListener('click', async function(){
+  try{ await createUserWithEmailAndPassword(auth, emailInput.value.trim(), passInput.value); }
+  catch(e){ alert('Tạo tài khoản lỗi: ' + e.message); }
+});
+if(signoutBtn) signoutBtn.addEventListener('click', async function(){ await signOut(auth); });
+
+// Ghi đè setDayDone hiện có để mỗi lần đánh dấu sẽ tự đẩy lên Firestore (khi đã đăng nhập)
+if (typeof window.setDayDone === 'function') {
+  var originalSetDayDone = window.setDayDone;
+  window.setDayDone = function(day, done){
+    originalSetDayDone(day, done);
+    pushToFirestore();
+  };
+}
+</script>
+
+</body>
+</html>

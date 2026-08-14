@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tự Học — Thư viện bài giảng cá nhân</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef2f5;
+    --grid:rgba(44,95,130,0.07);
+    --paper:#ffffff;
+    --ink:#16232e;
+    --ink-soft:#54646f;
+    --line:#d7dee3;
+    --blue:#2c5f82;
+    --blue-soft:#e6edf2;
+    --copper:#b5533c;
+    --copper-soft:#f5e9e4;
+    --amber:#b9791f;
+    --amber-soft:#faf1de;
+    --green:#3f8f6d;
+    --green-soft:#e9f4ef;
+    --font-display:'Space Grotesk', sans-serif;
+    --font-body:'Source Sans 3', sans-serif;
+    --font-mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background-color:var(--bg);
+    background-image:
+      repeating-linear-gradient(0deg, var(--grid) 0 1px, transparent 1px 28px),
+      repeating-linear-gradient(90deg, var(--grid) 0 1px, transparent 1px 28px);
+    font-family:var(--font-body);
+    color:var(--ink);
+    line-height:1.6;
+    padding:48px 16px 80px;
+  }
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+  }
+  header{
+    margin-bottom:44px;
+  }
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    letter-spacing:.08em;
+    color:var(--ink-soft);
+    margin-bottom:10px;
+  }
+  h1{
+    font-family:var(--font-display);
+    font-size:clamp(30px,5.5vw,44px);
+    font-weight:700;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  header p{
+    color:var(--ink-soft);
+    font-size:16px;
+    max-width:560px;
+    margin:0;
+  }
+  .shelf-label{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    letter-spacing:.08em;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    margin:0 0 18px;
+    padding-bottom:10px;
+    border-bottom:2px solid var(--ink);
+  }
+  .shelf-label .count{
+    color:var(--blue);
+  }
+  .shelf{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));
+    gap:20px;
+  }
+  .card{
+    position:relative;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:26px 20px 20px;
+    text-decoration:none;
+    color:var(--ink);
+    display:flex;
+    flex-direction:column;
+    min-height:180px;
+    box-shadow:0 1px 3px rgba(22,35,46,0.05);
+    transition:transform .15s ease, box-shadow .15s ease;
+    overflow:visible;
+  }
+  .card::before{
+    content:attr(data-code);
+    position:absolute;
+    top:-11px;
+    left:18px;
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.05em;
+    background:var(--accent, var(--blue));
+    color:#fff;
+    padding:3px 8px;
+    border-radius:2px;
+    transform:rotate(-1.5deg);
+    box-shadow:0 2px 3px rgba(22,35,46,0.18);
+  }
+  .card{ border-top:4px solid var(--accent, var(--blue)); }
+  @media (prefers-reduced-motion: no-preference){
+    .card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 10px 20px rgba(22,35,46,0.10);
+    }
+  }
+  .card h2{
+    font-family:var(--font-display);
+    font-size:19px;
+    font-weight:600;
+    margin:6px 0 8px;
+  }
+  .card p.desc{
+    font-size:14px;
+    color:var(--ink-soft);
+    margin:0 0 auto;
+    flex:1;
+  }
+  .progress-mini{ display:flex; align-items:center; gap:8px; margin-top:14px; }
+  .progress-mini-track{ flex:1; height:5px; background:var(--bg); border-radius:3px; overflow:hidden; }
+  .progress-mini-fill{ height:100%; width:0%; background:var(--accent, var(--blue)); border-radius:3px; }
+  @media (prefers-reduced-motion: no-preference){
+    .progress-mini-fill{ transition:width .3s ease; }
+  }
+  .progress-mini-label{ font-family:var(--font-mono); font-size:11px; color:var(--ink-soft); white-space:nowrap; }
+  .card .meta{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:16px;
+    padding-top:14px;
+    border-top:1px dashed var(--line);
+  }
+  .card .tag{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--accent, var(--blue));
+    background:var(--accent-soft, var(--blue-soft));
+    padding:2px 8px;
+    border-radius:3px;
+  }
+  .card .go{
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--ink-soft);
+  }
+  .card:hover .go{ color:var(--accent, var(--blue)); }
+
+  .card.empty{
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    border:1.5px dashed var(--line);
+    border-top:1.5px dashed var(--line);
+    color:var(--ink-soft);
+    box-shadow:none;
+  }
+  .card.empty::before{ content:none; }
+  .card.empty .plus{
+    font-family:var(--font-display);
+    font-size:26px;
+    line-height:1;
+    color:var(--line);
+    margin-bottom:8px;
+  }
+  .card.empty .t1{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    letter-spacing:.04em;
+  }
+  .card.empty .t2{
+    font-size:12.5px;
+    margin-top:4px;
+  }
+
+  footer{
+    margin-top:56px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+
+  @media (max-width:520px){
+    body{ padding:34px 12px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">THƯ VIỆN CÁ NHÂN</div>
+    <h1>Tự Học</h1>
+    <p>Nơi lưu các lộ trình tự học của riêng mình. Mỗi môn là một cuốn sổ tay — chọn một cuốn để bắt đầu.</p>
+  </header>
+
+  <div class="shelf-label">Môn học <span class="count">(1)</span></div>
+
+  <div class="shelf">
+
+    <a class="card" href="subjects/dien-hoc.html" data-code="EE 221001" data-subject-id="dien-hoc" data-total-days="10" style="--accent:#2c5f82; --accent-soft:#e6edf2;">
+      <h2>10 Ngày Điện Học</h2>
+      <p class="desc">Biến mạch điện, định lý mạch, op-amp, RLC, phasor — lộ trình tăng tốc trước kỳ Điện học, dựa theo Svoboda &amp; Dorf, 9th ed.</p>
+      <div class="progress-mini">
+        <div class="progress-mini-track"><div class="progress-mini-fill"></div></div>
+        <span class="progress-mini-label">0/10</span>
+      </div>
+      <div class="meta">
+        <span class="tag">10 bài</span>
+        <span class="go">Mở →</span>
+      </div>
+    </a>
+
+    <div class="card empty">
+      <div class="plus">+</div>
+      <div class="t1">MÔN TIẾP THEO</div>
+      <div class="t2">Gửi bài giảng mới để thêm vào đây</div>
+    </div>
+
+  </div>
+
+  <footer>ĐANG CÓ 1 MÔN HỌC · XÂY THỦ CÔNG, CẬP NHẬT DẦN THEO TIẾN ĐỘ</footer>
+
+</div>
+
+<script>
+  // Đọc tiến độ đã lưu (cùng key localStorage với các trang môn học) và hiển thị lên từng thẻ
+  (function(){
+    var STORAGE_KEY = 'tuhoc-progress';
+    var all = {};
+    try{
+      var raw = localStorage.getItem(STORAGE_KEY);
+      all = raw ? JSON.parse(raw) : {};
+    }catch(e){ all = {}; }
+
+    document.querySelectorAll('.card[data-subject-id]').forEach(function(card){
+      var id = card.getAttribute('data-subject-id');
+      var total = parseInt(card.getAttribute('data-total-days'), 10) || 0;
+      var days = all[id] || {};
+      var done = 0;
+      Object.keys(days).forEach(function(k){ if(days[k]) done++; });
+
+      var fill = card.querySelector('.progress-mini-fill');
+      var label = card.querySelector('.progress-mini-label');
+      if(total > 0){
+        if(fill) fill.style.width = (done / total * 100) + '%';
+        if(label) label.textContent = done + '/' + total;
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
