@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  MẪU TRANG MÔN HỌC — copy file này để thêm môn mới.
+  Các bước:
+    1. Copy thành subjects/<ten-mon>.html
+    2. Đổi <title>
+    3. Đổi phần .site-header (badge, h1, subtitle)
+    4. Sửa danh sách .nav-item trong .sidebar cho đúng số ngày
+    5. Thêm 1 khối <div class="day-section" id="day-N"> cho mỗi ngày
+    6. Sửa window.TUHOC_SUBJECT ở cuối file (id + totalDays)
+    7. Thêm 1 thẻ <a class="card"> mới vào .shelf trong index.html
+       (nhớ data-subject-id trùng với id ở bước 6, và data-total-days)
+  KHÔNG cần copy CSS hay code Firebase — tất cả nằm ở assets/.
+  ============================================================
+-->
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>TÊN MÔN HỌC — Tự Học</title>
+<script>
+// Đặt theme trước khi vẽ để không nháy sai màu
+(function(){try{var t=localStorage.getItem('tuhoc-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/theme.css">
+</head>
+<body>
+
+<!-- ==== AUTH GATE — chỉ hiện nội dung khi đã đăng nhập ==== -->
+<div id="tuhoc-gate">
+  <div class="box">
+    <div class="eyebrow">THƯ VIỆN CÁ NHÂN</div>
+    <h2>Tự Học</h2>
+    <p class="sub">Đăng nhập để xem nội dung.</p>
+    <input id="tuhoc-gate-email" type="email" placeholder="Email" autocomplete="email" aria-label="Email">
+    <input id="tuhoc-gate-pass" type="password" placeholder="Mật khẩu" autocomplete="current-password" aria-label="Mật khẩu">
+    <button id="tuhoc-gate-btn" type="button">Đăng nhập</button>
+    <div class="err" id="tuhoc-gate-err" role="alert"></div>
+  </div>
+</div>
+
+<div class="app-header">
+  <a class="back-link" href="../index.html">← TẤT CẢ MÔN HỌC</a>
+  <div class="header-actions">
+    <div id="auth-widget">
+      <span id="auth-status">Đang tải...</span>
+      <span id="auth-logged-out">
+        <input id="auth-email" type="email" placeholder="email" autocomplete="email" aria-label="Email">
+        <input id="auth-password" type="password" placeholder="mật khẩu" autocomplete="current-password" aria-label="Mật khẩu">
+        <button id="auth-signin-btn" type="button">Đăng nhập</button>
+      </span>
+      <span id="auth-logged-in">
+        <span id="auth-email-display"></span>
+        <button id="auth-signout-btn" type="button">Đăng xuất</button>
+      </span>
+    </div>
+    <button id="theme-toggle-btn" class="theme-toggle" type="button" aria-label="Chuyển chế độ sáng/tối">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- Thư viện ký hiệu mạch điện dùng chung — xoá nếu môn này không cần vẽ mạch -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="var(--copper)"></path>
+    </marker>
+  </defs>
+</svg>
+
+<div class="site-header">
+  <span class="badge">MÃ MÔN · NGUỒN THAM KHẢO</span>
+  <h1>TÊN MÔN HỌC</h1>
+  <p class="subtitle">Mô tả ngắn về lộ trình. Bấm vào từng ngày ở thanh bên để xem bài giảng.</p>
+</div>
+
+<div class="site-shell">
+  <nav class="sidebar">
+    <h4>N ngày</h4>
+    <div class="sidebar-progress">
+      <div class="bar-label"><span id="progress-label">0/N hoàn thành</span></div>
+      <div class="bar-track"><div class="bar-fill" id="progress-bar-fill"></div></div>
+    </div>
+    <button class="nav-item active" id="nav-1" onclick="showDay(1)"><span class="num">01</span><span class="label">Tên bài 1</span><span class="status">Đánh dấu</span></button>
+    <button class="nav-item" id="nav-2" onclick="showDay(2)"><span class="num">02</span><span class="label">Tên bài 2</span><span class="status">Đánh dấu</span></button>
+  </nav>
+
+  <div class="content-area">
+
+    <div class="day-section active" id="day-1">
+      <div class="page">
+        <span class="badge">NGÀY 1 / N · NGUỒN THAM KHẢO</span>
+        <h1>Tiêu đề bài học</h1>
+        <p class="subtitle">Mô tả ngắn nội dung ngày này.</p>
+
+        <h2 class="section-title"><span class="letter">A</span> Lý thuyết</h2>
+        <p class="section-hint">Đọc chủ động, khoảng 40 phút.</p>
+
+        <div class="refcard">
+          <span class="tag">THẺ TRA CỨU NHANH</span>
+          <div class="refcard-grid">
+            <div><span class="f">công thức</span>giải thích</div>
+          </div>
+        </div>
+
+        <div class="note">
+          <h3>A1. Tiêu đề mục</h3>
+          <p>Nội dung. Công thức viết inline như <span class="formula">v = iR</span>.</p>
+          <div class="callout warn"><span class="tag">⚠ LƯU Ý</span>Điểm dễ sai.</div>
+          <div class="callout tip"><span class="tag">✓ MẸO</span>Mẹo ghi nhớ.</div>
+        </div>
+
+        <div class="divider">◆ ◆ ◆</div>
+
+        <h2 class="section-title"><span class="letter">B</span> Ví dụ mẫu</h2>
+        <div class="card">
+          <span class="eyebrow">VÍ DỤ 1</span>
+          <h3>Tiêu đề ví dụ</h3>
+          <p>Đề bài.</p>
+          <div class="diagram-wrap">
+            <svg viewBox="0 0 320 140"><!-- hình vẽ --></svg>
+            <div class="diagram-caption">Chú thích hình.</div>
+          </div>
+          <details>
+            <summary>Xem lời giải</summary>
+            <div class="solution">
+              <div class="step">Bước 1</div>
+              <div class="step">Kết quả: <span class="answer-inline">đáp số</span></div>
+            </div>
+          </details>
+        </div>
+
+        <div class="divider">◆ ◆ ◆</div>
+
+        <h2 class="section-title"><span class="letter">C</span> Bài tập tự luyện</h2>
+        <ol class="problems">
+          <li>Đề bài.
+            <details><summary>Xem đáp số</summary><div class="solution"><span class="answer-inline">đáp số</span></div></details>
+          </li>
+        </ol>
+
+        <div class="divider">◆ ◆ ◆</div>
+
+        <h2 class="section-title"><span class="letter">D</span> Câu hỏi tự kiểm tra khái niệm</h2>
+        <ol class="concept">
+          <li>Câu hỏi khái niệm.</li>
+        </ol>
+
+        <footer>Xong Ngày 1. Ngày 2: nội dung tiếp theo.</footer>
+      </div>
+    </div>
+
+    <div class="day-section" id="day-2">
+      <div class="page">
+        <span class="badge">NGÀY 2 / N</span>
+        <h1>Tiêu đề bài học 2</h1>
+        <p class="subtitle">Mô tả ngắn.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>window.TUHOC_SUBJECT = { id: 'ten-mon', totalDays: 2 };</script>
+<script src="../assets/js/theme-toggle.js"></script>
+<script src="../assets/js/subject-nav.js"></script>
+<script type="module" src="../assets/js/firebase-auth.js"></script>
+
+</body>
+</html>
