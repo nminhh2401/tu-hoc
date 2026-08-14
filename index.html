@@ -211,6 +211,21 @@
 <div class="wrap">
 
   <header>
+    <div style="display:flex;justify-content:flex-end;margin-bottom:6px;">
+      <div id="auth-widget" style="font-family:var(--font-mono);font-size:12px;">
+        <span id="auth-status" style="color:var(--ink-soft);">Đang tải...</span>
+        <span id="auth-logged-out" style="display:none;align-items:center;gap:6px;flex-wrap:wrap;">
+          <input id="auth-email" type="email" placeholder="email" autocomplete="email" style="width:132px;padding:6px 8px;border:1px solid var(--line);border-radius:4px;font-family:inherit;font-size:12px;">
+          <input id="auth-password" type="password" placeholder="mật khẩu" autocomplete="current-password" style="width:100px;padding:6px 8px;border:1px solid var(--line);border-radius:4px;font-family:inherit;font-size:12px;">
+          <button id="auth-signin-btn" type="button" style="padding:6px 10px;border:1px solid var(--blue);background:var(--blue-soft);color:var(--blue);border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;">Đăng nhập</button>
+          <button id="auth-signup-btn" type="button" style="padding:6px 10px;border:1px solid var(--green);background:var(--green-soft);color:var(--green);border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;">Tạo tài khoản</button>
+        </span>
+        <span id="auth-logged-in" style="display:none;align-items:center;gap:8px;">
+          <span id="auth-email-display" style="color:var(--green);"></span>
+          <button id="auth-signout-btn" type="button" style="padding:6px 10px;border:1px solid var(--copper);background:var(--copper-soft);color:var(--copper);border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;">Đăng xuất</button>
+        </span>
+      </div>
+    </div>
     <div class="eyebrow">THƯ VIỆN CÁ NHÂN</div>
     <h1>Tự Học</h1>
     <p>Nơi lưu các lộ trình tự học của riêng mình. Mỗi môn là một cuốn sổ tay — chọn một cuốn để bắt đầu.</p>
@@ -247,7 +262,7 @@
 
 <script>
   // Đọc tiến độ đã lưu (cùng key localStorage với các trang môn học) và hiển thị lên từng thẻ
-  (function(){
+  function renderSubjectCards(){
     var STORAGE_KEY = 'tuhoc-progress';
     var all = {};
     try{
@@ -269,7 +284,106 @@
         if(label) label.textContent = done + '/' + total;
       }
     });
-  })();
+  }
+  window.renderSubjectCards = renderSubjectCards;
+  renderSubjectCards();
+</script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+import {
+  getAuth, onAuthStateChanged, createUserWithEmailAndPassword,
+  signInWithEmailAndPassword, signOut
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+import {
+  getFirestore, doc, getDoc, setDoc, onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDckxGd03oTK5VgvU_SM9o4K5NgWQ3O2DI",
+  authDomain: "tu-hoc-80a3c.firebaseapp.com",
+  projectId: "tu-hoc-80a3c",
+  storageBucket: "tu-hoc-80a3c.firebasestorage.app",
+  messagingSenderId: "893935863550",
+  appId: "1:893935863550:web:00eb8614f985f581ee07af"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const STORAGE_KEY = 'tuhoc-progress'; // phải trùng key mà các trang môn học dùng
+
+let unsubscribeSnapshot = null;
+
+function readLocalProgress(){
+  try{
+    var raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  }catch(e){ return {}; }
+}
+function writeLocalProgress(data){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }catch(e){}
+}
+function refreshUI(){
+  if (typeof window.renderSubjectCards === 'function') window.renderSubjectCards();
+}
+function subscribeRemote(uid){
+  if(unsubscribeSnapshot) unsubscribeSnapshot();
+  unsubscribeSnapshot = onSnapshot(doc(db, 'progress', uid), function(snap){
+    if(snap.exists()){
+      writeLocalProgress(snap.data());
+      refreshUI();
+    }
+  });
+}
+
+onAuthStateChanged(auth, async function(user){
+  var loggedOutEl = document.getElementById('auth-logged-out');
+  var loggedInEl = document.getElementById('auth-logged-in');
+  var statusEl = document.getElementById('auth-status');
+  if(statusEl) statusEl.style.display = 'none';
+
+  if(user){
+    if(loggedOutEl) loggedOutEl.style.display = 'none';
+    if(loggedInEl) loggedInEl.style.display = 'inline-flex';
+    var emailDisplay = document.getElementById('auth-email-display');
+    if(emailDisplay) emailDisplay.textContent = '👤 ' + user.email;
+
+    try{
+      var ref = doc(db, 'progress', user.uid);
+      var snap = await getDoc(ref);
+      if(snap.exists()){
+        writeLocalProgress(snap.data());
+      } else {
+        await setDoc(ref, readLocalProgress());
+      }
+    }catch(e){ console.error(e); }
+
+    refreshUI();
+    subscribeRemote(user.uid);
+  } else {
+    if(loggedOutEl) loggedOutEl.style.display = 'inline-flex';
+    if(loggedInEl) loggedInEl.style.display = 'none';
+    if(unsubscribeSnapshot){ unsubscribeSnapshot(); unsubscribeSnapshot = null; }
+  }
+});
+
+var signinBtn = document.getElementById('auth-signin-btn');
+var signupBtn = document.getElementById('auth-signup-btn');
+var signoutBtn = document.getElementById('auth-signout-btn');
+var emailInput = document.getElementById('auth-email');
+var passInput = document.getElementById('auth-password');
+
+if(signinBtn) signinBtn.addEventListener('click', async function(){
+  try{ await signInWithEmailAndPassword(auth, emailInput.value.trim(), passInput.value); }
+  catch(e){ alert('Đăng nhập lỗi: ' + e.message); }
+});
+if(signupBtn) signupBtn.addEventListener('click', async function(){
+  try{ await createUserWithEmailAndPassword(auth, emailInput.value.trim(), passInput.value); }
+  catch(e){ alert('Tạo tài khoản lỗi: ' + e.message); }
+});
+if(signoutBtn) signoutBtn.addEventListener('click', async function(){ await signOut(auth); });
 </script>
 
 </body>
