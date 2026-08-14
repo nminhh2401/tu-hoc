@@ -317,6 +317,130 @@
 </style>
 </head>
 <body>
+  <!-- ============================================================
+     TU HOC: AUTH GATE — dán khối này làm DÒNG ĐẦU TIÊN sau thẻ <body>
+     của MỌI trang môn học (dien-hoc.html và các môn thêm sau này).
+     ============================================================ -->
+<style>
+body:not(.tuhoc-authed) > :not(#tuhoc-gate){ display:none !important; }
+#tuhoc-gate{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:24px;
+background:#eef2f5;
+font-family:'Source Sans 3', sans-serif;
+color:#16232e;
+}
+#tuhoc-gate .box{
+background:#fff;
+border:1px solid #d7dee3;
+border-radius:4px;
+padding:36px 30px;
+max-width:340px;
+width:100%;
+text-align:center;
+box-shadow:0 1px 3px rgba(22,35,46,0.08);
+}
+#tuhoc-gate .eyebrow{
+font-family:'JetBrains Mono', monospace;
+font-size:12.5px;
+letter-spacing:.08em;
+color:#54646f;
+margin-bottom:8px;
+}
+#tuhoc-gate h2{
+font-family:'Space Grotesk', sans-serif;
+font-size:22px;
+font-weight:700;
+margin:0 0 6px;
+}
+#tuhoc-gate p.sub{
+font-size:13.5px;
+color:#54646f;
+margin:0 0 20px;
+}
+#tuhoc-gate input{
+width:100%;
+box-sizing:border-box;
+padding:10px 11px;
+margin-bottom:9px;
+border:1px solid #d7dee3;
+border-radius:4px;
+font-family:inherit;
+font-size:14px;
+}
+#tuhoc-gate button{
+width:100%;
+padding:10px;
+border:1px solid #2c5f82;
+background:#e6edf2;
+color:#2c5f82;
+border-radius:4px;
+cursor:pointer;
+font-family:inherit;
+font-weight:600;
+font-size:14px;
+}
+#tuhoc-gate button:hover{ background:#2c5f82; color:#fff; }
+#tuhoc-gate .err{
+color:#b5533c;
+font-size:12.5px;
+margin-top:12px;
+min-height:16px;
+}
+</style>
+
+<div id="tuhoc-gate">
+<div class="box">
+<div class="eyebrow">THƯ VIỆN CÁ NHÂN</div>
+<h2>Tự Học</h2>
+<p class="sub">Đăng nhập để xem nội dung.</p>
+<input id="tuhoc-gate-email" type="email" placeholder="Email" autocomplete="email">
+<input id="tuhoc-gate-pass" type="password" placeholder="Mật khẩu" autocomplete="current-password">
+<button id="tuhoc-gate-btn" type="button">Đăng nhập</button>
+<div class="err" id="tuhoc-gate-err"></div>
+</div>
+</div>
+
+<script type="module">
+import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+var firebaseConfig = {
+apiKey: "AIzaSyDckxGd03oTK5VgvU_SM9o4K5NgWQ3O2DI",
+authDomain: "tu-hoc-80a3c.firebaseapp.com",
+projectId: "tu-hoc-80a3c",
+storageBucket: "tu-hoc-80a3c.firebasestorage.app",
+messagingSenderId: "893935863550",
+appId: "1:893935863550:web:00eb8614f985f581ee07af"
+};
+
+var gateApp = getApps().length ? getApp() : initializeApp(firebaseConfig);
+var gateAuth = getAuth(gateApp);
+
+onAuthStateChanged(gateAuth, function(user){
+document.body.classList.toggle('tuhoc-authed', !!user);
+});
+
+var gateBtn = document.getElementById('tuhoc-gate-btn');
+var gateEmail = document.getElementById('tuhoc-gate-email');
+var gatePass = document.getElementById('tuhoc-gate-pass');
+var gateErr = document.getElementById('tuhoc-gate-err');
+
+gateBtn.addEventListener('click', async function(){
+gateErr.textContent = '';
+try{
+await signInWithEmailAndPassword(gateAuth, gateEmail.value.trim(), gatePass.value);
+}catch(e){
+gateErr.textContent = 'Sai email hoặc mật khẩu.';
+}
+});
+gatePass.addEventListener('keydown', function(e){ if(e.key === 'Enter') gateBtn.click(); });
+</script>
+<!-- ==== HẾT AUTH GATE ==== -->
+
 
 <div style="
   display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
@@ -338,8 +462,7 @@
       <input id="auth-email" type="email" placeholder="email" autocomplete="email" style="width:132px;padding:6px 8px;border:1px solid #d7dee3;border-radius:4px;font-family:inherit;font-size:12px;">
       <input id="auth-password" type="password" placeholder="mật khẩu" autocomplete="current-password" style="width:100px;padding:6px 8px;border:1px solid #d7dee3;border-radius:4px;font-family:inherit;font-size:12px;">
       <button id="auth-signin-btn" type="button" style="padding:6px 10px;border:1px solid #2c5f82;background:#e6edf2;color:#2c5f82;border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;">Đăng nhập</button>
-      <button id="auth-signup-btn" type="button" style="padding:6px 10px;border:1px solid #3f8f6d;background:#e9f4ef;color:#3f8f6d;border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;">Tạo tài khoản</button>
-    </span>
+      
     <span id="auth-logged-in" style="display:none;align-items:center;gap:8px;">
       <span id="auth-email-display" style="color:#3f8f6d;"></span>
       <button id="auth-signout-btn" type="button" style="padding:6px 10px;border:1px solid #b5533c;background:#f5e9e4;color:#b5533c;border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;">Đăng xuất</button>
@@ -3337,7 +3460,6 @@ onAuthStateChanged(auth, async function(user){
 });
 
 var signinBtn = document.getElementById('auth-signin-btn');
-var signupBtn = document.getElementById('auth-signup-btn');
 var signoutBtn = document.getElementById('auth-signout-btn');
 var emailInput = document.getElementById('auth-email');
 var passInput = document.getElementById('auth-password');
@@ -3345,10 +3467,6 @@ var passInput = document.getElementById('auth-password');
 if(signinBtn) signinBtn.addEventListener('click', async function(){
   try{ await signInWithEmailAndPassword(auth, emailInput.value.trim(), passInput.value); }
   catch(e){ alert('Đăng nhập lỗi: ' + e.message); }
-});
-if(signupBtn) signupBtn.addEventListener('click', async function(){
-  try{ await createUserWithEmailAndPassword(auth, emailInput.value.trim(), passInput.value); }
-  catch(e){ alert('Tạo tài khoản lỗi: ' + e.message); }
 });
 if(signoutBtn) signoutBtn.addEventListener('click', async function(){ await signOut(auth); });
 
