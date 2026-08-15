@@ -21,7 +21,7 @@
 <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js">
 <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/theme.css?v=20260815">
+<link rel="stylesheet" href="assets/css/theme.css?v=20260815c">
 </head>
 <body>
 
@@ -67,16 +67,32 @@
     <p>Nơi lưu các lộ trình tự học của riêng mình. Mỗi môn là một cuốn sổ tay — chọn một cuốn để bắt đầu.</p>
   </header>
 
-  <div class="clock-panel">
-    <div class="clock-main">
-      <span class="clock-time" id="clock-time">--:--</span>
-      <span class="clock-secs" id="clock-secs">--</span>
+  <section class="clock" aria-label="Thời gian hiện tại">
+    <div class="clock-face">
+      <div class="clock-eyebrow">
+        <span class="clock-live" aria-hidden="true"></span>
+        <span id="clock-greet">BÂY GIỜ</span>
+      </div>
+      <div class="clock-readout">
+        <span class="clock-hm" id="clock-time">--:--</span><span class="clock-sep" aria-hidden="true">:</span><span class="clock-ss" id="clock-secs" aria-hidden="true">--</span>
+      </div>
+      <div class="clock-date" id="clock-date">—</div>
     </div>
-    <div class="clock-meta">
-      <span class="clock-date" id="clock-date">—</span>
-      <span class="clock-zone" id="clock-zone">—</span>
+
+    <div class="clock-gauge">
+      <div class="clock-ring-wrap">
+        <svg class="clock-ring" viewBox="0 0 76 76" aria-hidden="true">
+          <circle class="ring-track" cx="38" cy="38" r="32"/>
+          <circle class="ring-fill" id="clock-ring" cx="38" cy="38" r="32"/>
+        </svg>
+        <div class="clock-ring-center">
+          <span class="clock-pct" id="clock-pct">--</span>
+          <span class="clock-pct-unit">% ngày</span>
+        </div>
+      </div>
+      <div class="clock-zone" id="clock-zone">—</div>
     </div>
-  </div>
+  </section>
 
   <div class="shelf-label">Môn học <span class="count">(1)</span></div>
   <div class="shelf">
@@ -102,9 +118,9 @@
   <footer>ĐANG CÓ 1 MÔN HỌC · XÂY THỦ CÔNG, CẬP NHẬT DẦN THEO TIẾN ĐỘ</footer>
 </div>
 
-<script src="assets/js/theme-toggle.js?v=20260815"></script>
-<script src="assets/js/clock.js?v=20260815"></script>
-<script src="assets/js/home.js?v=20260815"></script>
-<script type="module" src="assets/js/firebase-auth.js?v=20260815"></script>
+<script src="assets/js/theme-toggle.js?v=20260815c"></script>
+<script src="assets/js/clock.js?v=20260815c"></script>
+<script src="assets/js/home.js?v=20260815c"></script>
+<script type="module" src="assets/js/firebase-auth.js?v=20260815c"></script>
 </body>
 </html>
