@@ -6,13 +6,22 @@
 <meta name="color-scheme" content="light dark">
 <title>10 Ngày Điện Học — Tự Học</title>
 <script>
-// Đặt theme trước khi vẽ để không nháy sai màu
-(function(){try{var t=localStorage.getItem('tuhoc-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+// Chạy trước khi vẽ: đặt theme cho khỏi nháy màu, và mở nội dung ngay
+// nếu lần trước đã đăng nhập (khỏi phải đợi Firebase tải xong).
+(function(){try{
+  var t=localStorage.getItem('tuhoc-theme');
+  if(t)document.documentElement.setAttribute('data-theme',t);
+  if(localStorage.getItem('tuhoc-signed-in')==='1')
+    document.documentElement.classList.add('tuhoc-authed');
+}catch(e){}})();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<link rel="modulepreload" href="https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js">
+<link rel="modulepreload" href="https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/theme.css">
+<link rel="stylesheet" href="../assets/css/theme.css?v=20260815">
 </head>
 <body>
 
@@ -2864,9 +2873,9 @@
 </div>
 
 <script>window.TUHOC_SUBJECT = { id: 'dien-hoc', totalDays: 10 };</script>
-<script src="../assets/js/theme-toggle.js"></script>
-<script src="../assets/js/subject-nav.js"></script>
-<script type="module" src="../assets/js/firebase-auth.js"></script>
+<script src="../assets/js/theme-toggle.js?v=20260815"></script>
+<script src="../assets/js/subject-nav.js?v=20260815"></script>
+<script type="module" src="../assets/js/firebase-auth.js?v=20260815"></script>
 
 </body>
 </html>

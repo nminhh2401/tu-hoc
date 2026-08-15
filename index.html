@@ -6,13 +6,22 @@
 <meta name="color-scheme" content="light dark">
 <title>Tự Học — Thư viện bài giảng cá nhân</title>
 <script>
-// Đặt theme trước khi vẽ để không nháy sai màu
-(function(){try{var t=localStorage.getItem('tuhoc-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+// Chạy trước khi vẽ: đặt theme cho khỏi nháy màu, và mở nội dung ngay
+// nếu lần trước đã đăng nhập (khỏi phải đợi Firebase tải xong).
+(function(){try{
+  var t=localStorage.getItem('tuhoc-theme');
+  if(t)document.documentElement.setAttribute('data-theme',t);
+  if(localStorage.getItem('tuhoc-signed-in')==='1')
+    document.documentElement.classList.add('tuhoc-authed');
+}catch(e){}})();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<link rel="modulepreload" href="https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js">
+<link rel="modulepreload" href="https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/theme.css">
+<link rel="stylesheet" href="assets/css/theme.css?v=20260815">
 </head>
 <body>
 
@@ -58,6 +67,17 @@
     <p>Nơi lưu các lộ trình tự học của riêng mình. Mỗi môn là một cuốn sổ tay — chọn một cuốn để bắt đầu.</p>
   </header>
 
+  <div class="clock-panel">
+    <div class="clock-main">
+      <span class="clock-time" id="clock-time">--:--</span>
+      <span class="clock-secs" id="clock-secs">--</span>
+    </div>
+    <div class="clock-meta">
+      <span class="clock-date" id="clock-date">—</span>
+      <span class="clock-zone" id="clock-zone">—</span>
+    </div>
+  </div>
+
   <div class="shelf-label">Môn học <span class="count">(1)</span></div>
   <div class="shelf">
     <a class="card" href="subjects/dien-hoc.html" data-code="EE 221001" data-subject-id="dien-hoc" data-total-days="10" style="--accent:#2c5f82; --accent-soft:#e6edf2;">
@@ -82,8 +102,9 @@
   <footer>ĐANG CÓ 1 MÔN HỌC · XÂY THỦ CÔNG, CẬP NHẬT DẦN THEO TIẾN ĐỘ</footer>
 </div>
 
-<script src="assets/js/theme-toggle.js"></script>
-<script src="assets/js/home.js"></script>
-<script type="module" src="assets/js/firebase-auth.js"></script>
+<script src="assets/js/theme-toggle.js?v=20260815"></script>
+<script src="assets/js/clock.js?v=20260815"></script>
+<script src="assets/js/home.js?v=20260815"></script>
+<script type="module" src="assets/js/firebase-auth.js?v=20260815"></script>
 </body>
 </html>
