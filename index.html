@@ -21,7 +21,7 @@
 <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js">
 <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/theme.css?v=20260815c">
+<link rel="stylesheet" href="assets/css/theme.css?v=20260816">
 </head>
 <body>
 
@@ -94,6 +94,38 @@
     </div>
   </section>
 
+  <section class="today" aria-label="Hôm nay">
+    <a class="today-cta" id="today-cta" href="subjects/dien-hoc.html">
+      <span class="today-cta-label" id="today-cta-label">HỌC TIẾP</span>
+      <span class="today-cta-title" id="today-cta-title">—</span>
+      <span class="today-cta-sub" id="today-cta-sub">—</span>
+      <span class="today-cta-go" aria-hidden="true">→</span>
+    </a>
+
+    <div class="today-stats">
+      <div class="stat">
+        <span class="stat-num" id="stat-streak">0</span>
+        <span class="stat-label" id="stat-streak-label">chưa có chuỗi</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" id="stat-progress">0/0</span>
+        <span class="stat-label">bài đã xong</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" id="stat-time">0 phút</span>
+        <span class="stat-label">đã học</span>
+      </div>
+      <div class="stat stat-exam">
+        <span class="stat-num" id="stat-exam">—</span>
+        <span class="stat-label" id="stat-exam-label">chưa đặt ngày thi</span>
+        <label class="stat-exam-edit">
+          <span class="sr-only">Ngày thi</span>
+          <input type="date" id="exam-input">
+        </label>
+      </div>
+    </div>
+  </section>
+
   <div class="shelf-label">Môn học <span class="count">(1)</span></div>
   <div class="shelf">
     <a class="card" href="subjects/dien-hoc.html" data-code="EE 221001" data-subject-id="dien-hoc" data-total-days="10" style="--accent:#2c5f82; --accent-soft:#e6edf2;">
@@ -118,9 +150,10 @@
   <footer>ĐANG CÓ 1 MÔN HỌC · XÂY THỦ CÔNG, CẬP NHẬT DẦN THEO TIẾN ĐỘ</footer>
 </div>
 
-<script src="assets/js/theme-toggle.js?v=20260815c"></script>
-<script src="assets/js/clock.js?v=20260815c"></script>
-<script src="assets/js/home.js?v=20260815c"></script>
-<script type="module" src="assets/js/firebase-auth.js?v=20260815c"></script>
+<script src="assets/js/theme-toggle.js?v=20260816"></script>
+<script src="assets/js/clock.js?v=20260816"></script>
+<script src="assets/js/progress-store.js?v=20260816"></script>
+<script src="assets/js/dashboard.js?v=20260816"></script>
+<script type="module" src="assets/js/firebase-auth.js?v=20260816"></script>
 </body>
 </html>
